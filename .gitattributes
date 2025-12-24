@@ -1,0 +1,25 @@
+# Padrão: texto em LF no repositório
+* text=auto eol=lf
+
+# Shell scripts sempre LF (muito importante)
+*.sh text eol=lf
+
+# Markdown
+*.md text eol=lf
+
+# Python
+*.py text eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binários (não mexer)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.jar binary

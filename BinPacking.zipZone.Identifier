@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://dev.azure.com/AMBEV-SA/AMBEV-WMS/_git/BinPacking
+HostUrl=https://dev.azure.com/AMBEV-SA/69e2a561-b401-4f7d-9f09-37d3cbcb2c3a/_apis/git/repositories/dd3a537f-e6b0-4021-a213-a586df6e5ef4/items?path=/&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=zip&api-version=5.0&download=true
