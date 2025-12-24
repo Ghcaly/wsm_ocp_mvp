@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=https://dev.azure.com/AMBEV-SA/AMBEV-WMS/_git/wms-itemsboxing
-HostUrl=https://dev.azure.com/AMBEV-SA/69e2a561-b401-4f7d-9f09-37d3cbcb2c3a/_apis/git/repositories/01f043aa-6577-4047-b426-2c9177c0cd05/items?path=/&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=zip&api-version=5.0&download=true
