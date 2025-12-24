@@ -1,0 +1,125 @@
+Mapa: 622640 Veículo: EGX8875
+Produtos: 616
+Lado Motorista: 3364.07 (52.83%)
+Lado Ajudante: 3004.21 (47.17%)
+Cálculo Rota
+--------------------------------------------------------------------------------------------------------------------------------------------
+Pallet        L      Código UN  Entrega Nome                                            Qtd Embalagem Grp/Sub       Peso Atributo        Ocupação   
+-----------   - ----------- -- -------- ------------------------------------------ -------- --------- ------- ---------- ------------- ----------- 
+
+P01_A_01_1/35 - 35.00 - 17 - 3013  Peso: 967.04
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       982           SKOL 600ML GFA                                       35 1001 10/1001         967.05 Retornavel          35.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P01_M_01_1/35 - 34.95 - 18|4|10|3|12 - 45384  Peso: 987.67
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       2349          GUARANA  ANTARCTICA PET 2L CAIXA C/6                 31 5006 50/5006         399.90 Descartável         13.56 | 
+            | 0       504           PEPSI COLA PET 2L CAIXA C/6                          11 5006 50/5006         138.60 Descartável          4.81 | 
+            | 0       4409          PEPSI TWIST PET 2L SHRINK C/6                        10 5006 50/5006         126.00 Descartável          4.37 | 
+            | 0       2354          DIET SODA LIMONADA ANTARCT PET 2L CX C/6              7 5006 50/5006          89.53 Descartável          3.06 | 
+            | 0       2353          GUARANA CHP ANTARCTICA DIET PET 2L CAIXA C            5 5006 50/5006          64.50 Descartável          2.18 | 
+            | 0       503           SUKITA PET 2L CAIXA C/6                               1 5006 50/5006          12.78 Descartável          0.43 | 
+            | 0       13065         LIMONETO PET 1,5L SHRINK C/06 NPAL                    5 5001 50/5001          32.50 Descartável          1.90 | 
+            | 0       8923          PEPSI COLA PET 600ML CX12 NPAL                        2 5003 50/5003          16.40 Descartável          0.58 | 
+            | 0       8919          GUARANA  ANTARCTICA PET 600ML CX12 NPAL               2 5003 50/5003          16.40 Descartável          0.58 | 
+            | 0       8791          H2OH LIMAO C/GAS PET 500ML CAIXA C/12                 1 5003 50/5003           6.48 Descartável          0.24 | 
+            | 0       2132          GUARANA  ANTARCTICA PET 1L CAIXA C/6 NOVA             3 5002 50/5002          19.35 Descartável          0.70 | 
+            | 0       7703          PEPSI COLA PET 1L CAIXA C/6                           1 5002 50/5002           6.55 Descartável          0.23 | 
+            | 0       18266         PEPSI COLA PET 200ML SH C/12                         12 5005 50/5005          31.68 TopoPallet           1.26 | 
+            | 0       4293          PEPSI BLACK PET 200ML SH C/12                        10 5005 50/5005          27.00 TopoPallet           1.05 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P02_A_02_1/35 - 34.00 - 17|16|5 - 3013  Peso: 938.71
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       982           SKOL 600ML GFA                                       27 1001 10/1001         746.01 Retornavel          27.00 | 
+            | 0       2546          ORIGINAL 600ML GFA                                    6 1001 10/1001         165.60 Retornavel           6.00 | 
+            | 0       23186         SPATEN N 600ML                                        1 1001 10/1001          27.10 Retornavel           1.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P02_M_02_1/35 - 30.06 - 6|18|1|13|4|11 - 21945  Peso: 889.75
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                122 4002 40/4002         273.28 Descartável          9.86 | 
+            | 0       1745          Skol LT 269ML C15                                    66 4002 40/4002         277.20 Descartável          9.27 | 
+            | 0       9068          SKOL LATA 350ML SH C/12 NPAL                         17 4002 40/4002          76.50 Descartável          2.25 | 
+            | 0       1898          BRAHMA CHOPP LT 269ML SH C15 NPAL                    17 4002 40/4002          71.40 Descartável          2.38 | 
+            | 0       34608         MULTIPACK SKOL LATA 350ML SH C/12 NPAL                7 4002 40/4002          31.64 Descartável          0.92 | 
+            | 0       33324         ORIGINAL LT 269ML SH C 15 MULTPACK                    4 4002 40/4002          16.80 Descartável          0.55 | 
+            | 0       26204         SPATEN LT 269ML CX CARTAO C/8 NPAL                    6 4002 40/4002          13.32 Descartável          0.48 | 
+            | 0       9092          TONICA ANTARCTICA DIET LATA 350ML SH C/12             3 4002 40/4002          13.47 Descartável          0.44 | 
+            | 0       9096          PEPSI LATA 350ML C12                                  3 4002 40/4002          13.47 Descartável          0.44 | 
+            | 0       9085          GUARANA CHP ANTARCTICA DIET LATA 350ML SH             3 4002 40/4002          13.50 Descartável          0.44 | 
+            | 0       17678         SKOL LATA 350ML SH C/18 NPAL MULTPACK                 2 4002 40/4002          13.48 Descartável          0.42 | 
+            | 0       1699          STELLA ARTOIS LT 269ML CX C/8 FRIDGE PACK             5 4002 40/4002          11.10 Descartável          0.48 | 
+            | 0       13566         SKOL BEATS SENSES LT 269ML CX C/8 FRIDGE P            5 4002 40/4002          11.15 Descartável          0.40 | 
+            | 0       9093          PEPSI TWIST LATA 350ML SH C/12 NPAL                   2 4002 40/4002           9.00 Descartável          0.29 | 
+            | 0       9084          GUARANA LATA 350 ML C/12 NPAL                         2 4002 40/4002           9.10 Descartável          0.29 | 
+            | 0       9069          BRAHMA CHOPP LATA 350 SH C/12                         2 4002 40/4002           9.00 Descartável          0.29 | 
+            | 0       12948         BRAHMA ZERO LATA SHRINK 350                           2 4002 40/4002           8.98 Descartável          0.29 | 
+            | 0       34137         BUDWEISER LT 269ML SH C 15 MULTPACK                   2 4002 40/4002           8.40 Descartável          0.27 | 
+            | 0       13839         BUD LT 269ML CX C/8 FRIDGE PACK                       2 4002 40/4002           4.44 Descartável          0.16 | 
+            | 0       9089          SUKITA LATA 350ML C12                                 1 4002 40/4002           4.52 Descartável          0.14 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P03_A_03_1/35 - 27.12 - 17 - 3013  Peso: 654.10
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       1388          SKOL GFA VD 1L 2 99                                  31 1000 10/1000         654.10 Retornavel          27.12 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P03_M_03_1/35 - 35.00 - 17 - 3013  Peso: 844.00
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       1388          SKOL GFA VD 1L 2 99                                  40 1000 10/1000         844.00 Retornavel          35.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P04_A_04_1/35 - 10.50 - 10 - 95985  Peso: 277.20
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       29253         ORIGINAL GFA VD 1L                                   12 1000 10/1000         277.20 Retornavel          10.50 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P04_M_04_1/35 - 7.62 - 15|21|16|4 - 2744  Peso: 193.29
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       2538          ANTARCTICA PILSEN 600ML                               4 1001 10/1001         103.60 Retornavel           4.00 | 
+            | 0       972           Skol 300ML GFA                                        4 1002 10/1002          54.40 Retornavel           2.22 | 
+            | 0       24819         ORIGINAL 300ML                                        1 1002 10/1002          13.60 Retornavel           0.58 | 
+            | 0       21668         SPATEN  ONE WAY 600ML CX C/12 NP ARTE                 1 2001 20/2001          13.50 Descartável          0.53 | 
+            | 0       8933          SODA LIMONADA ANTARCTICA PET 600ML CX12 NP            1 5003 50/5003           8.20 Descartável          0.29 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P05_A_05_1/35 - 5.84 - 4|11|16|1|7|18|3|19 - 6434  Peso: 167.16
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       20498         BRAHMA DUPLO MALTE LT SLEEK 350ML SH C 12            13 4000 40/4000          57.20 Descartável          1.95 | 
+            | 0       11110         SKOL LATA 550ML SHRINK C/12                           6 4000 40/4000          39.60 Descartável          1.43 | 
+            | 0       22177         BUDWEISER ZERO LT SLEEK 350ML C 8 CX CARTA            5 4000 40/4000          15.00 Descartável          0.52 | 
+            | 0       21658         SPATEN LATA SLEEK 350ML CX CART C 12                  2 4000 40/4000           9.00 Descartável          0.30 | 
+            | 0       21020         BUDWEISER LT SLEEK 350ML CX CART C 12                 2 4000 40/4000           9.00 Descartável          0.27 | 
+            | 0       20651         CORONA EXTRA LATA SLEEK 350ML C 8 CX CARTA            2 4000 40/4000           5.76 Descartável          0.21 | 
+            | 0       17266         BOHEMIA LT 473ML CX CARTAO C/12                       1 4000 40/4000           6.00 Descartável          0.17 | 
+            | 0       9083          SKOL LT 473ML SH C/12 NPAL                            1 4000 40/4000           5.91 Descartável          0.17 | 
+            | 0       19229         RED BULL BR LATA 250ML C/6  SIX PACK NPAL             3 4001 40/4001           5.22 TopoPallet           0.23 | 
+            | 0       32969         RED BULL SUMMER MORANGO E PESSEGO LATA 250            3 4001 40/4001           3.48 TopoPallet           0.14 | 
+            | 0       19231         RED BULL SUGAR FREE BR LATA 250ML FOUR PAC            2 4001 40/4001           2.32 TopoPallet           0.09 | 
+            | 0       24306         RED BULL MELANCIA LATA 250ML FOUR PACK NPA            2 4001 40/4001           2.28 TopoPallet           0.09 | 
+            | 0       30045         RED BULL BR LATA 473ML CX C 12                        1 4000 40/4000           6.40 TopoPallet           0.27 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P05_M_05_1/35 - 5.29 - 1|4|12|999999 - 39105  Peso: 449.36
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       18836         C/24 Corona LONG NECK 330ml                           5 3000 30/3000          67.50 Descartável          2.43 | 
+            | 0       23271         SKOL BEATS SENSES LN 269ML CX 24                      2 3000 30/3000          23.70 Descartável          0.93 | 
+            | 0       30942         SPATEN N LONG NECK 330ML SIX-PACK SHRINK C            1 3000 30/3000          13.60 Descartável          0.50 | 
+            | 0       27866         CORONA CERO SUNBREW N LONG NECK 330 ML SIX            1 3000 30/3000          13.40 Descartável          0.48 | 
+            | 0       36015         SPATEN N LONG NECK 330ML SIX-PACK SHRINK C            1 3000 30/3000           6.40 Descartável          0.25 | 
+            | 0       23184         PITU AGUARDENTE LT 350ML CX C/12                      1 4002 40/4002           4.28 BinPack              0.19 | 
+            | 0       22180         BUDWEISER ZERO LONG NECK 330ML SIX-PACK SH           24 3000 30/3000         318.24 Descartável          0.50 | 
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                  1 4002 40/4002           2.24 Descartável          0.01 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|

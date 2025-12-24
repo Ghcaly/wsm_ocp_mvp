@@ -1,0 +1,85 @@
+Mapa: 622320 Veículo: RUR5G08
+Produtos: 183
+Lado Motorista: 923.03 (63.15%)
+Lado Ajudante: 538.51 (36.85%)
+Cálculo Rota
+--------------------------------------------------------------------------------------------------------------------------------------------
+Pallet        L      Código UN  Entrega Nome                                            Qtd Embalagem Grp/Sub       Peso Atributo        Ocupação   
+-----------   - ----------- -- -------- ------------------------------------------ -------- --------- ------- ---------- ------------- ----------- 
+
+P01_A_01_1/35 - 19.76 - 21|11|9|2|4|8|3|15|5|16|6|7|17|19|13 - 95258  Peso: 538.51
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       9069          BRAHMA CHOPP LATA 350 SH C/12                        11 4002 40/4002          49.50 Descartável          1.61 | 
+            | 0       9068          SKOL LATA 350ML SH C/12 NPAL                          8 4002 40/4002          36.00 Descartável          1.06 | 
+            | 0       33324         ORIGINAL LT 269ML SH C 15 MULTPACK                    5 4002 40/4002          21.00 Descartável          0.69 | 
+            | 0       1745          Skol LT 269ML C15                                     4 4002 40/4002          16.80 Descartável          0.56 | 
+            | 0       17678         SKOL LATA 350ML SH C/18 NPAL MULTPACK                 2 4002 40/4002          13.48 Descartável          0.42 | 
+            | 0       12948         BRAHMA ZERO LATA SHRINK 350                           2 4002 40/4002           8.98 Descartável          0.29 | 
+            | 0       9084          GUARANA LATA 350 ML C/12 NPAL                         2 4002 40/4002           9.10 Descartável          0.29 | 
+            | 0       9085          GUARANA CHP ANTARCTICA DIET LATA 350ML SH             2 4002 40/4002           9.00 Descartável          0.29 | 
+            | 0       32392         CORONA EXTRA N LT 269ML CX CARTAO C/8 NPAL            2 4002 40/4002           4.44 Descartável          0.16 | 
+            | 0       9081          MALZBIER BRAHMA LATA 350ML SH C/12 NPAL               1 4002 40/4002           4.48 Descartável          0.14 | 
+            | 0       26204         SPATEN LT 269ML CX CARTAO C/8 NPAL                    1 4002 40/4002           2.22 Descartável          0.08 | 
+            | 0       35617         BEATS GREEN MIX LT 269ML SH C/8                       1 4002 40/4002           2.26 Descartável          0.08 | 
+            | 0       32349         BEATS TROPICAL LATA 269ML CX CARTAO C/8 NP            1 4002 40/4002           2.31 Descartável          0.08 | 
+            | 0       21119         SKOL BEATS GT LT 269ML C/8 NPAL                       1 4002 40/4002           2.20 Descartável          0.08 | 
+            | 0       13839         BUD LT 269ML CX C/8 FRIDGE PACK                       1 4002 40/4002           2.22 Descartável          0.08 | 
+            | 0       9083          SKOL LT 473ML SH C/12 NPAL                           13 4000 40/4000          76.83 Descartável          2.29 | 
+            | 0       20498         BRAHMA DUPLO MALTE LT SLEEK 350ML SH C 12             3 4000 40/4000          13.20 Descartável          0.45 | 
+            | 0       21658         SPATEN LATA SLEEK 350ML CX CART C 12                  2 4000 40/4000           9.00 Descartável          0.30 | 
+            | 0       20651         CORONA EXTRA LATA SLEEK 350ML C 8 CX CARTA            2 4000 40/4000           5.76 Descartável          0.21 | 
+            | 0       21020         BUDWEISER LT SLEEK 350ML CX CART C 12                 1 4000 40/4000           4.50 Descartável          0.13 | 
+            | 0       2354          DIET SODA LIMONADA ANTARCT PET 2L CX C/6              2 5006 50/5006          25.58 Descartável          0.87 | 
+            | 0       2353          GUARANA CHP ANTARCTICA DIET PET 2L CAIXA C            2 5006 50/5006          25.80 Descartável          0.87 | 
+            | 0       504           PEPSI COLA PET 2L CAIXA C/6                           1 5006 50/5006          12.60 Descartável          0.43 | 
+            | 0       9276          PEPSI ZERO PET 2L CAIXA C6                            1 5006 50/5006          12.78 Descartável          0.43 | 
+            | 0       4409          PEPSI TWIST PET 2L SHRINK C/6                         1 5006 50/5006          12.60 Descartável          0.43 | 
+            | 0       18807         STELLA ARTOIS LONG NECK 330ML  SIX-PACK SH            2 3000 30/3000          26.20 Descartável          0.97 | 
+            | 0       18836         C/24 Corona LONG NECK 330ml                           1 3000 30/3000          13.50 Descartável          0.48 | 
+            | 0       21668         SPATEN  ONE WAY 600ML CX C/12 NP ARTE                 1 2001 20/2001          13.50 Descartável          0.53 | 
+            | 0       19229         RED BULL BR LATA 250ML C/6  SIX PACK NPAL             6 4001 40/4001          10.44 TopoPallet           0.46 | 
+            | 0       34420         RED BULL SUMMER MARACUJA E MELAO LATA 250M            3 4001 40/4001           3.42 TopoPallet           0.14 | 
+            | 0       24306         RED BULL MELANCIA LATA 250ML FOUR PACK NPA            3 4001 40/4001           3.42 TopoPallet           0.14 | 
+            | 0       32969         RED BULL SUMMER MORANGO E PESSEGO LATA 250            2 4001 40/4001           2.32 TopoPallet           0.09 | 
+            | 0       34770         RED BULL SUGAR FREE POMELO LATA 250ML FOUR            1 4001 40/4001           1.14 TopoPallet           0.04 | 
+            | 0       21666         RED BULL TROPICAL BR LATA 250ML FOUR PACK             1 4001 40/4001           1.16 TopoPallet           0.04 | 
+            | 0       34429         RED BULL AMORA LATA 250ML FOUR PACK NPAL              1 4001 40/4001           1.14 TopoPallet           0.04 | 
+            | 0       18266         PEPSI COLA PET 200ML SH C/12                          1 5005 50/5005           2.64 TopoPallet           0.10 | 
+            | 0       19321         GUARANA ANTARCTICA ZERO PET 200ML SH C/12             1 5005 50/5005           2.70 TopoPallet           0.10 | 
+            | 0       4293          PEPSI BLACK PET 200ML SH C/12                         1 5005 50/5005           2.70 TopoPallet           0.10 | 
+            | 0       20178         PEPSI TWIST PET 200ML SH C/12                         1 5005 50/5005           2.64 TopoPallet           0.10 | 
+            | 0       4254          MINALBA AGUA MINERAL C/GAS GFA PET 510ML F            5 5003 50/5003          32.70 BinPack              1.36 | 
+            | 0       21527         TANQUERAY LONDON DRY GARRAFA VIDRO 750ML              2 10000 100/10000        2.56 BinPack              0.46 | 
+            | 0       25151         OLD PARR WHISKY GFA VDR 1L                            3 10000 100/10000        4.98 BinPack              0.26 | 
+            | 0       32355         YPE LAVA LOUCAS LIQUIDO NEUTRO PLAST 500ML            1 10000 100/10000        3.00 BinPack              0.12 | 
+            | 0       27375         SAO FRANCISCO CACHACA GARRAFA VD 970ML                1 10000 100/10000        1.40 BinPack              0.08 | 
+            | 0       23651         PARATUDO RAIZES AMARGAS GARRAFA VIDRO 900M            1 10000 100/10000        1.37 BinPack              0.05 | 
+            | 0       28717         HOCUS POCUS INTERSTELLAR GFA VDR 500 ML CX            1 64 4/1                 5.22 BinPack              0.34 | 
+            | 0       28714         HOCUS POCUS APA CADABRA GFA VDR 500 ML CX             1 64 4/1                 5.22 BinPack              0.34 | 
+            | 0       29042         YPE TIXAN LAVA ROUPAS PRIMAVERA 800G                  1 10001 100/10001        0.83 BinPack              0.48 | 
+            | 0       35003         TRIDENT XFRESH 5S PRETO CEREJA ENVELOPE 8G           10 10001 100/10001        2.00 BinPack              0.11 | 
+            | 0       29292         HOCUS POCUS ORANGE SUNSHINE_ GFA VDR 500 M            1 2001 20/2001           5.22 BinPack              0.34 | 
+            | 0       4341          Minalba PET 310ml S/gas AGUA MINERAL                  1 5004 50/5004           4.46 BinPack              0.17 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P01_M_01_1/35 - 34.99 - 16|14|1|8|10|18|13|12|6 - 14779  Peso: 923.03
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       982           SKOL 600ML GFA                                        8 1001 10/1001         221.04 Retornavel           8.00 | 
+            | 0       20530         STELLA ARTOIS 600 ML                                  4 1001 10/1001         103.60 Retornavel           4.00 | 
+            | 0       2544          EXTRA SERRAMALTE 600ML GFA                            3 1001 10/1001          77.70 Retornavel           3.00 | 
+            | 0       23186         SPATEN N 600ML                                        2 1001 10/1001          54.20 Retornavel           2.00 | 
+            | 0       2538          ANTARCTICA PILSEN 600ML                               2 1001 10/1001          51.80 Retornavel           2.00 | 
+            | 0       2546          ORIGINAL 600ML GFA                                    2 1001 10/1001          55.20 Retornavel           2.00 | 
+            | 0       1388          SKOL GFA VD 1L 2 99                                   3 1000 10/1000          63.30 Retornavel           2.62 | 
+            | 0       1743          ANTARCTICA PILSEN GFA VD 1L COM TTC                   2 1000 10/1000          45.14 Retornavel           1.75 | 
+            | 0       972           Skol 300ML GFA                                        5 1002 10/1002          68.00 Retornavel           2.77 | 
+            | 0       24819         ORIGINAL 300ML                                        2 1002 10/1002          27.20 Retornavel           1.16 | 
+            | 0       2349          GUARANA  ANTARCTICA PET 2L CAIXA C/6                  5 5006 50/5006          64.50 Descartável          2.18 | 
+            | 0       8921          DIET GUARANA CHP ANTART PET600ML CX C/12              2 5003 50/5003          15.00 Descartável          0.58 | 
+            | 0       8919          GUARANA  ANTARCTICA PET 600ML CX12 NPAL               2 5003 50/5003          16.40 Descartável          0.58 | 
+            | 0       8411          GUARANA ANTARCTICA PET 1,5 SHRINK C/6                 2 5001 50/5001          19.00 Descartável          0.76 | 
+            | 0       14340         ORIGINAL ONE WAY 300ML CXPAP12                        1 2002 20/2002           6.64 Descartável          0.23 | 
+            | 0       18152         GUARANA  ANTARCTICA PET 200ML SH C/12                13 5005 50/5005          34.32 TopoPallet           1.36 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|

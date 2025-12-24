@@ -1,0 +1,40 @@
+Mapa: 622520 Veículo: EFU6B97
+Produtos: 78
+Lado Motorista: 676.44 (57.75%)
+Lado Ajudante: 494.90 (42.25%)
+Cálculo Rota
+--------------------------------------------------------------------------------------------------------------------------------------------
+Pallet        L      Código UN  Entrega Nome                                            Qtd Embalagem Grp/Sub       Peso Atributo        Ocupação   
+-----------   - ----------- -- -------- ------------------------------------------ -------- --------- ------- ---------- ------------- ----------- 
+
+P01_A_01_1/35 - 19.71 - 2|6|5|1|4 - 98423  Peso: 494.90
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       972           Skol 300ML GFA                                       20 1002 10/1002         272.00 Retornavel          11.11 | 
+            | 0       24819         ORIGINAL 300ML                                        6 1002 10/1002          81.60 Retornavel           3.50 | 
+            | 0       9084          GUARANA LATA 350 ML C/12 NPAL                         2 4002 40/4002           9.10 Descartável          0.29 | 
+            | 0       9068          SKOL LATA 350ML SH C/12 NPAL                          2 4002 40/4002           9.00 Descartável          0.26 | 
+            | 0       1745          Skol LT 269ML C15                                     2 4002 40/4002           8.40 Descartável          0.28 | 
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                  1 4002 40/4002           2.24 Descartável          0.08 | 
+            | 0       20498         BRAHMA DUPLO MALTE LT SLEEK 350ML SH C 12             1 4000 40/4000           4.40 Descartável          0.15 | 
+            | 0       504           PEPSI COLA PET 2L CAIXA C/6                           2 5006 50/5006          25.20 Descartável          0.87 | 
+            | 0       2132          GUARANA  ANTARCTICA PET 1L CAIXA C/6 NOVA             1 5002 50/5002           6.45 Descartável          0.23 | 
+            | 0       18836         C/24 Corona LONG NECK 330ml                           1 3000 30/3000          13.50 Descartável          0.48 | 
+            | 0       18152         GUARANA  ANTARCTICA PET 200ML SH C/12                 1 5005 50/5005           2.64 TopoPallet           0.10 | 
+            | 0       4293          PEPSI BLACK PET 200ML SH C/12                         1 5005 50/5005           2.70 TopoPallet           0.10 | 
+            | 0       4341          Minalba PET 310ml S/gas AGUA MINERAL                 10 5004 50/5004          44.60 BinPack              1.72 | 
+            | 0       4254          MINALBA AGUA MINERAL C/GAS GFA PET 510ML F            2 5003 50/5003          13.08 BinPack              0.54 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P01_M_01_1/35 - 25.24 - 5|6|2 - 4165  Peso: 676.44
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       2546          ORIGINAL 600ML GFA                                    8 1001 10/1001         220.80 Retornavel           8.00 | 
+            | 0       982           SKOL 600ML GFA                                        6 1001 10/1001         165.78 Retornavel           6.00 | 
+            | 0       23186         SPATEN N 600ML                                        2 1001 10/1001          54.20 Retornavel           2.00 | 
+            | 0       20329         BRAHMA DUPLO MALTE 600ML                              2 1001 10/1001          55.26 Retornavel           2.00 | 
+            | 0       2538          ANTARCTICA PILSEN 600ML                               1 1001 10/1001          25.90 Retornavel           1.00 | 
+            | 0       2544          EXTRA SERRAMALTE 600ML GFA                            1 1001 10/1001          25.90 Retornavel           1.00 | 
+            | 0       1388          SKOL GFA VD 1L 2 99                                   5 1000 10/1000         105.50 Retornavel           4.37 | 
+            | 0       29253         ORIGINAL GFA VD 1L                                    1 1000 10/1000          23.10 Retornavel           0.87 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|

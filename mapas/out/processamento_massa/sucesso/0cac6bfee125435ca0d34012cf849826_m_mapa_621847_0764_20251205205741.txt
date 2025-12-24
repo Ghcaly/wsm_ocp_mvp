@@ -1,0 +1,53 @@
+Mapa: 621847 Veículo: UDJ7A60
+Produtos: 163
+Lado Motorista: 841.10 (60.49%)
+Lado Ajudante: 549.32 (39.51%)
+Cálculo Rota
+--------------------------------------------------------------------------------------------------------------------------------------------
+Pallet        L      Código UN  Entrega Nome                                            Qtd Embalagem Grp/Sub       Peso Atributo        Ocupação   
+-----------   - ----------- -- -------- ------------------------------------------ -------- --------- ------- ---------- ------------- ----------- 
+
+P01_A_01_1/35 - 20.91 - 2|8|3|11|6|4|9|7 - 13242  Peso: 549.32
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       838           CHOPP BRAHMA CLARO BR KEG 50L                         2 9000 90/9000         106.68 Chopp                4.37 | 
+            | 0       2546          ORIGINAL 600ML GFA                                    1 1001 10/1001          27.60 Retornavel           1.00 | 
+            | 0       13061         LIMONETO PET 500ML SHRINK C/12 NPAL                   6 5003 50/5003          38.70 Descartável          1.45 | 
+            | 0       8791          H2OH LIMAO C/GAS PET 500ML CAIXA C/12                 5 5003 50/5003          32.40 Descartável          1.21 | 
+            | 0       2349          GUARANA  ANTARCTICA PET 2L CAIXA C/6                  5 5006 50/5006          64.50 Descartável          2.18 | 
+            | 0       2132          GUARANA  ANTARCTICA PET 1L CAIXA C/6 NOVA             3 5002 50/5002          19.35 Descartável          0.70 | 
+            | 0       11556         GUARANA ANTARCTICA ZERO PET 1L CAIXA C/6              1 5002 50/5002           6.53 Descartável          0.23 | 
+            | 0       8793          H2OH LIMAO C/GAS PET 1,5L CAIXA C/6                   2 5001 50/5001          19.32 Descartável          0.76 | 
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                 30 4002 40/4002          67.20 Descartável          2.42 | 
+            | 0       9085          GUARANA CHP ANTARCTICA DIET LATA 350ML SH             3 4002 40/4002          13.50 Descartável          0.44 | 
+            | 0       9084          GUARANA LATA 350 ML C/12 NPAL                         3 4002 40/4002          13.65 Descartável          0.44 | 
+            | 0       9068          SKOL LATA 350ML SH C/12 NPAL                          2 4002 40/4002           9.00 Descartável          0.26 | 
+            | 0       9087          SODA LATA 350ML C/12                                  1 4002 40/4002           4.49 Descartável          0.14 | 
+            | 0       20498         BRAHMA DUPLO MALTE LT SLEEK 350ML SH C 12             1 4000 40/4000           4.40 Descartável          0.15 | 
+            | 0       22180         BUDWEISER ZERO LONG NECK 330ML SIX-PACK SH            1 3000 30/3000          13.26 Descartável          0.50 | 
+            | 0       7983          GATORADE MORANGO-MARACUJA PET 500ML SIXPAC            2 5003 50/5003           6.48 Isotonico            0.27 | 
+            | 0       7980          GATORADE TANGERINA PET 500ML SIXPACK                  1 5003 50/5003           3.24 Isotonico            0.13 | 
+            | 0       7979          GATORADE FRUTAS CITRICAS PET 500ML SIXPACK            1 5003 50/5003           3.24 Isotonico            0.13 | 
+            | 0       7982          GATORADE LIMAO PET 500ML SIXPACK                      1 5003 50/5003           3.24 Isotonico            0.13 | 
+            | 0       32067         GATORADE BERRY BLUE PET 500ML SIXPACK                 1 5003 50/5003           3.25 Isotonico            0.13 | 
+            | 0       7981          GATORADE LARANJA PET 500ML SIXPACK                    1 5003 50/5003           3.24 Isotonico            0.13 | 
+            | 0       19229         RED BULL BR LATA 250ML C/6  SIX PACK NPAL            20 4001 40/4001          34.80 TopoPallet           1.56 | 
+            | 0       19231         RED BULL SUGAR FREE BR LATA 250ML FOUR PAC            9 4001 40/4001          10.44 TopoPallet           0.43 | 
+            | 0       24306         RED BULL MELANCIA LATA 250ML FOUR PACK NPA            4 4001 40/4001           4.56 TopoPallet           0.19 | 
+            | 0       21666         RED BULL TROPICAL BR LATA 250ML FOUR PACK             4 4001 40/4001           4.64 TopoPallet           0.19 | 
+            | 0       34770         RED BULL SUGAR FREE POMELO LATA 250ML FOUR            1 4001 40/4001           1.14 TopoPallet           0.04 | 
+            | 0       19321         GUARANA ANTARCTICA ZERO PET 200ML SH C/12             1 5005 50/5005           2.70 TopoPallet           0.10 | 
+            | 0       23184         PITU AGUARDENTE LT 350ML CX C/12                      5 4002 40/4002          21.40 BinPack              0.95 | 
+            | 0       32164         GUARAVITON  ACAI GFA PET 500ML PACK C/12 S            1 5003 50/5003           6.37 BinPack              0.28 | 
+            | 0       4293          PEPSI BLACK PET 200ML SH C/12                         0 5005 50/5005           0.00 TopoPallet                | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P01_M_01_1/35 - 34.95 - 3|1|5 - 26077  Peso: 841.10
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       1388          SKOL GFA VD 1L 2 99                                  32 1000 10/1000         675.20 Retornavel          28.00 | 
+            | 0       24819         ORIGINAL 300ML                                        7 1002 10/1002          95.20 Retornavel           4.08 | 
+            | 0       972           Skol 300ML GFA                                        3 1002 10/1002          40.80 Retornavel           1.66 | 
+            | 0       978           BRAHMA CHOPP 300ML GFA                                2 1002 10/1002          27.20 Retornavel           1.11 | 
+            | 0       4293          PEPSI BLACK PET 200ML SH C/12                         1 5005 50/5005           2.70 TopoPallet           0.10 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|

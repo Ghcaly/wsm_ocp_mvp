@@ -1,0 +1,38 @@
+Mapa: 622581 Veículo: EEH9C76
+Produtos: 111
+Lado Motorista: 864.00 (56.72%)
+Lado Ajudante: 659.27 (43.28%)
+Cálculo Rota
+--------------------------------------------------------------------------------------------------------------------------------------------
+Pallet        L      Código UN  Entrega Nome                                            Qtd Embalagem Grp/Sub       Peso Atributo        Ocupação   
+-----------   - ----------- -- -------- ------------------------------------------ -------- --------- ------- ---------- ------------- ----------- 
+
+P01_A_01_1/35 - 23.85 - 1|2 - 385  Peso: 659.27
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       982           SKOL 600ML GFA                                       10 1001 10/1001         276.30 Retornavel          10.00 | 
+            | 0       23186         SPATEN N 600ML                                        2 1001 10/1001          54.20 Retornavel           2.00 | 
+            | 0       2548          BUDWEISER 600ML GFA                                   1 1001 10/1001          25.90 Retornavel           1.00 | 
+            | 0       988           BRAHMA CHOPP 600ML GFA                                1 1001 10/1001          27.60 Retornavel           1.00 | 
+            | 0       2532          ANTARCTICA PILSEN 300ML                               1 1002 10/1002          13.60 Retornavel           0.62 | 
+            | 0       29700         BUDWEISER 300ML                                       1 1002 10/1002          14.50 Retornavel           0.58 | 
+            | 0       24819         ORIGINAL 300ML                                        1 1002 10/1002          13.60 Retornavel           0.58 | 
+            | 0       20533         BRAHMA DUPLO MALTE GFA VD 1L                          1 1000 10/1000          22.00 Retornavel           0.87 | 
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                 20 4002 40/4002          44.80 Descartável          1.61 | 
+            | 0       1745          Skol LT 269ML C15                                    10 4002 40/4002          42.00 Descartável          1.40 | 
+            | 0       33324         ORIGINAL LT 269ML SH C 15 MULTPACK                   10 4002 40/4002          42.00 Descartável          1.38 | 
+            | 0       34137         BUDWEISER LT 269ML SH C 15 MULTPACK                   7 4002 40/4002          29.40 Descartável          0.96 | 
+            | 0       9084          GUARANA LATA 350 ML C/12 NPAL                         1 4002 40/4002           4.55 Descartável          0.14 | 
+            | 0       9089          SUKITA LATA 350ML C12                                 1 4002 40/4002           4.52 Descartável          0.14 | 
+            | 0       1164          SUKITA UVA LATA 350ML SH C/12 NPAL                    1 4002 40/4002           4.52 Descartável          0.13 | 
+            | 0       21668         SPATEN  ONE WAY 600ML CX C/12 NP ARTE                 1 2001 20/2001          13.50 Descartável          0.53 | 
+            | 0       18836         C/24 Corona LONG NECK 330ml                           1 3000 30/3000          13.50 Descartável          0.48 | 
+            | 0       503           SUKITA PET 2L CAIXA C/6                               1 5006 50/5006          12.78 Descartável          0.43 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P01_M_01_1/35 - 35.00 - 1 - 385  Peso: 864.00
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       1388          SKOL GFA VD 1L 2 99                                  30 1000 10/1000         633.00 Retornavel          26.25 | 
+            | 0       29253         ORIGINAL GFA VD 1L                                   10 1000 10/1000         231.00 Retornavel           8.75 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|

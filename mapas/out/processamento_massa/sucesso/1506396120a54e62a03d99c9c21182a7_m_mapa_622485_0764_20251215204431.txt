@@ -1,0 +1,120 @@
+Mapa: 622485 Veículo: FVI8A72
+Produtos: 2943
+Lado Motorista: 5079.03 (50.08%)
+Lado Ajudante: 5063.19 (49.92%)
+Cálculo Rota
+--------------------------------------------------------------------------------------------------------------------------------------------
+Pallet        L      Código UN  Entrega Nome                                            Qtd Embalagem Grp/Sub       Peso Atributo        Ocupação   
+-----------   - ----------- -- -------- ------------------------------------------ -------- --------- ------- ---------- ------------- ----------- 
+
+P01_A_01_1/35 - 35.00 - 1 - 12220  Peso: 1087.89
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       18856         MULTPACK 15 SKOL LT 269ML SH C/15                   253 4002 40/4002        1087.90 Descartável         35.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P01_M_01_1/35 - 35.00 - 1 - 12220  Peso: 1087.89
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       18856         MULTPACK 15 SKOL LT 269ML SH C/15                   253 4002 40/4002        1087.90 Descartável         35.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P02_A_02_1/35 - 34.98 - 1 - 12220  Peso: 1034.12
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       13839         BUD LT 269ML CX C/8 FRIDGE PACK                      87 4002 40/4002         193.14 Descartável          7.03 | 
+            | 0       33324         ORIGINAL LT 269ML SH C 15 MULTPACK                   46 4002 40/4002         193.20 Descartável          6.36 | 
+            | 0       1898          BRAHMA CHOPP LT 269ML SH C15 NPAL                    40 4002 40/4002         168.00 Descartável          5.62 | 
+            | 0       9084          GUARANA LATA 350 ML C/12 NPAL                        30 4002 40/4002         136.50 Descartável          4.41 | 
+            | 0       26204         SPATEN LT 269ML CX CARTAO C/8 NPAL                   40 4002 40/4002          88.80 Descartável          3.23 | 
+            | 0       9085          GUARANA CHP ANTARCTICA DIET LATA 350ML SH            15 4002 40/4002          67.50 Descartável          2.22 | 
+            | 0       9092          TONICA ANTARCTICA DIET LATA 350ML SH C/12            15 4002 40/4002          67.35 Descartável          2.20 | 
+            | 0       9069          BRAHMA CHOPP LATA 350 SH C/12                        15 4002 40/4002          67.50 Descartável          2.20 | 
+            | 0       19310         ORIGINAL LT 350ML CX CARTAO C/12 NPAL                10 4002 40/4002          45.20 Descartável          1.47 | 
+            | 0       32349         BEATS TROPICAL LATA 269ML CX CARTAO C/8 NP            3 4002 40/4002           6.93 Descartável          0.24 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P02_M_02_1/35 - 35.00 - 1 - 12220  Peso: 1062.60
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       33324         ORIGINAL LT 269ML SH C 15 MULTPACK                  253 4002 40/4002        1062.60 Descartável         35.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P03_A_03_1/35 - 34.99 - 1 - 12220  Peso: 1032.72
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       18856         MULTPACK 15 SKOL LT 269ML SH C/15                    92 4002 40/4002         395.60 Descartável         12.72 | 
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                 87 4002 40/4002         194.88 Descartável          7.03 | 
+            | 0       20498         BRAHMA DUPLO MALTE LT SLEEK 350ML SH C 12            10 4000 40/4000          44.00 Descartável          1.50 | 
+            | 0       20651         CORONA EXTRA LATA SLEEK 350ML C 8 CX CARTA            5 4000 40/4000          14.40 Descartável          0.52 | 
+            | 0       22177         BUDWEISER ZERO LT SLEEK 350ML C 8 CX CARTA            1 4000 40/4000           3.00 Descartável          0.10 | 
+            | 0       2354          DIET SODA LIMONADA ANTARCT PET 2L CX C/6             15 5006 50/5006         191.85 Descartável          6.56 | 
+            | 0       504           PEPSI COLA PET 2L CAIXA C/6                          15 5006 50/5006         189.00 Descartável          6.56 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P03_M_03_1/35 - 35.00 - 1 - 12220  Peso: 1032.00
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       2349          GUARANA  ANTARCTICA PET 2L CAIXA C/6                 80 5006 50/5006        1032.00 Descartável         35.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P04_A_04_1/35 - 35.00 - 1 - 12220  Peso: 969.92
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                433 4002 40/4002         969.92 Descartável         35.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P04_M_04_1/35 - 35.00 - 1 - 12220  Peso: 961.26
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       13839         BUD LT 269ML CX C/8 FRIDGE PACK                     433 4002 40/4002         961.26 Descartável         35.00 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P05_A_05_1/35 - 34.97 - 1 - 12220  Peso: 938.54
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       2353          GUARANA CHP ANTARCTICA DIET PET 2L CAIXA C           35 5006 50/5006         451.50 Descartável         15.31 | 
+            | 0       8411          GUARANA ANTARCTICA PET 1,5 SHRINK C/6                20 5001 50/5001         190.00 Descartável          7.60 | 
+            | 0       22202         TONICA ANTARCTICA ZERO PET 1L SH C/06                10 5002 50/5002          64.80 Descartável          2.91 | 
+            | 0       14340         ORIGINAL ONE WAY 300ML CXPAP12                        1 2002 20/2002           6.64 Descartável          0.23 | 
+            | 0       18152         GUARANA  ANTARCTICA PET 200ML SH C/12                50 5005 50/5005         132.00 TopoPallet           5.25 | 
+            | 0       4293          PEPSI BLACK PET 200ML SH C/12                        20 5005 50/5005          54.00 TopoPallet           2.10 | 
+            | 0       18266         PEPSI COLA PET 200ML SH C/12                         15 5005 50/5005          39.60 TopoPallet           1.57 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P05_M_05_1/35 - 34.97 - 1 - 12220  Peso: 935.28
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       13061         LIMONETO PET 500ML SHRINK C/12 NPAL                  50 5003 50/5003         322.50 Descartável         12.15 | 
+            | 0       8919          GUARANA  ANTARCTICA PET 600ML CX12 NPAL              15 5003 50/5003         123.00 Descartável          4.37 | 
+            | 0       8791          H2OH LIMAO C/GAS PET 500ML CAIXA C/12                10 5003 50/5003          64.80 Descartável          2.43 | 
+            | 0       18137         GUARANA  ANTARCTICA PET 3L C/04 SHRINK LIS           20 5000 50/5000         244.80 Descartável          8.75 | 
+            | 0       8413          DIET GUARANA CHP ANTARCT PET1,5L SH C/6              15 5001 50/5001         142.50 Descartável          5.70 | 
+            | 0       14550         COLORADO APPIA ONE WAY 600ML CX C-12 ARTE             1 2001 20/2001          12.00 Descartável          0.50 | 
+            | 0       22177         BUDWEISER ZERO LT SLEEK 350ML C 8 CX CARTA            1 4000 40/4000           3.00 Descartável          0.10 | 
+            | 0       7981          GATORADE LARANJA PET 500ML SIXPACK                    7 5003 50/5003          22.68 Isotonico            0.97 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+Produtos fora do caminhão - Peso: 1252.23:
+--------------------------------------------------------------------------------------------------------------------------------------------
+            |          14340         ORIGINAL ONE WAY 300ML CXPAP12                                     19 2002 20/2002         126.16 Descartável               | 
+            |          17757         BECKS NACIONAL LONG NECK 330ML SIX-PACK SHRINK C/24                 1 3000 30/3000          12.72 Descartável               | 
+            |          17808         BUD LONG NECK 330ML CX24                                           10 3000 30/3000         132.60 Descartável               | 
+            |          371           MALZBIER BRAHMA LONG NECK 355ML SIX-PACK C/24                       5 3000 30/3000          69.70 Descartável               | 
+            |          22180         BUDWEISER ZERO LONG NECK 330ML SIX-PACK SHRINK C/4                  1 3000 30/3000          13.26 Descartável               | 
+            |          24168         MICHELOB ULTRA N LONG NECK 330ML SIX-PACK SHRINK C                  2 3000 30/3000          26.80 Descartável               | 
+            |          21020         BUDWEISER LT SLEEK 350ML CX CART C 12                              30 4000 40/4000         135.00 Descartável               | 
+            |          22177         BUDWEISER ZERO LT SLEEK 350ML C 8 CX CARTAO                        28 4000 40/4000          84.00 Descartável               | 
+            |          9081          MALZBIER BRAHMA LATA 350ML SH C/12 NPAL                            10 4002 40/4002          44.80 Descartável               | 
+            |          12948         BRAHMA ZERO LATA SHRINK 350                                        10 4002 40/4002          44.90 Descartável               | 
+            |          9096          PEPSI LATA 350ML C12                                                5 4002 40/4002          22.45 Descartável               | 
+            |          9093          PEPSI TWIST LATA 350ML SH C/12 NPAL                                10 4002 40/4002          45.00 Descartável               | 
+            |          13065         LIMONETO PET 1,5L SHRINK C/06 NPAL                                 10 5001 50/5001          65.00 Descartável               | 
+            |          8793          H2OH LIMAO C/GAS PET 1,5L CAIXA C/6                                 7 5001 50/5001          67.62 Descartável               | 
+            |          2132          GUARANA  ANTARCTICA PET 1L CAIXA C/6 NOVA RIO                      10 5002 50/5002          64.50 Descartável               | 
+            |          7981          GATORADE LARANJA PET 500ML SIXPACK                                  3 5003 50/5003           9.72 Isotonico                 | 
+            |          7982          GATORADE LIMAO PET 500ML SIXPACK                                   30 5003 50/5003          97.20 Isotonico                 | 
+            |          7983          GATORADE MORANGO-MARACUJA PET 500ML SIXPACK                        10 5003 50/5003          32.40 Isotonico                 | 
+            |          7977          GATORADE UVA PET 500ML SIXPACK                                     10 5003 50/5003          32.40 Isotonico                 | 
+            |          4409          PEPSI TWIST PET 2L SHRINK C/6                                      10 5006 50/5006         126.00 Descartável               | 
+--------------------------------------------------------------------------------------------------------------------------------------------

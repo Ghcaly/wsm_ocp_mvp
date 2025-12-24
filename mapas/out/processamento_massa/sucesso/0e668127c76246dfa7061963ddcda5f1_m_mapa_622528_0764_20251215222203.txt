@@ -1,0 +1,68 @@
+Mapa: 622528 Veículo: RUR5G14
+Produtos: 141
+Lado Motorista: 906.71 (61.58%)
+Lado Ajudante: 565.59 (38.42%)
+Cálculo Rota
+--------------------------------------------------------------------------------------------------------------------------------------------
+Pallet        L      Código UN  Entrega Nome                                            Qtd Embalagem Grp/Sub       Peso Atributo        Ocupação   
+-----------   - ----------- -- -------- ------------------------------------------ -------- --------- ------- ---------- ------------- ----------- 
+
+P01_A_01_1/35 - 21.62 - 2|10|3|12|11|6|15|13|8|7|5|1|4 - 44335  Peso: 565.59
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       1388          SKOL GFA VD 1L 2 99                                   4 1000 10/1000          84.40 Retornavel           3.50 | 
+            | 0       20533         BRAHMA DUPLO MALTE GFA VD 1L                          1 1000 10/1000          22.00 Retornavel           0.87 | 
+            | 0       1745          Skol LT 269ML C15                                    14 4002 40/4002          58.80 Descartável          1.96 | 
+            | 0       9068          SKOL LATA 350ML SH C/12 NPAL                         13 4002 40/4002          58.50 Descartável          1.72 | 
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                 15 4002 40/4002          33.60 Descartável          1.21 | 
+            | 0       33324         ORIGINAL LT 269ML SH C 15 MULTPACK                    3 4002 40/4002          12.60 Descartável          0.41 | 
+            | 0       9085          GUARANA CHP ANTARCTICA DIET LATA 350ML SH             2 4002 40/4002           9.00 Descartável          0.29 | 
+            | 0       13839         BUD LT 269ML CX C/8 FRIDGE PACK                       3 4002 40/4002           6.66 Descartável          0.24 | 
+            | 0       19310         ORIGINAL LT 350ML CX CARTAO C/12 NPAL                 1 4002 40/4002           4.52 Descartável          0.14 | 
+            | 0       9084          GUARANA LATA 350 ML C/12 NPAL                         1 4002 40/4002           4.55 Descartável          0.14 | 
+            | 0       18856         MULTPACK 15 SKOL LT 269ML SH C/15                     1 4002 40/4002           4.30 Descartável          0.13 | 
+            | 0       13566         SKOL BEATS SENSES LT 269ML CX C/8 FRIDGE P            1 4002 40/4002           2.23 Descartável          0.08 | 
+            | 0       33734         BEATS RED MIX LT 269ML SH C/8                         1 4002 40/4002           2.23 Descartável          0.08 | 
+            | 0       35617         BEATS GREEN MIX LT 269ML SH C/8                       1 4002 40/4002           2.26 Descartável          0.08 | 
+            | 0       26204         SPATEN LT 269ML CX CARTAO C/8 NPAL                    1 4002 40/4002           2.22 Descartável          0.08 | 
+            | 0       20498         BRAHMA DUPLO MALTE LT SLEEK 350ML SH C 12             2 4000 40/4000           8.80 Descartável          0.30 | 
+            | 0       21658         SPATEN LATA SLEEK 350ML CX CART C 12                  2 4000 40/4000           9.00 Descartável          0.30 | 
+            | 0       21020         BUDWEISER LT SLEEK 350ML CX CART C 12                 1 4000 40/4000           4.50 Descartável          0.13 | 
+            | 0       13061         LIMONETO PET 500ML SHRINK C/12 NPAL                   5 5003 50/5003          32.25 Descartável          1.21 | 
+            | 0       8919          GUARANA  ANTARCTICA PET 600ML CX12 NPAL               4 5003 50/5003          32.80 Descartável          1.16 | 
+            | 0       8791          H2OH LIMAO C/GAS PET 500ML CAIXA C/12                 2 5003 50/5003          12.96 Descartável          0.48 | 
+            | 0       13065         LIMONETO PET 1,5L SHRINK C/06 NPAL                    2 5001 50/5001          13.00 Descartável          0.76 | 
+            | 0       2349          GUARANA  ANTARCTICA PET 2L CAIXA C/6                  1 5006 50/5006          12.90 Descartável          0.43 | 
+            | 0       2132          GUARANA  ANTARCTICA PET 1L CAIXA C/6 NOVA             1 5002 50/5002           6.45 Descartável          0.23 | 
+            | 0       18836         C/24 Corona LONG NECK 330ml                           2 3000 30/3000          27.00 Descartável          0.97 | 
+            | 0       371           MALZBIER BRAHMA LONG NECK 355ML SIX-PACK C            1 3000 30/3000          13.94 Descartável          0.50 | 
+            | 0       21668         SPATEN  ONE WAY 600ML CX C/12 NP ARTE                 1 2001 20/2001          13.50 Descartável          0.53 | 
+            | 0       15190         PEPSI ZERO MIX BAG IN BOX 18L                         2 20000 200/20000       37.00 TopoPallet           2.33 | 
+            | 0       19229         RED BULL BR LATA 250ML C/6  SIX PACK NPAL             7 4001 40/4001          12.18 TopoPallet           0.54 | 
+            | 0       19231         RED BULL SUGAR FREE BR LATA 250ML FOUR PAC            2 4001 40/4001           2.32 TopoPallet           0.09 | 
+            | 0       34429         RED BULL AMORA LATA 250ML FOUR PACK NPAL              1 4001 40/4001           1.14 TopoPallet           0.04 | 
+            | 0       24306         RED BULL MELANCIA LATA 250ML FOUR PACK NPA            1 4001 40/4001           1.14 TopoPallet           0.04 | 
+            | 0       32969         RED BULL SUMMER MORANGO E PESSEGO LATA 250            1 4001 40/4001           1.16 TopoPallet           0.04 | 
+            | 0       21666         RED BULL TROPICAL BR LATA 250ML FOUR PACK             1 4001 40/4001           1.16 TopoPallet           0.04 | 
+            | 0       18266         PEPSI COLA PET 200ML SH C/12                          1 5005 50/5005           2.64 TopoPallet           0.10 | 
+            | 0       18152         GUARANA  ANTARCTICA PET 200ML SH C/12                 1 5005 50/5005           2.64 TopoPallet           0.10 | 
+            | 0       4293          PEPSI BLACK PET 200ML SH C/12                         1 5005 50/5005           2.70 TopoPallet           0.10 | 
+            | 0       4254          MINALBA AGUA MINERAL C/GAS GFA PET 510ML F            1 5003 50/5003           6.54 BinPack              0.27 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P01_M_01_1/35 - 33.87 - 1|12|11|10 - 43839  Peso: 906.71
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       2546          ORIGINAL 600ML GFA                                   15 1001 10/1001         414.00 Retornavel          15.00 | 
+            | 0       2538          ANTARCTICA PILSEN 600ML                               6 1001 10/1001         155.40 Retornavel           6.00 | 
+            | 0       982           SKOL 600ML GFA                                        3 1001 10/1001          82.89 Retornavel           3.00 | 
+            | 0       2544          EXTRA SERRAMALTE 600ML GFA                            2 1001 10/1001          51.80 Retornavel           2.00 | 
+            | 0       20530         STELLA ARTOIS 600 ML                                  2 1001 10/1001          51.80 Retornavel           2.00 | 
+            | 0       20329         BRAHMA DUPLO MALTE 600ML                              1 1001 10/1001          27.63 Retornavel           1.00 | 
+            | 0       988           BRAHMA CHOPP 600ML GFA                                1 1001 10/1001          27.60 Retornavel           1.00 | 
+            | 0       2548          BUDWEISER 600ML GFA                                   1 1001 10/1001          25.90 Retornavel           1.00 | 
+            | 0       24819         ORIGINAL 300ML                                        2 1002 10/1002          27.20 Retornavel           1.16 | 
+            | 0       29700         BUDWEISER 300ML                                       1 1002 10/1002          14.50 Retornavel           0.58 | 
+            | 0       26754         BRAHMA DUPLO MALTE 300ML                              1 1002 10/1002          14.40 Retornavel           0.58 | 
+            | 0       972           Skol 300ML GFA                                        1 1002 10/1002          13.60 Retornavel           0.55 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|

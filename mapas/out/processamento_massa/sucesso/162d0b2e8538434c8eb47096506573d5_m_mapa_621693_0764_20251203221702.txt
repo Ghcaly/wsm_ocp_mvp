@@ -1,0 +1,36 @@
+Mapa: 621693 Veículo: AMN4I52
+Produtos: 107
+Lado Motorista: 816.00 (53.16%)
+Lado Ajudante: 719.13 (46.84%)
+Cálculo Rota
+--------------------------------------------------------------------------------------------------------------------------------------------
+Pallet        L      Código UN  Entrega Nome                                            Qtd Embalagem Grp/Sub       Peso Atributo        Ocupação   
+-----------   - ----------- -- -------- ------------------------------------------ -------- --------- ------- ---------- ------------- ----------- 
+
+P01_A_01_1/35 - 27.59 - 1|4|3|2 - 19637  Peso: 719.13
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       982           SKOL 600ML GFA                                       10 1001 10/1001         276.30 Retornavel          10.00 | 
+            | 0       2538          ANTARCTICA PILSEN 600ML                               5 1001 10/1001         129.50 Retornavel           5.00 | 
+            | 0       2546          ORIGINAL 600ML GFA                                    1 1001 10/1001          27.60 Retornavel           1.00 | 
+            | 0       1388          SKOL GFA VD 1L 2 99                                  11 1000 10/1000         232.10 Retornavel           9.62 | 
+            | 0       1745          Skol LT 269ML C15                                     2 4002 40/4002           8.40 Descartável          0.28 | 
+            | 0       20603         ORIGINAL LT 269ML CX CARTAO C/8 NPAL                  2 4002 40/4002           4.48 Descartável          0.16 | 
+            | 0       13839         BUD LT 269ML CX C/8 FRIDGE PACK                       1 4002 40/4002           2.22 Descartável          0.08 | 
+            | 0       13566         SKOL BEATS SENSES LT 269ML CX C/8 FRIDGE P            1 4002 40/4002           2.23 Descartável          0.08 | 
+            | 0       33734         BEATS RED MIX LT 269ML SH C/8                         1 4002 40/4002           2.23 Descartável          0.08 | 
+            | 0       503           SUKITA PET 2L CAIXA C/6                               1 5006 50/5006          12.78 Descartável          0.43 | 
+            | 0       7983          GATORADE MORANGO-MARACUJA PET 500ML SIXPAC            2 5003 50/5003           6.48 Isotonico            0.27 | 
+            | 0       7981          GATORADE LARANJA PET 500ML SIXPACK                    1 5003 50/5003           3.24 Isotonico            0.13 | 
+            | 0       18267         SODA LIMONADA  200ML PET ANTARCTICA  SH C/            2 5005 50/5005           5.28 TopoPallet           0.21 | 
+            | 0       18152         GUARANA  ANTARCTICA PET 200ML SH C/12                 1 5005 50/5005           2.64 TopoPallet           0.10 | 
+            | 0       22259         SUKITA UVA PET 200ML SH C/12                          1 5005 50/5005           2.70 TopoPallet           0.10 | 
+            | 0       21973         TRIDENT MELANCIA ENVELOPE 8G CX C/21                  5 10001 100/10001        0.95 BinPack              0.05 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
+
+P01_M_01_1/35 - 33.32 - 1 - 19637  Peso: 816.00
+            |============================ Produtos da área de separação: Geral ===================================================================|
+            | 0       972           Skol 300ML GFA                                       50 1002 10/1002         680.00 Retornavel          27.77 | 
+            | 0       978           BRAHMA CHOPP 300ML GFA                               10 1002 10/1002         136.00 Retornavel           5.55 | 
+            |                                                                                                                                     |
+            |=====================================================================================================================================|
