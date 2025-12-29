@@ -1,0 +1,41 @@
+---
+variables:
+    ### General settings ###
+    environmentType: "artifacts"
+    language: 'python'
+    versioningType: "SemVer"
+    workingDirectory: "src"
+    
+    ### Project settings ###
+    uniqueKey: "logco-warehouse-wms-BinPacking"
+    projectName: "logco-warehouse-wms-binpacking"
+    techmetricsProductId: 14
+    techmetricsModuleId: 2902
+
+    ### Sonar settings ###
+    sonarServiceConnectionName: "sonar-wms-prd"
+    sonarProjectVersion: "$(Build.BuildNumber)"
+    sonarCoverageExclusions: "**/__init__.py,**/main.py,tests/**,venv_test/**,antenv/**,src/tests/**,src/venv_test/**,src/antenv/**"
+    sonarDuplicationExclusions: "**/__init__.py,**/main.py,tests/**,venv_test/**,antenv/**,src/tests/**,src/venv_test/**,src/antenv/**"
+    sonarExclusions: "**/__init__.py,**/main.py,tests/**,venv_test/**,antenv/**,src/tests/**,src/venv_test/**,src/antenv/**"
+    sonarDisableCache: false
+    sonarBuildBreak: true
+
+    ### Build settings ###
+    pythonVersion: "3.8"
+    requirementsFilePath: "./requirements.txt"
+    virtualEnvironmentName: "venv"
+    copyOutputsPython: |
+      requeriments.txt
+      pyproject.toml
+      setup.cfg
+      boxing/**
+      tests/**
+    packageManager: "pip"
+    feedCredentials: "ambevtech-wms-analytics"
+
+    ### Feed para fazer upload da lib
+    ArtifactsFeedServiceConnection: 'ambevtech-wms-analytics'
+    ArtifactsFeedName: 'ambevtech-wms-analytics'
+    ArtifactsFeedProject: AMBEV-WMS
+    ArtifactsFeedOrganization: AMBEV-SA

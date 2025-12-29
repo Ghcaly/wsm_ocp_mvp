@@ -1,0 +1,82 @@
+variables:
+- template: vars/vars-global.yml
+
+trigger:
+  branches:
+    include:
+      - develop
+      - release/*
+  paths:
+    exclude:
+    - CHANGELOG.md
+pr:
+  branches:
+    include:
+      - main
+      - master
+  paths:
+    exclude:
+    - CHANGELOG.md
+
+parameters:
+  - name: "environments"
+    type: object
+    default:
+      - "dev"
+      - "stg"
+      - "stg_maz"
+      - "prd_piloto"
+      - prd:
+          depends_on:
+            - "deploy_prd_piloto"
+      - prd_maz:
+          depends_on:
+            - "deploy_stg_maz"
+      - prd_rda:
+          depends_on:
+            - "deploy_prd"
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: AMBEVTECH-PIPELINES/PIPELINE-TEMPLATES
+      ref: refs/tags/3.34.2
+
+    - repository: blueprints
+      type: git
+      name: AMBEVTECH-PIPELINES/PIPELINE-BLUEPRINTS
+      ref: refs/tags/3.15.1
+
+stages:  
+  - template: python/pipeline-ci.yaml@blueprints
+    parameters:
+      pythonVersion: ${{ variables.pythonVersion }}
+      RequirementsFilePath: ${{ variables.RequirementsFilePath }}
+      FeedCredentials: ${{ variables.FeedCredentials }}
+      WorkingDirectory: ${{ variables.WorkingDirectory }}
+      sonarServiceConnectionName: ${{ variables.sonarServiceConnectionName }}
+      sonarProjectVersion: ${{ variables.releaseVersion }}
+      sonarBuildBreak: ${{ variables.sonarBuildBreak }}
+      sonarCoverageExclusions: ${{ variables.sonarCoverageExclusions }}
+      uniqueKey: ${{ variables.uniqueKey }}
+      containerRegistryConnection: ${{ variables.containerRegistryConnection }}
+      dockerBuildArguments: ${{ variables.dockerBuildArguments }}
+      projectName: ${{ variables.projectName }}
+      runSecurityTools: ${{ variables.runSecurityTools }}
+      startupCommand: ${{ variables.startupCommand }}
+      usePoetry: ${{ variables.usePoetry }}
+      copyOutputsPython: ${{ variables.copyOutputsPython }}
+      dockerfileInjection: ${{ variables.dockerfileInjection }}
+  
+  - template: shared/pipeline-cd.yml@blueprints
+    parameters:
+      environments: ${{ parameters.environments }}
+      environmentType: helm_deploy
+      runSecurityTools: ${{ variables.runSecurityTools }}
+      uniqueKey: ${{ variables.uniqueKey }}
+      projectName: ${{ variables.projectName }}
+      techmetricsProductId: ${{ variables.techmetricsProductId }}
+      techmetricsModuleId: ${{ variables.techmetricsModuleId }}
+      sonarServiceConnectionName: ${{ variables.sonarServiceConnectionName }}
+      multi_stg: ${{ variables.multi_stg }}

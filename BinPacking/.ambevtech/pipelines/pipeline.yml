@@ -1,0 +1,70 @@
+---
+trigger:
+  branches:
+    include:
+      - develop
+  paths:
+    exclude:
+      - CHANGELOG.md
+pr:
+  branches:
+    include:
+      - main
+      - master
+  paths:
+    exclude:
+      - CHANGELOG.md
+
+variables:
+  - template: vars/vars-global.yml
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: AMBEVTECH-PIPELINES/PIPELINE-TEMPLATES
+      ref: refs/tags/3.29.0
+
+    - repository: blueprints
+      type: git
+      name: AMBEVTECH-PIPELINES/PIPELINE-BLUEPRINTS
+      ref: refs/tags/3.15.0
+
+pool:
+  vmImage: 'ubuntu-22.04'
+
+stages:
+  - template: python/pipeline-ci.yaml@blueprints
+    parameters:
+      uniqueKey: ${{ variables.uniqueKey }}
+      projectName: ${{ variables.projectName }}
+      versioningType: ${{ variables.versioningType }}
+      environmentType: ${{ variables.environmentType }}
+      pipelineServicePath: ${{ variables.pipelineServicePath }}
+      techmetricsProductId: ${{ variables.techmetricsProductId }}
+      techmetricsModuleId: ${{ variables.techmetricsModuleId }}
+      pythonVersion: ${{ variables.pythonVersion }}
+      usePoetry: ${{ variables.usePoetry }}  
+      FeedCredentials: ${{ variables.FeedCredentials }}
+      virtualEnvironmentName: ${{ variables.virtualEnvironmentName}}
+      requirementsFilePath: ${{ variables.RequirementsFilePath }}
+      workingDirectory: ${{ variables.WorkingDirectory }}
+      copyOutputsPython: ${{ variables.copyOutputsPython }}
+      sonarServiceConnectionName: ${{ variables.sonarServiceConnectionName }}
+      sonarProjectVersion: ${{ variables.releaseVersion }}
+      sonarExclusions: ${{ variables.sonarExclusions }}
+      sonarCoverageExclusions: ${{ variables.sonarCoverageExclusions }}
+      sonarDuplicationExclusions: ${{ variables.sonarDuplicationExclusions }}
+      openapiRequirementsFilePath: ${{ variables.openapiRequirementsFilePath }}
+      containerRegistryConnection: ${{ variables.containerRegistryConnection }}
+
+  - template: shared/pipeline-cd.yml@blueprints
+    parameters:
+      environmentType: ${{ variables.environmentType }}
+      versioningType: ${{ variables.versioningType }}
+      uniqueKey: ${{ variables.uniqueKey }}
+      projectName: ${{ variables.projectName }}
+      techmetricsProductId: ${{ variables.techmetricsProductId }}
+      techmetricsModuleId: ${{ variables.techmetricsModuleId }}
+      language: ${{ variables.language }}
+
