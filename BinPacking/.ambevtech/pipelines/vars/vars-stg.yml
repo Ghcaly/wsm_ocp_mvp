@@ -1,0 +1,24 @@
+---
+variables:
+  - template: ./vars-global.yml
+    
+    ### General settings ###
+  - name: environmentName
+    value: stg
+
+  - name: environmentApproval
+    value: "STG_K8S_T2"
+
+  - name: poolName
+    value: "ambev-azagent-pool-1-logco-stg-brs-1-lx"
+    
+    ### Container settings ###
+  - name: containerRegistryConnection
+    value: 'acr-logistica-prd'
+
+  - name: containerRegistryName
+    value: 'logcoprdbrsacr.azurecr.io'
+    
+    ### Key vault settings ###
+  - name: getSecrets
+    value: false

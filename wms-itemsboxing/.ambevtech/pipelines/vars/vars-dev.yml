@@ -1,0 +1,40 @@
+variables:
+  environmentName: dev
+  poolName: "ambev-azagent-pool-1-logco-dev-scus-1-lx"
+  privateCluster: true
+  
+  ### Container settings ###
+  containerRegistryConnection: 'acr-logistica-dev'
+  containerRegistryName: 'logcodevscusacr.azurecr.io'
+  helmReleaseName: "wms-items-boxing"
+  helmNamespace: "wmst2-dev"
+  
+  ### Kubernetes settings ###
+  datadogEnv: logco.warehouse.wmst2.dev
+  nodeSelectorAgentpool: "warehouse"
+  ingresshost: "wmst2dev.ambevdevs.com.br"
+
+  helmKubernetesCluster: "aks-logco-dev-scus-001"
+  helmAzureResourceGroup: "aks-001-rg-dev-scus"
+  helmAksServiceConnection: "aks-logco-dev-scus-001"
+  helmChartPath: "PIPELINE-TEMPLATES/cd/step/helm/charts"
+  helmValueFilePath: "$(Build.Repository.Name)/.ambevtech/pipelines/vars/helm"
+  getHelmChartsFromArtifacts: true
+  helmArtifactName: helmCharts
+  helmOverrideValues: >
+    image.repository=logcodevscusacr.azurecr.io/$(dockerImageName)
+    --set image.tag=$(Build.BuildNumber)
+    --set datadog.version=$(Build.BuildNumber)
+    --set ambevtech.uniqueKey=$(uniqueKey)
+    --set datadog.env=$(datadogEnv)
+    --set nodeSelector.agentpool=$(nodeSelectorAgentpool)
+    --set ingress.hosts[0].host=$(ingresshost)
+
+  # keyvault
+  getSecrets: true
+  azureSubscription: "ambev-logco-wms-logco-rg-logco-dev-scus"
+  KeyVaultName: "kv-wms-dev"  
+  SecretsFilter: "wms-servicebus-,wms-rabbit-"
+  
+  ### APIM settings ###
+  apimEnabled: false

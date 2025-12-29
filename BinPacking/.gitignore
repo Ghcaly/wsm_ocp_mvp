@@ -1,0 +1,9 @@
+**/.vs/*
+**/.suo
+**/.ipynb_checkpoints/*
+**/__pycache__/*
+**/*.pyc
+venv/
+.env/
+params/
+results/

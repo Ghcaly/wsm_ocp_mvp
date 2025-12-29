@@ -1,0 +1,44 @@
+variables:
+  environmentName: stg
+  environmentApproval: "STG_MAZ"
+  privateCluster: true
+  poolName: 'WMS-MAZ-STG'
+  
+  ### Container settings ###
+  containerRegistryConnection: 'acr-wms-stg-global'
+  containerRegistryName: 'ghq02514wmsscustgacr.azurecr.io'
+  helmReleaseName: "wms-items-boxing"
+  helmNamespace: 'wms-t2-stg'
+
+  # build
+  multiAcr: true
+  
+  ### Kubernetes settings ###
+  datadogEnv: logco.warehouse.wmst2.maz.stg
+  nodeSelectorAgentpool: "linuxpool"
+  ingresshost: "wms-maz-stg.ab-inbev.local"
+
+  helmKubernetesCluster: 'ghq-02514-wms-scu-stg-aks'
+  helmAzureResourceGroup: 'ghq-02514-wms-stg-rg'
+  helmAksServiceConnection: 'ABI GLZ LOGISTICS GHQ STAGE'
+  helmChartPath: "PIPELINE-TEMPLATES/cd/step/helm/charts"
+  helmValueFilePath: "$(Build.Repository.Name)/.ambevtech/pipelines/vars/helm"
+  getHelmChartsFromArtifacts: true
+  helmArtifactName: helmCharts
+  helmOverrideValues: >
+    image.repository=ghq02514wmsscustgacr.azurecr.io/$(dockerImageName)
+    --set image.tag=$(Build.BuildNumber)
+    --set datadog.version=$(Build.BuildNumber)
+    --set ambevtech.uniqueKey=$(uniqueKey)
+    --set datadog.env=$(datadogEnv)
+    --set nodeSelector.agentpool=$(nodeSelectorAgentpool)
+    --set ingress.hosts[0].host=$(ingresshost)
+
+  # keyvault
+  getSecrets: true
+  azureSubscription: "ABI GLZ LOGISTICS GHQ STAGE"
+  KeyVaultName: "ghq02514wmsscunkv"  
+  SecretsFilter: "wms-servicebus-,wms-rabbit-"
+  
+  ### APIM settings ###
+  apimEnabled: false
