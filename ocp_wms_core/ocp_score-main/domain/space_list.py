@@ -1,4 +1,5 @@
 
+
 from collections.abc import Callable
 from typing import Any
 from ..domain.ordered_space_list import OrderedSpaceList
@@ -45,8 +46,18 @@ class SpaceList:
     def Distinct(self):
         return self.distinct()
 
+    # def ordered_by_size_and_number(self):
+    #     sorted_spaces = sorted(self.spaces, key=lambda s: (getattr(s, 'Size', getattr(s, 'size', None)) or 0, getattr(s, 'Number', getattr(s, 'number', None)) or 0))
+    #     return SpaceList(sorted_spaces)
+    
     def ordered_by_size_and_number(self):
-        sorted_spaces = sorted(self.spaces, key=lambda s: (getattr(s, 'Size', getattr(s, 'size', None)) or 0, getattr(s, 'Number', getattr(s, 'number', None)) or 0))
+        sorted_spaces = sorted(
+            self.spaces,
+            key=lambda s: (
+                -(getattr(s, 'Size', getattr(s, 'size', 0)) or 0),  # negativo para ordem decrescente
+                getattr(s, 'Number', getattr(s, 'number', 0))        # crescente
+            )
+        )
         return SpaceList(sorted_spaces)
 
     def OrderedBySizeAndNumber(self):
@@ -92,7 +103,7 @@ class SpaceList:
     def matching(self, cond):
         """Aplica uma função de filtro genérica"""
         if cond:
-            filtrados = [ms for ms in self.mounted_spaces if cond(ms)]
+            filtrados = [ms for ms in self.spaces if cond(ms)]
             return SpaceList(filtrados)
         return self
     

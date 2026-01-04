@@ -69,7 +69,7 @@ class ReturnableAndDisposableSplitRemountRule(BaseRule):
 
     # --- helper steps -----------------------------------------------------
     def _join_into_similar_packing_group_with_different_type(self, context, items, mounted_spaces_not_chopp, ops):
-        for item in ItemList(items).OrderedByAmountRemainingDesc():
+        for item in ItemList(items).WithAmountRemaining().OrderedByAmountRemainingDesc():
 
             similarMountedSpaces = MountedSpaceList(mounted_spaces_not_chopp)\
                                     .WithSameType( ContainerType.DISPOSABLE if item.Product.ContainerType == ContainerType.RETURNABLE
@@ -86,7 +86,7 @@ class ReturnableAndDisposableSplitRemountRule(BaseRule):
                     break
 
     def _join_into_disposable_and_returnable_pairs(self, context, items, mounted_spaces_not_chopp, ops):
-        for item in ItemList(items).OrderedByAmountRemainingDesc():
+        for item in ItemList(items).WithAmountRemaining().OrderedByAmountRemainingDesc():
 
             disposableMountedSpace = MountedSpaceList(mounted_spaces_not_chopp)\
                 .WithSameType(ContainerType.DISPOSABLE).OrderByLayerAndDifference(item.Product)\
@@ -102,12 +102,12 @@ class ReturnableAndDisposableSplitRemountRule(BaseRule):
                 for r in returnableMountedSpaces:
                     ops.add_on_2_spaces(context, disposableMountedSpace.space, r.space, item)
                     if item.amount_remaining == 0:
-                        context.add_execution_log(f"Adicionado o item {item.Code} - {item.Product.Name} na baia {disposableMountedSpace.Space.Number} / {disposableMountedSpace.Space.sideDesc}, na quantidade {item.amount_remaining} ficando com a ocupacao de {disposableMountedSpace.Occupation}")
+                        # context.add_execution_log(f"Adicionado o item {item.Code} - {item.Product.Name} na baia {disposableMountedSpace.Space.Number} / {disposableMountedSpace.Space.sideDesc}, na quantidade {item.amount_remaining} ficando com a ocupacao de {disposableMountedSpace.Occupation}")
                         break
 
                
     def _join_into_chopp_mounted_spaces(self, context, items, mounted_spaces_chopp, ops):
-        for item in ItemList(items).OrderedByAmountRemainingDesc():
+        for item in ItemList(items).WithAmountRemaining().OrderedByAmountRemainingDesc():
             for ch in MountedSpaceList(mounted_spaces_chopp).OrderByRemountDescAndOccupation():
                 ops.add_amount_remaining_item_into_mounted_space(context, item, ch)
                 if item.amount_remaining == 0:
@@ -115,7 +115,7 @@ class ReturnableAndDisposableSplitRemountRule(BaseRule):
                     break
 
     def _join_same_type_and_chopp(self, context, items, mounted_spaces_not_chopp, mounted_spaces_chopp, ops):
-        for item in ItemList(items).OrderedByAmountRemainingDesc():
+        for item in ItemList(items).WithAmountRemaining().OrderedByAmountRemainingDesc():
 
             similarMountedSpaceNotChopp = MountedSpaceList(mounted_spaces_not_chopp).WithSameType( ContainerType.RETURNABLE if item.Product.ContainerType == ContainerType.RETURNABLE
                 else ContainerType.DISPOSABLE).OrderByLayerAndDifference(item.Product)\
@@ -127,5 +127,5 @@ class ReturnableAndDisposableSplitRemountRule(BaseRule):
                 for ch in similarMountedSpacesChopp:
                     ops.add_on_2_spaces(context, similarMountedSpaceNotChopp.space, ch.space, item)
                     if item.amount_remaining == 0:
-                        context.add_execution_log(f"Adicionado o item {item.Code} - {item.Product.Name} na baia {similarMountedSpaceNotChopp.Space.Number} / {similarMountedSpaceNotChopp.Space.sideDesc}, na quantidade {item.amount_remaining} ficando com a ocupacao de {similarMountedSpaceNotChopp.Occupation}")
+                        # context.add_execution_log(f"Adicionado o item {item.Code} - {item.Product.Name} na baia {similarMountedSpaceNotChopp.Space.Number} / {similarMountedSpaceNotChopp.Space.sideDesc}, na quantidade {item.amount_remaining} ficando com a ocupacao de {similarMountedSpaceNotChopp.Occupation}")
                         break

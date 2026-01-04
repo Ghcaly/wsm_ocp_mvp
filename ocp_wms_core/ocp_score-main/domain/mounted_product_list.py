@@ -213,16 +213,36 @@ class MountedProductList:
         sorted_products = sorted(self.mounted_products, key=key, reverse=True)
         return MountedProductList(sorted_products)
 
-    def order_by_amount_desc(self):
-        """Ordena por Amount DESC"""
-        sorted_products = sorted(self.mounted_products, key=lambda x: x.Amount, reverse=True)
-        return MountedProductList(sorted_products)
+    # def order_by_amount_desc(self):
+    #     """Ordena por Amount DESC"""
+    #     sorted_products = sorted(self.mounted_products, key=lambda x: x.Amount, reverse=True)
+    #     return MountedProductList(sorted_products)
+    
+    # def order_by_amount_desc(self):
+    #     """Ordena por Amount DESC"""
+    #     sorted_products = sorted(self.mounted_products, key=lambda x: x.Amount, reverse=True)
+    #     return MountedProductList(sorted_products)
     
     def order_by_amount_desc(self):
-        """Ordena por Amount DESC"""
-        sorted_products = sorted(self.mounted_products, key=lambda x: x.Amount, reverse=True)
-        return MountedProductList(sorted_products)
-    
+        # agrupa por Product.Code
+        groups = {}
+        for p in self.mounted_products:
+            groups.setdefault(p.product.code, []).append(p)
+
+        # ordena grupos pelo somatório de amount
+        ordered_groups = sorted(
+            groups.values(),
+            key=lambda grp: sum(x.amount for x in grp),
+            reverse=True
+        )
+
+        # dentro de cada grupo, ordena por amount desc
+        result = []
+        for group in ordered_groups:
+            result.extend(sorted(group, key=lambda x: x.amount, reverse=True))
+
+        return result
+
     def order_by_package_occupation_desc_then_by_amount_desc(self):
         """Implements C# OrderByPackageOccupationDescThenByAmountDesc semantics.
 
@@ -425,4 +445,3 @@ class GroupedMountedProductList:
 
     def FirstOrDefault(self):
         return self.groups[0] if self.groups else None
-

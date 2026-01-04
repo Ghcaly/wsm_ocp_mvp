@@ -136,8 +136,8 @@ class SideBalanceRule(BaseRule):
             try:
                 # pass the actual MountedSpace instances so domain operations mutates context state
                 context.domain_operations.switch_spaces(context, mounted_space, target_mounted_space, target_space)
-                if target_mounted_space is None:
-                    target_mounted_space = context.get_mounted_space(target_space)
+                # if target_mounted_space is None:
+                target_mounted_space = context.get_mounted_space(target_space)
             except Exception:
                 # fallback: try passing mounted spaces directly if signature differs
                 try:
@@ -230,7 +230,13 @@ class SideBalanceRule(BaseRule):
         return False
 
     def _find_new_space_with_same_size_spaces(self, context: Context, mounted_space, is_driver_side):
-        same_size = [s for s in getattr(context, 'spaces', []) or [] if getattr(s, 'size', None) == mounted_space.space.size and not getattr(s, 'balanced', False)]
+        # same_size = [s for s in getattr(context, 'spaces', []) or [] if getattr(s, 'size', None) == mounted_space.space.size and not getattr(s, 'balanced', False)]
+        # same_size = SpaceList(context.GetAllSpaces()).matching(lambda x: x.size == mounted_space.space.size).NotBalanced()
+        same_size = (
+            SpaceList(context.GetAllSpaces())
+            .matching(lambda x: x.size == mounted_space.space.size)
+            .NotBalanced()
+        )
         new_target = self._find_best_space_to_switch(same_size, is_driver_side)
         if new_target:
             self._switch_spaces_and_set_balanced(context, mounted_space, new_target)
@@ -238,8 +244,9 @@ class SideBalanceRule(BaseRule):
     def _find_best_space_to_switch(self, spaces, is_driver_side):
         # Order by driver-side preference then by number
         try:
-            ordered = sorted(spaces, key=lambda sp: (not getattr(sp, 'is_driver_side', lambda: False)() if callable(getattr(sp, 'is_driver_side', None)) else 0, getattr(sp, 'number', 0)), reverse=True)
-            return ordered[0] if ordered else None
+            return SpaceList(spaces).OrderByDescending(lambda space: space.IsDriverSide() == is_driver_side).ThenBy(lambda space: space.Number).FirstOrDefault()
+            # ordered = sorted(spaces, key=lambda sp: (not getattr(sp, 'is_driver_side', lambda: False)() if callable(getattr(sp, 'is_driver_side', None)) else 0, getattr(sp, 'number', 0)), reverse=True)
+            # return ordered[0] if ordered else None
         except Exception as e:
             print(f"Error:: {e}")
             return spaces[0] if spaces else None

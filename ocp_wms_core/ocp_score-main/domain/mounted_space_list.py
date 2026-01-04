@@ -137,48 +137,58 @@ class MountedSpaceList:
             return MountedSpaceList([])
 
     def NotContainProductComplex(self):
-        """Return mounted spaces that do NOT contain any product marked as ComplexLoad.
+        filtrados = []
+        for ms in self.mounted_spaces:
+            products = ms.GetProducts()  # sem try/except
 
-        Mirrors C#: mountedSpaces.Where(x => x.GetProducts().All(x => !x.ComplexLoad))
-        """
-        try:
-            def _products_of(ms):
-                # prefer method GetProducts(), fallback to get_products()
-                gp = getattr(ms, 'GetProducts', None)
-                if callable(gp):
-                    try:
-                        return gp()
-                    except Exception:
-                        pass
-                gp2 = getattr(ms, 'get_products', None)
-                if callable(gp2):
-                    try:
-                        return gp2()
-                    except Exception:
-                        pass
-                # last resort: inspect containers
-                try:
-                    prods = []
-                    for c in getattr(ms, 'Containers', getattr(ms, 'containers', [])) or []:
-                        prods.extend(getattr(c, 'Products', getattr(c, 'products', [])) or [])
-                    return prods
-                except Exception:
-                    return []
+            if all(not p.ComplexLoad for p in products):
+                filtrados.append(ms)
 
-            filtrados = []
-            for ms in self.mounted_spaces:
-                products = _products_of(ms) or []
-                try:
-                    has_complex = any(getattr(p, 'ComplexLoad', getattr(p, 'complex_load', False)) for p in products)
-                except Exception:
-                    has_complex = False
-                if not has_complex:
-                    filtrados.append(ms)
+        return MountedSpaceList(filtrados)
 
-            return MountedSpaceList(filtrados)
-        except Exception as e:
-            print(f"Error:: NotContainProductComplex: {e}")
-            return MountedSpaceList([])
+    # def NotContainProductComplex(self):
+    #     """Return mounted spaces that do NOT contain any product marked as ComplexLoad.
+
+    #     Mirrors C#: mountedSpaces.Where(x => x.GetProducts().All(x => !x.ComplexLoad))
+    #     """
+    #     try:
+    #         def _products_of(ms):
+    #             # prefer method GetProducts(), fallback to get_products()
+    #             gp = getattr(ms, 'GetProducts', None)
+    #             if callable(gp):
+    #                 try:
+    #                     return gp()
+    #                 except Exception:
+    #                     pass
+    #             gp2 = getattr(ms, 'get_products', None)
+    #             if callable(gp2):
+    #                 try:
+    #                     return gp2()
+    #                 except Exception:
+    #                     pass
+    #             # last resort: inspect containers
+    #             try:
+    #                 prods = []
+    #                 for c in getattr(ms, 'Containers', getattr(ms, 'containers', [])) or []:
+    #                     prods.extend(getattr(c, 'Products', getattr(c, 'products', [])) or [])
+    #                 return prods
+    #             except Exception:
+    #                 return []
+
+    #         filtrados = []
+    #         for ms in self.mounted_spaces:
+    #             products = _products_of(ms) or []
+    #             try:
+    #                 has_complex = any(getattr(p, 'ComplexLoad', getattr(p, 'complex_load', False)) for p in products)
+    #             except Exception:
+    #                 has_complex = False
+    #             if not has_complex:
+    #                 filtrados.append(ms)
+
+    #         return MountedSpaceList(filtrados)
+    #     except Exception as e:
+    #         print(f"Error:: NotContainProductComplex: {e}")
+    #         return MountedSpaceList([])
 
     def OrderByOccupation(self):
         """Order mounted spaces by their Occupation (ascending).
@@ -243,14 +253,21 @@ class MountedSpaceList:
     
     def order_by_different_packing_code_quantity_desc_and_product_quantity_desc_and_occupation_desc(self):
         return sorted(
-            (ms for ms in self.mounted_spaces if ms.get_products()),
+            self.WithProducts(),
             key=lambda x: (
-                -x.get_first_pallet().DifferentPackingGroupQuantity,
+                -x.get_first_pallet().DifferentPackingCodeQuantity,
                 -len(x.get_first_pallet().products),
                 -x.occupation
             )
         )
 
+
+        # public static IEnumerable<IMountedSpace> OrderByDifferentPackingCodeQuantityDescAndProductQuantityDescAndOccupationDesc(this IEnumerable<IMountedSpace> mountedSpaces)
+        #     => mountedSpaces.WithProducts()
+        #             .OrderByDescending(x => x.GetFirstPallet().DifferentPackingCodeQuantity)
+        #             .ThenByDescending(x => x.GetFirstPallet().Products.Count)
+        #             .ThenByDescending(x => x.Occupation);
+        
     # def order_by_different_packing_code_quantity_desc_and_product_quantity_desc_and_occupation_desc(
     #     self,
     #     space_size=None,
@@ -805,49 +822,64 @@ class MountedSpaceList:
         return MountedSpaceList(filtrados)
 
     def WithSameGroupAndPackageAndMultipleItems(self):
-        """Return mounted spaces where containers have same group, same package, and >1 distinct product codes."""
         filtrados = []
+
         for ms in self.mounted_spaces:
-            try:
-                containers = getattr(ms, 'Containers', getattr(ms, 'containers', [])) or []
-                ok = True
-                for c in containers:
-                    products = getattr(c, 'Products', getattr(c, 'products', [])) or []
-                    group_codes = set()
-                    packing_codes = set()
-                    product_codes = set()
-                    for p in products:
-                        prod = getattr(p, 'Product', getattr(p, 'product', None))
-                        if not prod:
-                            continue
-                        pg = getattr(prod, 'PackingGroup', getattr(prod, 'packing_group', None))
-                        if pg is not None:
-                            gc = getattr(pg, 'GroupCode', getattr(pg, 'group_code', None))
-                            if gc is not None:
-                                group_codes.add(gc)
-                            pc = getattr(pg, 'PackingCode', getattr(pg, 'packing_code', None))
-                            if pc is not None:
-                                packing_codes.add(pc)
-                        else:
-                            gc = getattr(prod, 'GroupCode', getattr(prod, 'group_code', None))
-                            if gc is not None:
-                                group_codes.add(gc)
-                            pc = getattr(prod, 'PackingCode', getattr(prod, 'packing_code', None))
-                            if pc is not None:
-                                packing_codes.add(pc)
+            if all(
+                len({p.Product.PackingGroup.GroupCode for p in c.Products}) == 1 and
+                len({p.Product.PackingGroup.PackingCode for p in c.Products}) == 1 and
+                len({p.Product.Code for p in c.Products}) > 1
+                for c in ms.Containers
+            ):
+                filtrados.append(ms)
 
-                        code = getattr(prod, 'Code', getattr(prod, 'code', None))
-                        if code is not None:
-                            product_codes.add(code)
-
-                    if not (len(group_codes) == 1 and len(packing_codes) == 1 and len(product_codes) > 1):
-                        ok = False
-                        break
-                if ok:
-                    filtrados.append(ms)
-            except Exception:
-                continue
         return MountedSpaceList(filtrados)
+
+
+    # def WithSameGroupAndPackageAndMultipleItems(self):
+    #     """Return mounted spaces where containers have same group, same package, and >1 distinct product codes."""
+    #     filtrados = []
+    #     for ms in self.mounted_spaces:
+    #         try:
+    #             containers = getattr(ms, 'Containers', getattr(ms, 'containers', [])) or []
+    #             ok = True
+    #             for c in containers:
+    #                 products = getattr(c, 'Products', getattr(c, 'products', [])) or []
+    #                 group_codes = set()
+    #                 packing_codes = set()
+    #                 product_codes = set()
+    #                 for p in products:
+    #                     prod = getattr(p, 'Product', getattr(p, 'product', None))
+    #                     if not prod:
+    #                         continue
+    #                     pg = getattr(prod, 'PackingGroup', getattr(prod, 'packing_group', None))
+    #                     if pg is not None:
+    #                         gc = getattr(pg, 'GroupCode', getattr(pg, 'group_code', None))
+    #                         if gc is not None:
+    #                             group_codes.add(gc)
+    #                         pc = getattr(pg, 'PackingCode', getattr(pg, 'packing_code', None))
+    #                         if pc is not None:
+    #                             packing_codes.add(pc)
+    #                     else:
+    #                         gc = getattr(prod, 'GroupCode', getattr(prod, 'group_code', None))
+    #                         if gc is not None:
+    #                             group_codes.add(gc)
+    #                         pc = getattr(prod, 'PackingCode', getattr(prod, 'packing_code', None))
+    #                         if pc is not None:
+    #                             packing_codes.add(pc)
+
+    #                     code = getattr(prod, 'Code', getattr(prod, 'code', None))
+    #                     if code is not None:
+    #                         product_codes.add(code)
+
+    #                 if not (len(group_codes) == 1 and len(packing_codes) == 1 and len(product_codes) > 1):
+    #                     ok = False
+    #                     break
+    #             if ok:
+    #                 filtrados.append(ms)
+    #         except Exception:
+    #             continue
+    #     return MountedSpaceList(filtrados)
     
     def FilterByGroupCodeAny(self, product):
         target_group_code = product.PackingGroup.GroupCode

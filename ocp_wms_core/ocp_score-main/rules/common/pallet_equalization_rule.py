@@ -1,260 +1,308 @@
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
-from ...domain.factor_converter import FactorConverter
+from decimal import Decimal, ROUND_DOWN
 from dataclasses import dataclass
 from typing import List, Any
 
+from ...domain.mounted_space_list import MountedSpaceList
+from ...domain.space_list import SpaceList
+
+
+# ================= DTO =================
 
 @dataclass
 class PalletEqualizeDto:
-    MoveOccupation: float
-    StayOccupation: float
+    MoveOccupation: Decimal
+    StayOccupation: Decimal
     SourceSpace: Any
     ProductsToMove: List[Any]
     IsEqualized: bool = False
 
 
-class PalletEqualizationRule(BaseRule):
-    """Faithful Python port of the C# PalletEqualizationRule.
+# ================= RULE =================
 
-    This implementation follows the C# control flow and naming, but written
-    in idiomatic Python. It calls domain operations and factor converter
-    the same way the C# version does, assuming those helpers exist on the
-    context and mounted-product objects.
-    """
+class PalletEqualizationRule:
 
-    def __init__(self):
-        super().__init__(name='PalletEqualizationRule2')
-        self._factor_converter = FactorConverter()
+    def __init__(self, factor_converter=None):
+        self._factor_converter = factor_converter
 
-    def should_execute(self, context: Context, item_predicate=None, mounted_space_predicate=None) -> bool:
-        if not context.get_setting('PalletEqualizationRule', True):
-            context.add_execution_log('Regra desativada, nao sera executada')
+    # ---------- SHOULD EXECUTE ----------
+
+    def should_execute(self, context) -> bool:
+        if not context.get_setting('PalletEqualizationRule'):
+            context.add_execution_log("Regra desativada, não será executada")
             return False
 
         if not context.MountedSpaces:
-            context.add_execution_log('Nenhuma baia montada, a regra nao sera executada')
+            context.add_execution_log("Nenhuma baia montada, a regra não será executada")
             return False
 
         if not context.Spaces:
-            context.add_execution_log('Nenhum palete vazio encontrado, a regra nao sera executada')
+            context.add_execution_log("Nenhum palete vazio encontrado, a regra não será executada")
             return False
 
-        # mirror C#: context.MountedSpaces.NotBulk().NotContainProductComplex().Any(x => x.OccupiedPercentage >= ... && x.GetProducts().Count() > 1)
-        candidates = context.MountedSpaces.NotBulk().NotContainProductComplex()
-        threshold = context.get_setting('PercentOccupationMinByDivision', 0)
-        for ms in candidates:
-            if ms.OccupiedPercentage >= threshold and len(ms.GetProducts()) > 1:
-                return True
+        min_division = context.get_setting('PercentOccupationMinByDivision')
 
-        context.add_execution_log('Nenhum palete atende o percentual de ocupacao minimo, a regra nao sera executada')
-        return False
+        exists = any(
+            ms.OccupiedPercentage >= min_division and len(ms.GetProducts()) > 1
+            for ms in MountedSpaceList(context.MountedSpaces)
+                .NotBulk()
+                .NotContainProductComplex()
+        )
 
-    def execute(self, context: Context) -> Context:
-        context.add_execution_log('Iniciando execução da regra PalletEqualizationRule2')
+        if not exists:
+            context.add_execution_log(
+                "Nenhum palete atende o percentual de ocupação minimo, a regra não será executada"
+            )
+            return False
+
+        return True
+
+    # ---------- EXECUTE ----------
+
+    def execute(self, context):
+        context.add_execution_log("Iniciando execução da regra")
 
         pallets_to_equalize: List[PalletEqualizeDto] = []
-        min_percent = context.get_setting('PercentOccupationMinBySelectionPalletDisassembly', 0)
+        min_percent = context.get_setting('PercentOccupationMinBySelectionPalletDisassembly')
 
-        # selection phases (parity with C#)
-        self._select_pallets_with_multiple_groups(context, pallets_to_equalize, min_percent)
-        self._select_pallets_with_multiple_packages(context, pallets_to_equalize, min_percent)
-        self._select_pallets_with_multiple_items(context, pallets_to_equalize, min_percent)
+        self.SelectPalletsToEqualizeWithMultipleGroups(context, pallets_to_equalize, min_percent)
+        self.SelectPalletsToEqualizeWithMultiplePackages(context, pallets_to_equalize, min_percent)
+        self.SelectPalletsToEqualizeWithMultipleItems(context, pallets_to_equalize, min_percent)
 
         if not pallets_to_equalize:
-            context.add_execution_log('Nenhum palete atende a configuracao de ocupacao minima na divisao dos paletes')
-            return context
+            context.add_execution_log(
+                "Nenhum palete atende a configuração de ocupação minima na divisão dos paletes"
+            )
+            return
 
-        # equalize (move products)
-        self._equalize_pallets(context, pallets_to_equalize)
+        self.EqualizePallets(context, pallets_to_equalize)
 
-        context.add_execution_log('Finalizado a execucao da regra PalletEqualizationRule2')
-        return context
+        context.add_execution_log("Finalizado a execução da regra.")
 
-    def _equalize_pallets(self, context: Context, pallets_to_equalize: List[PalletEqualizeDto]) -> None:
-        # use context.Spaces.OrderedBySizeAndNumber() as in C# if available
-        try:
-            empty_spaces = context.Spaces.OrderedBySizeAndNumber()
-        except Exception:
-            empty_spaces = context.Spaces
+    # ---------- EQUALIZATION ----------
 
-        # order pallets by optimal occupation (closest to 50/50)
-        pallets_to_equalize = sorted(pallets_to_equalize, key=lambda x: max(abs(x.StayOccupation - 50), abs(x.MoveOccupation - 50)))
+    def EqualizePallets(self, context, pallets: List[PalletEqualizeDto]):
+        empty_spaces = SpaceList(context.Spaces).OrderedBySizeAndNumber()
+        pallets = self.OrderPalletsByOptimalOccupation(pallets)
 
-        # debug log
-        try:
-            log_message = 'Paletes selecionados para equalizacao: ' + ', '.join([
-                f'[Palete: ({p.SourceSpace}), Ocupacao a permanecer: {p.StayOccupation:.2f}%, Ocupacao a mover: {p.MoveOccupation:.2f}%]'
-                for p in pallets_to_equalize
-            ])
-            context.add_execution_log(log_message)
-        except Exception:
-            pass
+        context.add_execution_log(
+            "Paletes selecionados para equalização: " +
+            ", ".join(
+                f"[Palete: ({p.SourceSpace}), "
+                f"Ocupação a permanecer: {p.StayOccupation:.2f}%, "
+                f"Ocupação a mover: {p.MoveOccupation:.2f}%]"
+                for p in pallets
+            )
+        )
 
         for target_space in empty_spaces:
-            for pallet in [p for p in pallets_to_equalize if not p.IsEqualized]:
-                source_mounted_space = context.GetMountedSpace(pallet.SourceSpace)
+            for pallet in [p for p in pallets if not p.IsEqualized]:
+                source_space = context.GetMountedSpace(pallet.SourceSpace)
 
-                if not self._can_add_products_in_space(pallet.ProductsToMove, target_space, context.get_setting('OccupationAdjustmentToPreventExcessHeight', False)):
+                if not self.CanAddProductsInSpace(
+                    pallet.ProductsToMove,
+                    target_space,
+                    context.get_setting('OccupationAdjustmentToPreventExcessHeight')
+                ):
                     continue
 
-                try:
-                    # log intent
-                    try:
-                        codes = [str(x.Product.Code) for x in pallet.ProductsToMove]
-                    except Exception:
-                        codes = [str(getattr(x, 'product', '?')) for x in pallet.ProductsToMove]
+                context.add_execution_log(
+                    f"Movendo os produtos "
+                    f"[{', '.join(str(p.Product.Code) for p in pallet.ProductsToMove)}] "
+                    f"do Palete: ({pallet.SourceSpace}) "
+                    f"para o Palete: ({target_space})"
+                )
 
-                    context.add_execution_log(f"Movendo os produtos [{', '.join(codes)}] do Palete: ({pallet.SourceSpace}) para o Palete: ({target_space})")
+                context.domain_operations.move_mounted_products(
+                    context,
+                    target_space,
+                    source_space,
+                    pallet.ProductsToMove
+                )
 
-                    # perform the domain operation to move products (parity with C# _mountedSpaceOperations.MoveMountedProducts)
-                    context.domain_operations.move_mounted_products(context, target_space, source_mounted_space, pallet.ProductsToMove)
-                    pallet.IsEqualized = True
-                    break
-                except Exception:
-                    # best-effort: ignore and try next pallet
-                    continue
+                pallet.IsEqualized = True
+                break
 
-    def _can_add_products_in_space(self, products_to_move: List[Any], space: Any, occupation_adjustment: bool) -> bool:
-        # mirror C#: sum factorConverter.Occupation(product, space.Size, product.Item, occupationAdjustmentToPreventExcessHeight)
-        total = 0
-        for p in products_to_move:
-            try:
-                occ = self._factor_converter.Occupation(p, space.Size, p.Item, occupation_adjustment)
-            except Exception:
-                try:
-                    # fallback to alternate signature if required by python port
-                    qty = getattr(p, 'Amount', getattr(p, 'amount', 0))
-                    factor = getattr(p.Product, 'GetFactor', lambda s: None)(space.Size)
-                    occ = self._factor_converter.occupation(qty, factor, getattr(p.Product, 'PalletSetting', None), getattr(p, 'Item', None), occupation_adjustment)
-                except Exception:
-                    occ = 0
-            try:
-                # truncate two decimals like C# Math.Truncate(100 * occupation) / 100
-                total += float(int(occ * 100) / 100)
-            except Exception:
-                try:
-                    total += float(getattr(occ, 'value', 0))
-                except Exception:
-                    total += 0
+    # ---------- CAN ADD PRODUCTS ----------
 
-        try:
-            return total <= float(space.Size)
-        except Exception:
-            return total <= float(getattr(space, 'size', getattr(space, 'Size', 0)))
+    def CanAddProductsInSpace(self, products, space, occupation_adjustment):
+        total = Decimal(0)
 
-    # ---------------- selection helpers ---------------------------------
-    def _select_pallets_with_multiple_groups(self, context: Context, out_list: List[PalletEqualizeDto], min_percent: int) -> None:
-        mounted_spaces = context.MountedSpaces.NotBulk().NotContainProductComplex().WithMultipleGroups()
-        for ms in mounted_spaces:
-            products = ms.GetProducts()
-            if len(products) <= 1:
-                continue
+        for product in products:
+            occupation = Decimal(
+                self._factor_converter.Occupation(
+                    product,
+                    space.Size,
+                    product.Item,
+                    occupation_adjustment
+                )
+            )
+
+            occupation = (
+                occupation * Decimal(100)
+            ).to_integral_value(rounding=ROUND_DOWN) / Decimal(100)
+
+            total += occupation
+
+        return total <= Decimal(space.Size)
+
+    # ---------- MULTIPLE GROUPS ----------
+
+    def SelectPalletsToEqualizeWithMultipleGroups(self, context, out_list, min_percent):
+        spaces = (
+            MountedSpaceList(context.MountedSpaces)
+            .NotBulk()
+            .NotContainProductComplex()
+            .WithMultipleGroups()
+            .Matching(lambda x: x.OccupiedPercentage >= context.get_setting('PercentOccupationMinByDivision'))
+        )
+
+        for mounted_space in spaces:
+            products = mounted_space.GetProducts()
 
             groups = {}
             for p in products:
                 key = p.Product.PackingGroup.GroupCode
-                val = getattr(p, 'PercentOccupationIntoDefaultPalletSize', getattr(p, 'percent_occupation_into_default_pallet_size', 0))
-                groups.setdefault(key, 0)
-                groups[key] += float(val)
+                groups[key] = groups.get(key, Decimal(0)) + p.PercentOccupationIntoDefaultPalletSize
 
-            if not groups:
-                continue
-
-            # group with max occupation
-            group_key, group_val = max(groups.items(), key=lambda kv: kv[1])
+            group_key, group_val = max(groups.items(), key=lambda x: x[1])
             remaining = sum(v for k, v in groups.items() if k != group_key)
 
-            if not (remaining >= min_percent and group_val >= min_percent):
+            if not self.CanEqualizePallet(min_percent, remaining, group_val):
                 continue
-            products_to_move = [p for p in products if p.Product.PackingGroup.GroupCode == group_key]
-            try:
-                codes = [str(p.Product.Code) for p in products_to_move]
-                context.add_execution_log(f"PalletEqualizationRule - selecionado grupo {group_key} no palete {ms.Space} - produtos: {', '.join(codes)} - stay={remaining:.2f} move={group_val:.2f}")
-            except Exception:
-                pass
-            out_list.append(PalletEqualizeDto(MoveOccupation=group_val, StayOccupation=remaining, SourceSpace=ms.Space, ProductsToMove=products_to_move))
 
-    def _select_pallets_with_multiple_packages(self, context: Context, out_list: List[PalletEqualizeDto], min_percent: int) -> None:
-        mounted_spaces = context.MountedSpaces.NotBulk().NotContainProductComplex().WithSameGroupAndMultiplePackages()
+            out_list.append(
+                PalletEqualizeDto(
+                    MoveOccupation=group_val,
+                    StayOccupation=remaining,
+                    SourceSpace=mounted_space.Space,
+                    ProductsToMove=[
+                        p for p in products
+                        if p.Product.PackingGroup.GroupCode == group_key
+                    ]
+                )
+            )
+
+    # ---------- MULTIPLE PACKAGES ----------
+
+    def SelectPalletsToEqualizeWithMultiplePackages(self, context, out_list, min_percent):
+        spaces = (
+            MountedSpaceList(context.MountedSpaces)
+            .NotBulk()
+            .NotContainProductComplex()
+            .WithSameGroupAndMultiplePackages()
+            .Matching(lambda x: x.OccupiedPercentage >= context.get_setting('PercentOccupationMinByDivision'))
+        )
+
         specific_groups = None
-        gps = context.get_setting('ProductGroupSpecific')
-        if isinstance(gps, str) and gps.strip():
-            try:
-                specific_groups = [int(x) for x in gps.split(',')]
-            except Exception:
-                specific_groups = None
+        if context.get_setting('ProductGroupSpecific'):
+            specific_groups = list(map(int, context.get_setting('ProductGroupSpecific').split(",")))
 
-        for ms in mounted_spaces:
-            products = ms.GetProducts()
-            if len(products) <= 1:
+        for mounted_space in spaces:
+            products = mounted_space.GetProducts()
+
+            if specific_groups and all(
+                p.Product.PackingGroup.GroupCode in specific_groups
+                for p in products
+            ):
+                ordered = sorted(products, key=lambda p: p.Product.PackingGroup.PackingCode)
+                self.PalletEqualizationSplit(
+                    context, out_list, mounted_space, ordered, min_percent
+                )
                 continue
 
-            is_specific = specific_groups is not None and all(p.Product.PackingGroup.GroupCode in specific_groups for p in products)
-            if is_specific:
-                ordered = sorted(products, key=lambda x: x.Product.PackingGroup.PackingCode)
-                self._pallet_equalization_split(context, out_list, ms, ordered, min_percent)
-                continue
-
-            packs = {}
+            packages = {}
             for p in products:
                 key = p.Product.PackingGroup.PackingCode
-                val = getattr(p, 'PercentOccupationIntoDefaultPalletSize', getattr(p, 'percent_occupation_into_default_pallet_size', 0))
-                packs.setdefault(key, 0)
-                packs[key] += float(val)
+                packages[key] = packages.get(key, Decimal(0)) + p.PercentOccupationIntoDefaultPalletSize
 
-            if not packs:
+            pack_key, pack_val = max(packages.items(), key=lambda x: x[1])
+            remaining = sum(v for k, v in packages.items() if k != pack_key)
+
+            if not self.CanEqualizePallet(min_percent, remaining, pack_val):
                 continue
 
-            pack_key, pack_val = max(packs.items(), key=lambda kv: kv[1])
-            remaining = sum(v for k, v in packs.items() if k != pack_key)
+            out_list.append(
+                PalletEqualizeDto(
+                    MoveOccupation=pack_val,
+                    StayOccupation=remaining,
+                    SourceSpace=mounted_space.Space,
+                    ProductsToMove=[
+                        p for p in products
+                        if p.Product.PackingGroup.PackingCode == pack_key
+                    ]
+                )
+            )
 
-            if not (remaining >= min_percent and pack_val >= min_percent):
-                continue
-            products_to_move = [p for p in products if p.Product.PackingGroup.PackingCode == pack_key]
-            try:
-                codes = [str(p.Product.Code) for p in products_to_move]
-                context.add_execution_log(f"PalletEqualizationRule - selecionado packing {pack_key} no palete {ms.Space} - produtos: {', '.join(codes)} - stay={remaining:.2f} move={pack_val:.2f}")
-            except Exception:
-                pass
-            out_list.append(PalletEqualizeDto(MoveOccupation=pack_val, StayOccupation=remaining, SourceSpace=ms.Space, ProductsToMove=products_to_move))
+    # ---------- MULTIPLE ITEMS ----------
 
-    def _select_pallets_with_multiple_items(self, context: Context, out_list: List[PalletEqualizeDto], min_percent: int) -> None:
-        mounted_spaces = context.MountedSpaces.NotBulk().NotContainProductComplex().WithSameGroupAndPackageAndMultipleItems()
-        for ms in mounted_spaces:
-            products = ms.GetProducts()
+    def SelectPalletsToEqualizeWithMultipleItems(self, context, out_list, min_percent):
+        spaces = (
+            MountedSpaceList(context.MountedSpaces)
+            .NotBulk()
+            .NotContainProductComplex()
+            .WithSameGroupAndPackageAndMultipleItems()
+            .Matching(lambda x: x.OccupiedPercentage >= context.get_setting('PercentOccupationMinByDivision'))
+        )
+
+        for mounted_space in spaces:
+            products = mounted_space.GetProducts()
             if len(products) <= 1:
                 continue
-            ordered = sorted(products, key=lambda p: getattr(p, 'PercentOccupationIntoDefaultPalletSize', getattr(p, 'percent_occupation_into_default_pallet_size', 0)), reverse=True)
-            self._pallet_equalization_split(context, out_list, ms, ordered, min_percent)
 
-    def _pallet_equalization_split(self, context: Context, out_list: List[PalletEqualizeDto], mounted_space: Any, products: List[Any], min_percent: int) -> None:
-        total = sum(getattr(p, 'PercentOccupationIntoDefaultPalletSize', getattr(p, 'percent_occupation_into_default_pallet_size', 0)) for p in products)
-        half = total / 2
+            ordered = sorted(
+                products,
+                key=lambda p: p.PercentOccupationIntoDefaultPalletSize,
+                reverse=True
+            )
 
-        if half < min_percent:
+            self.PalletEqualizationSplit(
+                context, out_list, mounted_space, ordered, min_percent
+            )
+
+    # ---------- SPLIT ----------
+
+    def PalletEqualizationSplit(self, context, out_list, mounted_space, products, min_percent):
+        total = sum(p.PercentOccupationIntoDefaultPalletSize for p in products)
+        half = total / Decimal(2)
+
+        if half < Decimal(min_percent):
             return
 
-        first = []
-        second = []
-        occ = 0.0
-        for p in products:
-            v = float(getattr(p, 'PercentOccupationIntoDefaultPalletSize', getattr(p, 'percent_occupation_into_default_pallet_size', 0)))
-            if occ + v <= total / 2:
-                first.append(p)
-                occ += v
+        first, second = [], []
+        occupation = Decimal(0)
+
+        for product in products:
+            if occupation + product.PercentOccupationIntoDefaultPalletSize <= half:
+                first.append(product)
+                occupation += product.PercentOccupationIntoDefaultPalletSize
             else:
-                second.append(p)
+                second.append(product)
 
-        stay = sum(float(getattr(x, 'PercentOccupationIntoDefaultPalletSize', getattr(x, 'percent_occupation_into_default_pallet_size', 0))) for x in first)
-        move = sum(float(getattr(x, 'PercentOccupationIntoDefaultPalletSize', getattr(x, 'percent_occupation_into_default_pallet_size', 0))) for x in second)
+        stay = sum(p.PercentOccupationIntoDefaultPalletSize for p in first)
+        move = sum(p.PercentOccupationIntoDefaultPalletSize for p in second)
 
-        if not (stay >= min_percent and move >= min_percent):
+        if not self.CanEqualizePallet(min_percent, stay, move):
             return
-        try:
-            codes = [str(p.Product.Code) for p in second]
-            context.add_execution_log(f"PalletEqualizationRule - divisao por itens no palete {mounted_space.Space} - manter={stay:.2f} mover={move:.2f} produtos: {', '.join(codes)}")
-        except Exception:
-            pass
 
-        out_list.append(PalletEqualizeDto(MoveOccupation=move, StayOccupation=stay, SourceSpace=mounted_space.Space, ProductsToMove=second))
+        out_list.append(
+            PalletEqualizeDto(
+                StayOccupation=stay,
+                MoveOccupation=move,
+                SourceSpace=mounted_space.Space,
+                ProductsToMove=second
+            )
+        )
+
+    # ---------- HELPERS ----------
+
+    def CanEqualizePallet(self, min_percent, stay, move):
+        return stay >= Decimal(min_percent) and move >= Decimal(min_percent)
+
+    def OrderPalletsByOptimalOccupation(self, pallets):
+        return sorted(
+            pallets,
+            key=lambda x: max(
+                abs(x.StayOccupation - Decimal(50)),
+                abs(x.MoveOccupation - Decimal(50))
+            )
+        )

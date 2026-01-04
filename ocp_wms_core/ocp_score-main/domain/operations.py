@@ -572,6 +572,7 @@ class DomainOperations:
                         self.AddSplittedProductOnSpace(context, space2, item)
                     except Exception:
                         pass
+        return True
 
     # PascalCase alias
     AddOn2Spaces = add_on_2_spaces
@@ -690,7 +691,8 @@ class DomainOperations:
             side = getattr(space, 'sideDesc', getattr(space, 'side', '?'))
             number = getattr(space, 'Number', getattr(space, 'number', '?'))
             occ_val = getattr(mounted_space, 'Occupation', getattr(mounted_space, 'occupation', None))
-            self._write_log(f"Item {getattr(item, 'Code', getattr(item, 'code', '?'))} quebrado adicionado no espaco {number} / {side}, nova ocupacao de {occ_val}", context)
+            # self._write_log(f"Item {getattr(item, 'Code', getattr(item, 'code', '?'))} quebrado adicionado no espaco {number} / {side}, nova ocupacao de {occ_val}", context)
+            context.add_execution_log(f"Item {getattr(item, 'Code', getattr(item, 'code', '?'))} quebrado adicionado no espaco {number} / {side}, nova ocupacao de {occ_val}")
         except Exception:
             pass
 

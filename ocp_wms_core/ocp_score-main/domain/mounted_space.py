@@ -108,18 +108,32 @@ class MountedSpace:
         self._blocked = bool(value)
 
     # -------------------- Product access --------------------
+    # def GetProducts(self) -> List[Any]:
+    #     """Return flattened list of mounted products (from containers if present, else legacy Products)."""
+    #     prods: List[Any] = []
+    #     if self.Containers:
+    #         for c in self.Containers:
+    #             try:
+    #                 prods.extend(c.get_products())
+    #             except Exception:
+    #                 # fallback: try attribute
+    #                 prods.extend(getattr(c, "Products", []) or [])
+    #         return prods
+    #     return self.Products
     def GetProducts(self) -> List[Any]:
-        """Return flattened list of mounted products (from containers if present, else legacy Products)."""
-        prods: List[Any] = []
-        if self.Containers:
-            for c in self.Containers:
-                try:
-                    prods.extend(c.get_products())
-                except Exception:
-                    # fallback: try attribute
-                    prods.extend(getattr(c, "Products", []) or [])
-            return prods
-        return self.Products
+        """
+        100% faithful to C#:
+        mountedSpace.Containers.SelectMany(x => x.Products)
+        """
+        if not self.Containers:
+            return []
+
+        products: List[Any] = []
+        for c in self.Containers:
+            products.extend(getattr(c, "Products", []) or [])
+
+        return products
+
 
     # -------------------- Container management --------------------
     def AddContainer(self, container: Any):

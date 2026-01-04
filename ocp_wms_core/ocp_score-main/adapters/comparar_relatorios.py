@@ -126,7 +126,7 @@ def extrair_produtos_do_relatorio(filepath: Path) -> List[Dict]:
                 r'\d{4}\s+'            # embalagem (não captura)
                 r'\d+/\d+\s+'          # grupo/sub (não captura)
                 r'[\d.,]+\s+'          # peso (não captura)
-                r'(\S+)\s*'            # atributo (grupo 4)
+                r'(.+?)\s*'            # atributo (grupo 4)
                 r'([\d.,]*)\s*$',      # ocupacao (grupo 5) - OPCIONAL (pode estar vazia)
                 linha_limpa
             )
@@ -1552,7 +1552,708 @@ def formatar_excel(filepath: Path, atributos_wms=None, atributos_api=None, palle
     print(f"[DEBUG] Workbook salvo!")
 
 
+def criar_aba_consolidado_binpack(wb, ws_comparacao):
+    """
+    Cria aba 'Consolidado' com resumo por number_mapa.
+    """
+    from openpyxl.utils import get_column_letter
+
+    # Remove aba anterior se existir
+    if "Consolidado" in wb.sheetnames:
+        del wb["Consolidado"]
+
+    ws = wb.create_sheet("Consolidado", 0)  # Cria como primeira aba
+
+    # Cores
+    header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+    header_font = Font(bold=True, color="FFFFFF", size=11)
+    thin_border = Border(
+        left=Side(style='thin'),
+        right=Side(style='thin'),
+        top=Side(style='thin'),
+        bottom=Side(style='thin')
+    )
+
+    # Título
+    ws.merge_cells('A1:J1')
+    ws['A1'] = 'Resumo Consolidado por Mapa'
+    ws['A1'].fill = header_fill
+    ws['A1'].font = Font(bold=True, color="FFFFFF", size=14)
+    ws['A1'].alignment = Alignment(horizontal='center', vertical='center')
+    ws['A1'].border = thin_border
+
+    # Cabeçalhos (linha 3) - adicionada coluna 'Binpack' no final
+    headers = [
+        'number_mapa',
+        'Similaridade (%)',
+        'Ocupação Total WMS',
+        'Ocupação Total API',
+        'Total Itens WMS',
+        'Total Itens API',
+        'Perc. Não Paletizados WMS',
+        'Perc. Não Paletizados API',
+        'Tempo Execução (segs)',
+        'Binpack'
+    ]
+    for col, header in enumerate(headers, start=1):
+        cell = ws.cell(row=3, column=col)
+        cell.value = header
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal='center', vertical='center')
+        cell.border = thin_border
+
+    # Extrai number_mapas únicos da aba Comparação
+    mapas_unicos = []
+    linha = 13
+    while True:
+        valor = ws_comparacao.cell(row=linha, column=1).value
+        if not valor or valor == '':
+            break
+        if valor not in mapas_unicos:
+            mapas_unicos.append(valor)
+        linha += 1
+
+    print(f"\n  📊 Criando aba Consolidado com {len(mapas_unicos)} mapas únicos")
+    print(f"  Mapas únicos encontrados: {mapas_unicos}")
+
+    # (mantém lógica existente para buscar durations_map...)
+    # ... (aqui entra o código já presente que popula durations_map) ...
+    durations_map = {}
+    try:
+        # tentativa de leitura do batch_summary_*.json ou fallback log (mesma lógica já implementada)
+        global _MAPEAMENTO_ARQUIVOS
+        candidate_root = None
+        if _MAPEAMENTO_ARQUIVOS:
+            any_entry = next(iter(_MAPEAMENTO_ARQUIVOS.values()))
+            wms_path = Path(any_entry[0])
+            candidate_root = wms_path.parent.parent
+        else:
+            candidate_root = Path(__file__).parent.parent
+
+        if candidate_root and candidate_root.exists():
+            js_files = sorted(candidate_root.glob('batch_summary_*.json'), key=lambda p: p.stat().st_mtime, reverse=True)
+            if js_files:
+                try:
+                    with open(js_files[0], 'r', encoding='utf-8') as f:
+                        summary = json.load(f)
+                    for r in summary.get('results', []):
+                        map_name = str(r.get('map_name') or r.get('mapName') or r.get('map_number') or '')
+                        s = r.get('start_time') or r.get('startTime') or None
+                        e = r.get('end_time') or r.get('endTime') or None
+                        dur = None
+                        try:
+                            if s and e:
+                                from datetime import datetime
+                                dt_s = datetime.fromisoformat(s)
+                                dt_e = datetime.fromisoformat(e)
+                                dur = (dt_e - dt_s).total_seconds()
+                        except Exception:
+                            dur = None
+                        if dur is None:
+                            dur = r.get('duration_seconds') or r.get('durationSeconds') or None
+                        if dur is not None and map_name:
+                            try:
+                                durations_map[map_name] = float(dur)
+                            except Exception:
+                                durations_map[map_name] = dur
+                    print(f"  [INFO] Usando {js_files[0].name} para preencher tempos de execução")
+                except Exception as ex:
+                    print(f"  [WARN] Erro ao ler {js_files[0].name}: {ex}")
+            else:
+                log_files = sorted(candidate_root.glob('batch_processing_*.log'), key=lambda p: p.stat().st_mtime, reverse=True)
+                if log_files:
+                    log_text = log_files[0].read_text(encoding='utf-8', errors='ignore')
+                    import re
+                    cur_map = None
+                    for line in log_text.splitlines():
+                        if 'PROCESSANDO MAPA' in line:
+                            m = re.search(r'PROCESSANDO MAPA[:\s]*([^\s:]+)', line)
+                            if m:
+                                cur_map = m.group(1).strip()
+                        m2 = re.search(r'Tempo de processamento:\s*([\d\.]+)s', line)
+                        if m2 and cur_map:
+                            try:
+                                durations_map[cur_map] = float(m2.group(1))
+                            except Exception:
+                                pass
+                            cur_map = None
+                    print(f"  [INFO] Usando {log_files[0].name} (fallback) para preencher tempos de execução")
+    except Exception as e:
+        print(f"  [WARN] Não foi possível localizar/parsear arquivos de batch: {e}")
+
+    # Calcula similaridade para cada mapa para poder ordenar
+    mapas_com_similaridade = []
+    for mapa in mapas_unicos:
+        matches = 0
+        total = 0
+        linha = 13
+        while True:
+            valor_mapa = ws_comparacao.cell(row=linha, column=1).value
+            if not valor_mapa or valor_mapa == '':
+                break
+            if str(valor_mapa) == str(mapa):
+                total += 1
+                match_val = ws_comparacao.cell(row=linha, column=8).value
+                if match_val == 1:
+                    matches += 1
+            linha += 1
+
+        similaridade = (matches / total) if total > 0 else 0
+        mapas_com_similaridade.append((mapa, similaridade))
+
+    mapas_com_similaridade.sort(key=lambda x: x[1], reverse=True)
+    print(f"  Mapas ordenados por similaridade: {[(m, f'{s*100:.1f}%') for m, s in mapas_com_similaridade]}")
+
+    # Adiciona dados (uma linha por mapa, já ordenado)
+    linha_atual = 4
+    for mapa, _ in mapas_com_similaridade:
+        # Coluna A: number_mapa
+        ws.cell(row=linha_atual, column=1).value = mapa
+        ws.cell(row=linha_atual, column=1).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=1).border = thin_border
+
+        # Coluna B: Similaridade (%)
+        ws.cell(row=linha_atual, column=2).value = (
+            f"=IFERROR(SUMIFS('Comparação'!$H$13:$H$5000,'Comparação'!$A$13:$A$5000,A{linha_atual})/"
+            f"COUNTIF('Comparação'!$A$13:$A$5000,A{linha_atual}),0)"
+        )
+        ws.cell(row=linha_atual, column=2).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=2).border = thin_border
+        ws.cell(row=linha_atual, column=2).number_format = '0.0%'
+
+        # Coluna C: Ocupação Total WMS
+        ws.cell(row=linha_atual, column=3).value = (
+            f"=SUMIF('Comparação'!$A$13:$A$5000,A{linha_atual},'Comparação'!$G$13:$G$5000)"
+        )
+        ws.cell(row=linha_atual, column=3).alignment = Alignment(horizontal='right')
+        ws.cell(row=linha_atual, column=3).border = thin_border
+        ws.cell(row=linha_atual, column=3).number_format = '0.0'
+
+        # Coluna D: Ocupação Total API
+        ws.cell(row=linha_atual, column=4).value = (
+            f"=SUMIF('Comparação'!$I$13:$I$5000,A{linha_atual},'Comparação'!$O$13:$O$5000)"
+        )
+        ws.cell(row=linha_atual, column=4).alignment = Alignment(horizontal='right')
+        ws.cell(row=linha_atual, column=4).border = thin_border
+        ws.cell(row=linha_atual, column=4).number_format = '0.0'
+
+        # Coluna E: Total Itens WMS
+        ws.cell(row=linha_atual, column=5).value = (
+            f"=SUMIF('Comparação'!$A$13:$A$5000,A{linha_atual},'Comparação'!$E$13:$E$5000)"
+        )
+        ws.cell(row=linha_atual, column=5).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=5).border = thin_border
+        ws.cell(row=linha_atual, column=5).number_format = '0'
+
+        # Coluna F: Total Itens API
+        ws.cell(row=linha_atual, column=6).value = (
+            f"=SUMIF('Comparação'!$I$13:$I$5000,A{linha_atual},'Comparação'!$M$13:$M$5000)"
+        )
+        ws.cell(row=linha_atual, column=6).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=6).border = thin_border
+        ws.cell(row=linha_atual, column=6).number_format = '0'
+
+        # Coluna G: Perc. Não Paletizados WMS
+        ws.cell(row=linha_atual, column=7).value = (
+            f"=IFERROR(COUNTIF('Não Paletizados'!$A$5:$A$5000,A{linha_atual})/E{linha_atual},0)"
+        )
+        ws.cell(row=linha_atual, column=7).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=7).border = thin_border
+        ws.cell(row=linha_atual, column=7).number_format = '0.0%'
+
+        # Coluna H: Perc. Não Paletizados API
+        ws.cell(row=linha_atual, column=8).value = (
+            f"=IFERROR(COUNTIF('Não Paletizados'!$H$5:$H$5000,A{linha_atual})/F{linha_atual},0)"
+        )
+        ws.cell(row=linha_atual, column=8).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=8).border = thin_border
+        ws.cell(row=linha_atual, column=8).number_format = '0.0%'
+
+        # Coluna I: Tempo Execução (segs) - valor direto se disponível no summary/log
+        tempo = durations_map.get(str(mapa), None)
+        if tempo is not None:
+            ws.cell(row=linha_atual, column=9).value = float(tempo)
+            ws.cell(row=linha_atual, column=9).number_format = '0.00'
+        else:
+            ws.cell(row=linha_atual, column=9).value = ''
+        ws.cell(row=linha_atual, column=9).alignment = Alignment(horizontal='right')
+        ws.cell(row=linha_atual, column=9).border = thin_border
+
+        # Coluna J: Binpack - verifica na aba Comparação se existe atributo contendo 'market' (WMS side coluna F)
+        is_binpack = False
+        scan_row = 13
+        while True:
+            val = ws_comparacao.cell(row=scan_row, column=1).value
+            if not val or val == '':
+                break
+            if str(val) == str(mapa):
+                atributo_val = ws_comparacao.cell(row=scan_row, column=6).value or ''
+                if 'market' in str(atributo_val).lower():
+                    is_binpack = True
+                    break
+            scan_row += 1
+        ws.cell(row=linha_atual, column=10).value = 'Sim' if is_binpack else 'Não'
+        ws.cell(row=linha_atual, column=10).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=10).border = thin_border
+
+        linha_atual += 1
+
+    print(f"  ✅ {len(mapas_com_similaridade)} linhas de dados criadas (linhas 4 a {linha_atual-1})")
+
+    # Cria Table Excel para permitir filtros e ordenação
+    from openpyxl.worksheet.table import Table, TableStyleInfo
+
+    # Define range da tabela (sem a linha de totais)
+    tab_range = f"A3:J{linha_atual-1}"
+    tab = Table(displayName="TabelaConsolidado", ref=tab_range)
+
+    # Estilo da tabela
+    style = TableStyleInfo(
+        name="TableStyleMedium9",
+        showFirstColumn=False,
+        showLastColumn=False,
+        showRowStripes=True,
+        showColumnStripes=False
+    )
+    tab.tableStyleInfo = style
+
+    ws.add_table(tab)
+    print(f"  ✅ Table Excel criada: {tab_range}")
+
+    # Linha de totais (fora da tabela)
+    ws.cell(row=linha_atual, column=1).value = 'TOTAL'
+    ws.cell(row=linha_atual, column=1).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=1).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=1).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=1).border = thin_border
+
+    # Similaridade TOTAL
+    ws.cell(row=linha_atual, column=2).value = (
+        f"=IFERROR(SUMPRODUCT(('Comparação'!$A$13:$A$5000<>\"\")*('Comparação'!$H$13:$H$5000=1))/"
+        f"SUMPRODUCT(('Comparação'!$A$13:$A$5000<>\"\")* 1),0)"
+    )
+    ws.cell(row=linha_atual, column=2).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=2).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=2).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=2).border = thin_border
+    ws.cell(row=linha_atual, column=2).number_format = '0.0%'
+
+    # Totais / médias existentes (mantidos)
+    ws.cell(row=linha_atual, column=3).value = f'=SUM(C4:C{linha_atual-1})'
+    ws.cell(row=linha_atual, column=3).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=3).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=3).alignment = Alignment(horizontal='right')
+    ws.cell(row=linha_atual, column=3).border = thin_border
+    ws.cell(row=linha_atual, column=3).number_format = '0.0'
+
+    ws.cell(row=linha_atual, column=4).value = f'=SUM(D4:D{linha_atual-1})'
+    ws.cell(row=linha_atual, column=4).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=4).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=4).alignment = Alignment(horizontal='right')
+    ws.cell(row=linha_atual, column=4).border = thin_border
+    ws.cell(row=linha_atual, column=4).number_format = '0.0'
+
+    ws.cell(row=linha_atual, column=5).value = f'=SUM(E4:E{linha_atual-1})'
+    ws.cell(row=linha_atual, column=5).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=5).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=5).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=5).border = thin_border
+    ws.cell(row=linha_atual, column=5).number_format = '0'
+
+    ws.cell(row=linha_atual, column=6).value = f'=SUM(F4:F{linha_atual-1})'
+    ws.cell(row=linha_atual, column=6).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=6).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=6).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=6).border = thin_border
+    ws.cell(row=linha_atual, column=6).number_format = '0'
+
+    ws.cell(row=linha_atual, column=7).value = f'=AVERAGE(G4:G{linha_atual-1})'
+    ws.cell(row=linha_atual, column=7).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=7).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=7).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=7).border = thin_border
+    ws.cell(row=linha_atual, column=7).number_format = '0.0%'
+
+    ws.cell(row=linha_atual, column=8).value = f'=AVERAGE(H4:H{linha_atual-1})'
+    ws.cell(row=linha_atual, column=8).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=8).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=8).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=8).border = thin_border
+    ws.cell(row=linha_atual, column=8).number_format = '0.0%'
+
+    # Tempo (coluna I) média
+    ws.cell(row=linha_atual, column=9).value = f"=IFERROR(AVERAGE(I4:I{linha_atual-1}),0)"
+    ws.cell(row=linha_atual, column=9).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=9).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=9).alignment = Alignment(horizontal='right')
+    ws.cell(row=linha_atual, column=9).border = thin_border
+    ws.cell(row=linha_atual, column=9).number_format = '0.00'
+
+    # Binpack coluna (coluna J) - total de mapas binpack (opcional): conta 'Sim'
+    ws.cell(row=linha_atual, column=10).value = f' =COUNTIF(J4:J{linha_atual-1},"Sim")'
+    ws.cell(row=linha_atual, column=10).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=10).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=10).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=10).border = thin_border
+
+    # Ajusta largura das colunas
+    ws.column_dimensions['A'].width = 15
+    ws.column_dimensions['B'].width = 18
+    ws.column_dimensions['C'].width = 20
+    ws.column_dimensions['D'].width = 20
+    ws.column_dimensions['E'].width = 16
+    ws.column_dimensions['F'].width = 16
+    ws.column_dimensions['G'].width = 25
+    ws.column_dimensions['H'].width = 25
+    ws.column_dimensions['I'].width = 14
+    ws.column_dimensions['J'].width = 12
+
+    # Freeze panes
+    ws.freeze_panes = 'A4'
+
+    print(f"  ✅ Aba Consolidado criada com {len(mapas_unicos)} mapas")
+
 def criar_aba_consolidado(wb, ws_comparacao):
+    """
+    Cria aba 'Consolidado' com resumo por number_mapa.
+    """
+    from openpyxl.utils import get_column_letter
+    import json
+
+    # Remove aba anterior se existir
+    if "Consolidado" in wb.sheetnames:
+        del wb["Consolidado"]
+
+    ws = wb.create_sheet("Consolidado", 0)  # Cria como primeira aba
+
+    # Cores
+    header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+    header_font = Font(bold=True, color="FFFFFF", size=11)
+    thin_border = Border(
+        left=Side(style='thin'),
+        right=Side(style='thin'),
+        top=Side(style='thin'),
+        bottom=Side(style='thin')
+    )
+
+    # Título
+    ws.merge_cells('A1:I1')
+    ws['A1'] = 'Resumo Consolidado por Mapa'
+    ws['A1'].fill = header_fill
+    ws['A1'].font = Font(bold=True, color="FFFFFF", size=14)
+    ws['A1'].alignment = Alignment(horizontal='center', vertical='center')
+    ws['A1'].border = thin_border
+
+    # Cabeçalhos (linha 3)
+    headers = [
+        'number_mapa',
+        'Similaridade (%)',
+        'Ocupação Total WMS',
+        'Ocupação Total API',
+        'Total Itens WMS',
+        'Total Itens API',
+        'Perc. Não Paletizados WMS',
+        'Perc. Não Paletizados API',
+        'Tempo Execução (segs)'
+    ]
+    for col, header in enumerate(headers, start=1):
+        cell = ws.cell(row=3, column=col)
+        cell.value = header
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal='center', vertical='center')
+        cell.border = thin_border
+
+    # Extrai number_mapas únicos da aba Comparação
+    mapas_unicos = []
+    linha = 13
+    while True:
+        valor = ws_comparacao.cell(row=linha, column=1).value
+        if not valor or valor == '':
+            break
+        if valor not in mapas_unicos:
+            mapas_unicos.append(valor)
+        linha += 1
+
+    print(f"\n  📊 Criando aba Consolidado com {len(mapas_unicos)} mapas únicos")
+    print(f"  Mapas únicos encontrados: {mapas_unicos}")
+
+    # Tenta localizar arquivo summary/log do batch para extrair durações
+    durations_map = {}
+    try:
+        global _MAPEAMENTO_ARQUIVOS
+        candidate_root = None
+        if _MAPEAMENTO_ARQUIVOS:
+            any_entry = next(iter(_MAPEAMENTO_ARQUIVOS.values()))
+            wms_path = Path(any_entry[0])
+            candidate_root = wms_path.parent.parent
+        else:
+            candidate_root = Path(__file__).parent.parent
+
+        if candidate_root and candidate_root.exists():
+            # procura batch_summary_*.json (preferencial)
+            js_files = sorted(candidate_root.glob('batch_summary_*.json'), key=lambda p: p.stat().st_mtime, reverse=True)
+            if js_files:
+                try:
+                    with open(js_files[0], 'r', encoding='utf-8') as f:
+                        summary = json.load(f)
+                    for r in summary.get('results', []):
+                        map_name = str(r.get('map_name') or r.get('mapName') or r.get('map_number') or '')
+                        # prefer compute from start/end if available
+                        s = r.get('start_time') or r.get('startTime') or None
+                        e = r.get('end_time') or r.get('endTime') or None
+                        dur = None
+                        try:
+                            if s and e:
+                                from datetime import datetime
+                                dt_s = datetime.fromisoformat(s)
+                                dt_e = datetime.fromisoformat(e)
+                                dur = (dt_e - dt_s).total_seconds()
+                        except Exception:
+                            dur = None
+                        # fallback to duration_seconds field if present
+                        if dur is None:
+                            dur = r.get('duration_seconds') or r.get('durationSeconds') or None
+                        if dur is not None and map_name:
+                            try:
+                                durations_map[map_name] = float(dur)
+                            except Exception:
+                                durations_map[map_name] = dur
+                    print(f"  [INFO] Usando {js_files[0].name} para preencher tempos de execução")
+                except Exception as ex:
+                    print(f"  [WARN] Erro ao ler {js_files[0].name}: {ex}")
+            else:
+                # fallback para log parsing (mais frágil)
+                log_files = sorted(candidate_root.glob('batch_processing_*.log'), key=lambda p: p.stat().st_mtime, reverse=True)
+                if log_files:
+                    log_text = log_files[0].read_text(encoding='utf-8', errors='ignore')
+                    import re
+                    cur_map = None
+                    for line in log_text.splitlines():
+                        if 'PROCESSANDO MAPA' in line:
+                            m = re.search(r'PROCESSANDO MAPA[:\s]*([^\s:]+)', line)
+                            if m:
+                                cur_map = m.group(1).strip()
+                        m2 = re.search(r'Tempo de processamento:\s*([\d\.]+)s', line)
+                        if m2 and cur_map:
+                            try:
+                                durations_map[cur_map] = float(m2.group(1))
+                            except Exception:
+                                pass
+                            cur_map = None
+                    print(f"  [INFO] Usando {log_files[0].name} (fallback) para preencher tempos de execução")
+    except Exception as e:
+        print(f"  [WARN] Não foi possível localizar/parsear arquivos de batch: {e}")
+
+    # Calcula similaridade para cada mapa para poder ordenar
+    mapas_com_similaridade = []
+    for mapa in mapas_unicos:
+        matches = 0
+        total = 0
+        linha = 13
+        while True:
+            valor_mapa = ws_comparacao.cell(row=linha, column=1).value
+            if not valor_mapa or valor_mapa == '':
+                break
+            if str(valor_mapa) == str(mapa):
+                total += 1
+                match_val = ws_comparacao.cell(row=linha, column=8).value
+                if match_val == 1:
+                    matches += 1
+            linha += 1
+
+        similaridade = (matches / total) if total > 0 else 0
+        mapas_com_similaridade.append((mapa, similaridade))
+
+    mapas_com_similaridade.sort(key=lambda x: x[1], reverse=True)
+    print(f"  Mapas ordenados por similaridade: {[(m, f'{s*100:.1f}%') for m, s in mapas_com_similaridade]}")
+
+    # Adiciona dados (uma linha por mapa, já ordenado)
+    linha_atual = 4
+    for mapa, _ in mapas_com_similaridade:
+        # Coluna A: number_mapa
+        ws.cell(row=linha_atual, column=1).value = mapa
+        ws.cell(row=linha_atual, column=1).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=1).border = thin_border
+
+        # Coluna B: Similaridade (%)
+        ws.cell(row=linha_atual, column=2).value = (
+            f"=IFERROR(SUMIFS('Comparação'!$H$13:$H$5000,'Comparação'!$A$13:$A$5000,A{linha_atual})/"
+            f"COUNTIF('Comparação'!$A$13:$A$5000,A{linha_atual}),0)"
+        )
+        ws.cell(row=linha_atual, column=2).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=2).border = thin_border
+        ws.cell(row=linha_atual, column=2).number_format = '0.0%'
+
+        # Coluna C: Ocupação Total WMS
+        ws.cell(row=linha_atual, column=3).value = (
+            f"=SUMIF('Comparação'!$A$13:$A$5000,A{linha_atual},'Comparação'!$G$13:$G$5000)"
+        )
+        ws.cell(row=linha_atual, column=3).alignment = Alignment(horizontal='right')
+        ws.cell(row=linha_atual, column=3).border = thin_border
+        ws.cell(row=linha_atual, column=3).number_format = '0.0'
+
+        # Coluna D: Ocupação Total API
+        ws.cell(row=linha_atual, column=4).value = (
+            f"=SUMIF('Comparação'!$I$13:$I$5000,A{linha_atual},'Comparação'!$O$13:$O$5000)"
+        )
+        ws.cell(row=linha_atual, column=4).alignment = Alignment(horizontal='right')
+        ws.cell(row=linha_atual, column=4).border = thin_border
+        ws.cell(row=linha_atual, column=4).number_format = '0.0'
+
+        # Coluna E: Total Itens WMS
+        ws.cell(row=linha_atual, column=5).value = (
+            f"=SUMIF('Comparação'!$A$13:$A$5000,A{linha_atual},'Comparação'!$E$13:$E$5000)"
+        )
+        ws.cell(row=linha_atual, column=5).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=5).border = thin_border
+        ws.cell(row=linha_atual, column=5).number_format = '0'
+
+        # Coluna F: Total Itens API
+        ws.cell(row=linha_atual, column=6).value = (
+            f"=SUMIF('Comparação'!$I$13:$I$5000,A{linha_atual},'Comparação'!$M$13:$M$5000)"
+        )
+        ws.cell(row=linha_atual, column=6).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=6).border = thin_border
+        ws.cell(row=linha_atual, column=6).number_format = '0'
+
+        # Coluna G: Perc. Não Paletizados WMS
+        ws.cell(row=linha_atual, column=7).value = (
+            f"=IFERROR(COUNTIF('Não Paletizados'!$A$5:$A$5000,A{linha_atual})/E{linha_atual},0)"
+        )
+        ws.cell(row=linha_atual, column=7).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=7).border = thin_border
+        ws.cell(row=linha_atual, column=7).number_format = '0.0%'
+
+        # Coluna H: Perc. Não Paletizados API
+        ws.cell(row=linha_atual, column=8).value = (
+            f"=IFERROR(COUNTIF('Não Paletizados'!$H$5:$H$5000,A{linha_atual})/F{linha_atual},0)"
+        )
+        ws.cell(row=linha_atual, column=8).alignment = Alignment(horizontal='center')
+        ws.cell(row=linha_atual, column=8).border = thin_border
+        ws.cell(row=linha_atual, column=8).number_format = '0.0%'
+
+        # Coluna I: Tempo Execução (segs) - valor direto se disponível no summary/log
+        tempo = durations_map.get(str(mapa), None)
+        if tempo is not None:
+            ws.cell(row=linha_atual, column=9).value = float(tempo)
+            ws.cell(row=linha_atual, column=9).number_format = '0.00'
+        else:
+            ws.cell(row=linha_atual, column=9).value = ''
+        ws.cell(row=linha_atual, column=9).alignment = Alignment(horizontal='right')
+        ws.cell(row=linha_atual, column=9).border = thin_border
+
+        linha_atual += 1
+
+    print(f"  ✅ {len(mapas_com_similaridade)} linhas de dados criadas (linhas 4 a {linha_atual-1})")
+
+    # Cria Table Excel para permitir filtros e ordenação
+    from openpyxl.worksheet.table import Table, TableStyleInfo
+
+    # Define range da tabela (sem a linha de totais)
+    tab_range = f"A3:I{linha_atual-1}"
+    tab = Table(displayName="TabelaConsolidado", ref=tab_range)
+
+    # Estilo da tabela
+    style = TableStyleInfo(
+        name="TableStyleMedium9",
+        showFirstColumn=False,
+        showLastColumn=False,
+        showRowStripes=True,
+        showColumnStripes=False
+    )
+    tab.tableStyleInfo = style
+
+    ws.add_table(tab)
+    print(f"  ✅ Table Excel criada: {tab_range}")
+
+    # Linha de totais (fora da tabela)
+    ws.cell(row=linha_atual, column=1).value = 'TOTAL'
+    ws.cell(row=linha_atual, column=1).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=1).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=1).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=1).border = thin_border
+
+    # Similaridade TOTAL
+    ws.cell(row=linha_atual, column=2).value = (
+        f"=IFERROR(SUMPRODUCT(('Comparação'!$A$13:$A$5000<>\"\")*('Comparação'!$H$13:$H$5000=1))/"
+        f"SUMPRODUCT(('Comparação'!$A$13:$A$5000<>\"\")* 1),0)"
+    )
+    ws.cell(row=linha_atual, column=2).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=2).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=2).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=2).border = thin_border
+    ws.cell(row=linha_atual, column=2).number_format = '0.0%'
+
+    # Totais / médias existentes (mantidos)
+    ws.cell(row=linha_atual, column=3).value = f'=SUM(C4:C{linha_atual-1})'
+    ws.cell(row=linha_atual, column=3).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=3).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=3).alignment = Alignment(horizontal='right')
+    ws.cell(row=linha_atual, column=3).border = thin_border
+    ws.cell(row=linha_atual, column=3).number_format = '0.0'
+
+    ws.cell(row=linha_atual, column=4).value = f'=SUM(D4:D{linha_atual-1})'
+    ws.cell(row=linha_atual, column=4).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=4).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=4).alignment = Alignment(horizontal='right')
+    ws.cell(row=linha_atual, column=4).border = thin_border
+    ws.cell(row=linha_atual, column=4).number_format = '0.0'
+
+    ws.cell(row=linha_atual, column=5).value = f'=SUM(E4:E{linha_atual-1})'
+    ws.cell(row=linha_atual, column=5).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=5).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=5).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=5).border = thin_border
+    ws.cell(row=linha_atual, column=5).number_format = '0'
+
+    ws.cell(row=linha_atual, column=6).value = f'=SUM(F4:F{linha_atual-1})'
+    ws.cell(row=linha_atual, column=6).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=6).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=6).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=6).border = thin_border
+    ws.cell(row=linha_atual, column=6).number_format = '0'
+
+    ws.cell(row=linha_atual, column=7).value = f'=AVERAGE(G4:G{linha_atual-1})'
+    ws.cell(row=linha_atual, column=7).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=7).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=7).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=7).border = thin_border
+    ws.cell(row=linha_atual, column=7).number_format = '0.0%'
+
+    ws.cell(row=linha_atual, column=8).value = f'=AVERAGE(H4:H{linha_atual-1})'
+    ws.cell(row=linha_atual, column=8).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=8).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=8).alignment = Alignment(horizontal='center')
+    ws.cell(row=linha_atual, column=8).border = thin_border
+    ws.cell(row=linha_atual, column=8).number_format = '0.0%'
+
+    # Para a coluna de tempo, exibe soma total (opcional) e média
+    ws.cell(row=linha_atual, column=9).value = f"=IFERROR(AVERAGE(I4:I{linha_atual-1}),0)"
+    ws.cell(row=linha_atual, column=9).fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+    ws.cell(row=linha_atual, column=9).font = Font(bold=True)
+    ws.cell(row=linha_atual, column=9).alignment = Alignment(horizontal='right')
+    ws.cell(row=linha_atual, column=9).border = thin_border
+    ws.cell(row=linha_atual, column=9).number_format = '0.00'
+
+    # Ajusta largura das colunas
+    ws.column_dimensions['A'].width = 15
+    ws.column_dimensions['B'].width = 18
+    ws.column_dimensions['C'].width = 20
+    ws.column_dimensions['D'].width = 20
+    ws.column_dimensions['E'].width = 16
+    ws.column_dimensions['F'].width = 16
+    ws.column_dimensions['G'].width = 25
+    ws.column_dimensions['H'].width = 25
+    ws.column_dimensions['I'].width = 14
+
+    # Freeze panes
+    ws.freeze_panes = 'A4'
+
+    print(f"  ✅ Aba Consolidado criada com {len(mapas_unicos)} mapas")
+    
+def criar_aba_consolidado22(wb, ws_comparacao):
     """
     Cria aba 'Consolidado' com resumo por number_mapa.
     
@@ -1886,6 +2587,7 @@ def criar_aba_nao_paletizados(wb, ws_comparacao):
             Path.cwd(),  # Diretório atual (pode ser onde o Excel está)
             # Path(r'C:\Users\BRKEY864393\Downloads\routes_2k\routes'),  # Caminho batch comum
             Path(r'C:\Users\BRKEY864393\Downloads\route_em_massa'),  # Caminho batch comum
+            # Path(r'C:\Users\BRKEY864393\Downloads\execucao_em_massa'),
             Path.cwd() / 'data' / 'route',
             Path(__file__).parent.parent / 'data' / 'route',
         ]

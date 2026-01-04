@@ -15,15 +15,26 @@ class OrderedSpaceList:
         result = list(self._spaces)
         for key_selector, desc in reversed(self._keys):
             result.sort(key=key_selector, reverse=desc)
-        return SpaceList(result)
+        return list(self._spaces)
 
-    def FirstOrDefault(self, default=None):
-        lst = self.ToList()
-        try:
-            return lst.FirstOrDefault()
-        except Exception:
-            return lst[0] if lst else default
+    # def FirstOrDefault(self, default=None):
+    #     lst = self.ToList()
+    #     try:
+    #         return lst.FirstOrDefault()
+    #     except Exception:
+    #         return lst[0] if lst else default
 
+    def _apply_order(self):
+        result = self._spaces
+        # aplica da ÚLTIMA chave para a PRIMEIRA
+        for key_fn, is_desc in reversed(self._keys):
+            result = sorted(result, key=key_fn, reverse=is_desc)
+        return result
+
+    def FirstOrDefault(self):
+        ordered = self._apply_order()
+        return ordered[0] if ordered else None
+    
     # snake_case aliases
     then_by = ThenBy
     then_by_descending = ThenByDescending

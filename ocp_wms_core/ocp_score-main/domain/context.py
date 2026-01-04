@@ -771,6 +771,9 @@ class Context:
             if low in ('true', 'false'):
                 continue
 
+            if ',' in value:
+                continue
+
             # tenta int
             try:
                 # aceitar sinais negativos
@@ -4071,4 +4074,3 @@ class CrossDockingRuleContext(ASRuleContext):
     def remove_mounted_space(self, mounted_space: Any):
         return self.RemoveMountedSpace(mounted_space)
     
-

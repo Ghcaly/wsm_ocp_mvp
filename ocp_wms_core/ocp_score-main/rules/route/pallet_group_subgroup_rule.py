@@ -1,3 +1,4 @@
+
 from decimal import Decimal
 from typing import Iterable, List
 
@@ -62,12 +63,11 @@ class PalletGroupSubGroupRule(BaseRule):
             if not items_same.Any():
                 continue
 
-            for size_node in space_size_chains():
-                items_with_factors = [
-                    self.calculate_factor_by_space(x, size_node.Current, context.get_setting('OccupationAdjustmentToPreventExcessHeight'))
-                    for x in items_same
-                ]
-                self.calculate_by_size(context, item, items_with_factors, size_node, spaces)
+            for size_node in list(space_size_chains()):
+                # Instead of precomputing factor dicts here (eager),
+                # pass the raw items list to calculate_by_size and compute
+                # the factor dicts at enumeration time (deferred, like C# Select).
+                self.calculate_by_size(context, item, list(items_same), size_node, spaces)
 
     def calculate_factor_by_space(self, item, size_current, calculate_additional_occupation):
         factor = item.Product.GetFactor(size_current)
@@ -96,26 +96,15 @@ class PalletGroupSubGroupRule(BaseRule):
             current_occupation = mounted_space.Occupation if mounted_space is not None else 0
             free_occupation = int(size_value) - int(current_occupation)
 
-            #temporario sequencia completa
-            # sequences = self.subsequences(items_same_group_and_subgroup)
+            # Generate subsequences of raw items first (deferred calculation).
+            sequences_of_items = list(SubsequenceGenerator(limit=30000).subsequences(items_same_group_and_subgroup))
 
-            # filtered_sequences = []
-
-            # for seq in sequences:
-            #     total_boxes = sum(x["boxes_quantity"] for x in seq)
-            #     quantity_to_remaining = (
-            #         int(self.get_quantity_to_remaining_space(mounted_space, space, item, context))
-            #         if mounted_space is not None
-            #         else 0
-            #     )
-            #     if mounted_space is None or (quantity_to_remaining > 0 and total_boxes <= free_occupation):
-            #         filtered_sequences.append(seq)
-
-            # sequences = self.subsequences(items_same_group_and_subgroup)
-            #temporario sequencia completa
-
-            ##melhoria, sequecia da msm forma do c#
-            sequences = list(SubsequenceGenerator(limit=30000).subsequences(items_same_group_and_subgroup))
+            # Map each subsequence of items into subsequence of dicts (calculate factors now),
+            # so boxes_quantity is computed at enumeration time using the current item.AmountRemaining.
+            sequences = [
+                [ self.calculate_factor_by_space(it, size_value, context.get_setting('OccupationAdjustmentToPreventExcessHeight')) for it in seq_items ]
+                for seq_items in sequences_of_items
+            ]
 
             quantity_to_remaining = (
                 self.get_quantity_to_remaining_space(mounted_space, space, item, context)
@@ -134,7 +123,6 @@ class PalletGroupSubGroupRule(BaseRule):
                     )
                 )
             )
-            ##melhoria, sequecia da msm forma do c#
 
             sequences = self.calculate_minimum_occupation_percentage(size_value, filtered_sequences, context)
             if not any(sequences):
@@ -148,7 +136,7 @@ class PalletGroupSubGroupRule(BaseRule):
             if selected_sequences is None:
                 continue
 
-            if self.has_next_space(spaces, size_node) and self.next_occupation_percentage_is_bigger_than_current(size_node, selected_sequences):
+            if self.has_next_space(context.Spaces, size_node) and self.next_occupation_percentage_is_bigger_than_current(size_node, selected_sequences):
                 continue
 
             ordered_sequences = sorted(
@@ -165,13 +153,18 @@ class PalletGroupSubGroupRule(BaseRule):
             and any(getattr(s, 'Size', getattr(s, 'size', None)) == size_chain.Next for s in spaces)
         )
 
+
     def next_occupation_percentage_is_bigger_than_current(self, size_chain, ordered_sequences):
-        if getattr(size_chain, 'Next', None) is None:
-            return False
-        total_boxes = sum(x['boxes_quantity'] for x in ordered_sequences)
-        current_pct = total_boxes * 100 // size_chain.Current if size_chain.Current else 0
-        next_pct = total_boxes * 100 // size_chain.Next if size_chain.Next else 0
-        return next_pct >= current_pct
+        current_occupation_percentage = (
+            sum(x['boxes_quantity'] for x in ordered_sequences) * 100
+        ) // size_chain.Current
+
+        next_occupation_percentage = (
+            sum(x['boxes_quantity'] for x in ordered_sequences) * 100
+        ) // size_chain.Next
+
+        # return False
+        return next_occupation_percentage >= current_occupation_percentage
 
     def must_skip_default_mounted_space(self, context, is_mounted_default):
         return is_mounted_default and not context.get_setting('NotMountBulkPallets')
@@ -207,7 +200,7 @@ class PalletGroupSubGroupRule(BaseRule):
                 if not context.domain_operations.CanAdd(context, space, seq_item, to_add):
                     continue
 
-            occupation = self.calculate_occupation(space, seq_item, seq['boxes_quantity'], to_add, is_mounted_default, context.get_setting('OccupationAdjustmentToPreventExcessHeight'))
+            occupation = self.calculate_occupation(space, item, seq['boxes_quantity'], to_add, is_mounted_default, context.get_setting('OccupationAdjustmentToPreventExcessHeight'))
             mounted_space = self.AddProduct(context, space, seq_item, to_add, occupation)
             if mounted_space is not None:
                 mounted_space.GetFirstPallet().SetProductBase(item.Product)

@@ -172,7 +172,7 @@ class EmptySpaceRule(BaseRule):
         # not_layer = [x for x in mounted_products_same_packing_code if not x.product.is_layer]
         not_layer = MountedProductList(mounted_products_same_packing_code).NotLayer().to_list()
         if len(not_layer) > 1:
-            for item in sorted(not_layer, key=lambda x: -x.amount):
+            for item in MountedProductList(not_layer).order_by_amount_desc():
                 # if self._move_partial_mounted_product(context, space, mounted_space, item):
                 if context.domain_operations.move_mounted_product(context, space, mounted_space, item):
                     return True

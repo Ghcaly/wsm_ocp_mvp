@@ -27,12 +27,23 @@ class FactorConverter:
 
     def _to_decimal(self, value: Any) -> Decimal:
         try:
+            if isinstance(value, float):
+                return Decimal(str(value))
             return Decimal(value)
         except Exception:
             try:
                 return Decimal(str(value))
             except Exception:
                 return Decimal(0)
+            
+    # def _to_decimal(self, value: Any) -> Decimal:
+    #     try:
+    #         return Decimal(value)
+    #     except Exception:
+    #         try:
+    #             return Decimal(str(value))
+    #         except Exception:
+    #             return Decimal(0)
 
     def _factor_value(self, factor_or_space_size: Any, item: Any = None) -> Decimal:
         # factor may be an object with .value, a numeric, or a space_size enum
@@ -125,12 +136,18 @@ class FactorConverter:
         # truncated = (math.trunc(precision * float(occupation)) / precision) if precision != 0 else occupation
         # return self._to_decimal(truncated)
         # temporario 17_12_2025
-        precision = int(math.pow(10, decimal_places))
-
+        precision = Decimal(10) ** decimal_places
         occupation = qty * (factor_value if factor_value != 0 else Decimal(1)) / Decimal(2)
-        truncated = (math.trunc(precision * float(occupation)) / precision) if precision != 0 else occupation
+        truncated = (occupation * precision).to_integral_value(rounding=ROUND_DOWN) / precision
 
-        return self._to_decimal(truncated)
+        return truncated
+
+        # precision = int(math.pow(10, decimal_places))
+
+        # occupation = qty * (factor_value if factor_value != 0 else Decimal(1)) / Decimal(2)
+        # truncated = (math.trunc(precision * float(occupation)) / precision) if precision != 0 else occupation
+
+        # return self._to_decimal(truncated)
 
     def quantity(self, quantity: Any, factor: Any, pallet_setting: Any) -> Decimal:
         """Inverse of occupation: convert occupation-based value to quantity (C# Quantity)."""
@@ -509,6 +526,20 @@ class FactorConverter:
         # pallet_setting = getattr(prod, 'PalletSetting', getattr(prod, 'pallet_setting', None))
         return self._occupation_impl(quantity, item.Product.get_factor(space_size), item.Product.PalletSetting, item, calculate_additional)
 
+    @dispatch(MountedProduct, int, Item, bool)
+    def occupation(self, mounted_product: MountedProduct, space_size: int, item: Item, calculate_additional: bool) -> Decimal:
+        # duck-typed IMountedProduct
+        if hasattr(mounted_product, 'Amount') and hasattr(mounted_product, 'Product'):
+            try:
+                factor = getattr(mounted_product.Product, 'GetFactor', getattr(mounted_product.Product, 'get_factor'))(Decimal(space_size))
+            except Exception:
+                factor = None
+            pallet_setting = getattr(mounted_product.Product, 'PalletSetting', getattr(mounted_product.Product, 'pallet_setting', None))
+            amount = getattr(mounted_product, 'Amount', getattr(mounted_product, 'amount', 0))
+            return self._occupation_impl(amount, factor, pallet_setting, item, calculate_additional)
+        # fallback: try to coerce
+        raise TypeError('Unsupported IMountedProduct shape for occupation')
+    
     @dispatch(MountedProduct, Decimal, Item, bool)
     def occupation(self, mounted_product: MountedProduct, space_size: Decimal, item: Item, calculate_additional: bool) -> Decimal:
         # duck-typed IMountedProduct
