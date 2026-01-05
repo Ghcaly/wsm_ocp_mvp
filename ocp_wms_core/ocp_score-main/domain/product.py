@@ -29,6 +29,8 @@ class Product:
         ContainerType: ContainerType = None,
         GroupAndSubGroup: int = 0,
         SupportPoint: str = "",
+        ItemMarketplace: Any = None,
+
     ):
         # private backing fields (pythonic) - keep PascalCase properties for compatibility
         self._code = Code
@@ -51,6 +53,8 @@ class Product:
         self._container_type = ContainerType
         self._group_and_sub_group = int(GroupAndSubGroup)
         self._support_point = SupportPoint
+        self._item_marketplace = ItemMarketplace
+
 
     # --- backward-compatible PascalCase properties that map to private fields ---
     @property
@@ -134,6 +138,23 @@ class Product:
     def Factor(self, v):
         self._factor = Decimal(v)
 
+    @property
+    def ItemMarketplace(self):
+        return self._item_marketplace
+
+    @ItemMarketplace.setter
+    def ItemMarketplace(self, v):
+        self._item_marketplace = v
+
+    @property
+    def item_marketplace(self):
+        """Pythonic snake_case alias for `ItemMarketplace`."""
+        return self.ItemMarketplace
+
+    @item_marketplace.setter
+    def item_marketplace(self, v):
+        self.ItemMarketplace = v
+        
     @property
     def BallastQuantity(self):
         return self._ballast_quantity

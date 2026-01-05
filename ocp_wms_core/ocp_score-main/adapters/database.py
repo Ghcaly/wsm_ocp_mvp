@@ -10,6 +10,7 @@ from ..domain.pallet_setting import PalletSetting
 from ..domain.factor import Factor
 from ..domain.product import Product, Chopp, Returnable, IsotonicWater, DisposableProduct, Package
 from ..domain.container_type import ContainerType
+from ..domain.item_marketplace import ItemMarketplace
 
 # Cache global para produtos marketplace
 _marketplace_skus_cache = None
@@ -223,6 +224,16 @@ def fill_item_from_row(item, combined_groups, support_point, row):
     # item.Amount = None
     item.UnitAmount = row.get("Quantidade de unidades por caixa", None)
     item.factor = row.get("Fator", None)
+
+    raw_box_type = row.get("Tipo Caixa", None)
+    raw_units_per_box = row.get("Quantidade de unidades por caixa", None)
+
+    # cria o ItemMarketplace a partir dos valores crus
+    if raw_box_type is not None:
+        print(f"[INFO] Valor bruto de Tipo Caixa: {raw_box_type}")
+        item_marketplace = ItemMarketplace.from_row_values(raw_box_type, raw_units_per_box)
+        item_marketplace.item = item.Code
+        item.Product.ItemMarketplace = item_marketplace
     
     return item
 
