@@ -31,7 +31,12 @@ import runpy
 # CONFIGURAÇÃO
 # ============================================================================
 
-MAPA_NUM = 622704
+MAPA_NUM = 622704 #binpack
+
+# MAPA_NUM = 448111# problemas no input
+
+# MAPA_NUM = 624201
+
 XML_PATH = None  # Será detectado automaticamente baseado no MAPA_NUM
 
 # Paths

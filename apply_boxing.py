@@ -8,7 +8,30 @@ import json
 import sys
 import requests
 from pathlib import Path
+import pandas as pd
 
+def buscar_item(df, sku_code, UnbCode=None):
+    """Busca o item no DataFrame pelo código."""
+
+    code = str(sku_code)
+    row_data = df.loc[code] 
+
+    if isinstance(row_data, pd.DataFrame):
+        if UnbCode is not None:
+            result = row_data[(row_data['Código Unb'] == UnbCode) | (row_data['Código Unb'] == str(UnbCode))]
+            if result is not None and len(result) > 0:
+                return result.iloc[0]
+            
+        if len(row_data) > 1:
+            row_data = row_data[(row_data['Código Unb'] == 'None') | (row_data['Código Unb'] == 'nan')]
+            print(len(row_data))
+            return row_data.iloc[0]
+        elif len(row_data) == 1:
+            return row_data.iloc[0]
+        else:
+            return row_data.iloc[0]
+
+    return row_data
 
 def load_marketplace_skus():
     """Carrega lista de SKUs marketplace."""
@@ -147,6 +170,148 @@ def transform_to_boxing_format(input_data, marketplace_skus):
     }
 
 
+def transform_to_boxing_format_2(orders, df):
+    """Transforma inputcompleto.json para formato da API de boxing."""
+    marketplace_items = {}
+    total_items = 0
+    marketplace_matched = 0
+
+    if not orders:
+        print("DEBUG: Nenhum pedido encontrado no input", file=sys.stderr)
+        return None
+ 
+    for order in orders:
+        # client_code = order.get('Client', {}).get('Code', '0')
+        client_code = "0"
+        for item in order.Items:
+            total_items += 1
+            sku_code = str(item.Code)
+            total_qty = item.Amount
+
+            is_marketplace = False
+
+            if item and item.Product and item.Product.ItemMarketplace is not None and (item.Product.ItemMarketplace.box_type is not None or item.Product.ItemMarketplace.units_per_box >0):
+                is_marketplace = True
+
+            if is_marketplace and total_qty > 0:
+                marketplace_matched += 1
+                if client_code not in marketplace_items:
+                    marketplace_items[client_code] = {} 
+                marketplace_items[client_code][sku_code] = marketplace_items[client_code].get(sku_code, 0) + total_qty
+
+    print(f"DEBUG: Total itens: {total_items}, Marketplace: {marketplace_matched}", file=sys.stderr)
+
+    if not marketplace_items:
+        print("DEBUG: Nenhum produto marketplace identificado no input", file=sys.stderr)
+        return None
+
+    clients = []
+    for client_code, items in marketplace_items.items():
+        client_skus = []
+        for sku, qty in items.items():
+            try:
+                client_skus.append({"code": int(sku), "quantity": int(qty)})
+            except (ValueError, TypeError):
+                continue
+
+        if client_skus:
+            try:
+                clients.append({"code": int(client_code), "skus": client_skus})
+            except (ValueError, TypeError):
+                continue
+
+    skus_list = []
+    unique_skus = set(sku for items in marketplace_items.values() for sku in items.keys())
+    for sku_code in unique_skus:
+        try: 
+            row = buscar_item(df, sku_code)
+            skus_list.append({
+                "code": int(sku_code),
+                "length": row.get("Comprimento do item", None),
+                "height": row.get("Altura do item", None),
+                "width": row.get("Largura do item", None),
+                "units_in_boxes": row.get("Quantidade de unidades por caixa	", None),
+                "is_bottle": row.get("Tipo Caixa", None)=='Garrafeira',
+                "gross_weight": row.get("Peso bruto do item", None)
+            })
+        except (ValueError, TypeError):
+            continue
+
+    df = pd.read_csv(r"C:\Users\BRKEY864393\OneDrive - Anheuser-Busch InBev\My Documents\projetos\POC_OCP_BINPACK\wsm_ocp_mvp\ocp_wms_core\ocp_score-main\data\boxes_completo_merge.csv")
+    df = df.where(pd.notnull(df), None).astype(object)
+    df_boxs = df[(df.WarehouseId=='401') | (df.WarehouseId==401)]
+    boxes=[]
+    for idx, row in df_boxs.iterrows():
+        boxes.append({
+            "code": int(row["ItemCode"]),
+            "length": float(row["Length"]),
+            "width": float(row["Width"]),
+            "height": float(row["Height"]),
+            "box_slots": int(row["HiveQuantity"]),
+            "box_slot_diameter": float(row["HiveDiameter"])
+        })
+
+
+    
+    print("Total:", len(boxes))
+
+    # boxes = [
+	# 	{
+	# 		"code": 296156,
+	# 		"length": 31.00,
+	# 		"width": 51.00,
+	# 		"height": 30.00,
+	# 		"box_slots": 0,
+	# 		"box_slot_diameter": 0.00
+	# 	},
+	# 	{
+	# 		"code": 188005,
+	# 		"length": 40.00,
+	# 		"width": 30.00,
+	# 		"height": 50.00,
+	# 		"box_slots": 12,
+	# 		"box_slot_diameter": 9.50
+	# 	}
+    # ]
+
+    return {
+        "maps": [{"code": 1, "clients": clients}],
+        "skus": skus_list,
+        "boxes": boxes
+    }
+
+def apply_boxing_2(order, df):
+    """Aplica boxing e retorna resultado."""
+    try:
+        marketplace_skus = load_marketplace_skus()
+        boxing_input = transform_to_boxing_format_2(order, df)
+
+        if not boxing_input:
+            print(json.dumps({"success": False, "error": "No marketplace items", "marketplace_count": 0}))
+            return 1
+
+        total_mktp_items = sum(len(c.get('skus', [])) for m in boxing_input.get('maps', []) for c in m.get('clients', []))
+        print(f"DEBUG: {total_mktp_items} produtos marketplace detectados", file=sys.stderr)
+
+        response = requests.post(
+            "http://localhost:8001/api/items-boxing/v1/calculate/",
+            json=boxing_input,
+            timeout=30
+        )
+
+        if response.status_code == 200:
+            result = response.json()
+            print(json.dumps({"success": True, "result": result})) 
+            return result
+
+        else:
+            print(json.dumps({"success": False, "error": response.text})) 
+            return {"success": False, "error": response.text}
+
+    except Exception as e:
+        print(json.dumps({"success": False, "error": str(e)}))
+        return 1
+    
 def apply_boxing(input_file):
     """Aplica boxing e retorna resultado."""
     try:

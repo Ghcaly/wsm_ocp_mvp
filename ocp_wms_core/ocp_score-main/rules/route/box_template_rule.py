@@ -54,7 +54,7 @@ class BoxTemplateRule(BaseRule):
                 )))
 
                 if quantity < 1:
-                    print(f"O item BoxTemplate: {item.Code} não cabe na baia: {space.Number}/{getattr(space, 'Side', getattr(space, 'side', '?'))}")
+                    context.add_execution_log(f"O item BoxTemplate: {item.Code} não cabe na baia: {space.Number}/{getattr(space, 'Side', getattr(space, 'side', '?'))}")
                     continue
 
                 if not context.domain_operations.can_add(context, space, item, quantity):
@@ -62,7 +62,7 @@ class BoxTemplateRule(BaseRule):
 
                 firstLayer = mountedSpace.get_next_layer() if mountedSpace is not None else 0
                 quantityOfLayer = item.product.get_quantity_of_layer_to_space(space.Size, quantity)
-                occupation = self._factor_converter.occupation(quantity, space.Size, item, context.settings.OccupationAdjustmentToPreventExcessHeight)
+                occupation = self._factor_converter.occupation(quantity, space.Size, item, context.get_setting('OccupationAdjustmentToPreventExcessHeight', False))
 
-                print(f"Paletizando o item: {item.Code} na quantidade: {quantity} na baia: {space.number}/{getattr(space, 'Side', getattr(space, 'side', '?'))} e ocupação: {occupation}")
-                context.add_product(space, item, quantity, firstLayer, quantityOfLayer, occupation, item.amount_remaining)
+                context.add_execution_log(f"Paletizando o item: {item.Code} na quantidade: {quantity} na baia: {space.number}/{getattr(space, 'Side', getattr(space, 'side', '?'))} e ocupação: {occupation}")
+                context.AddProduct(space, item, quantity, firstLayer, quantityOfLayer, occupation, item.amount_remaining)

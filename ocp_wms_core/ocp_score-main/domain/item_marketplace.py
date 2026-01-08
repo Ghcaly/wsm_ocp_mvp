@@ -57,8 +57,58 @@ def parse_box_type(value: Optional[Any]) -> Optional[BoxType]:
 @dataclass
 class ItemMarketplace:
     box_type: Optional[BoxType] = None
-    units_per_box: Optional[int] = None
+    units_per_box: Optional[int] = 0
     item: Optional[Any] = None  # referência opcional a ItemPalletization
+
+    # Propriedades snake_case (minúsculo)
+    @property
+    def box_type(self) -> Optional[BoxType]:
+        return self._box_type
+
+    @box_type.setter
+    def box_type(self, value: Optional[BoxType]):
+        self._box_type = value
+
+    @property
+    def units_per_box(self) -> Optional[int]:
+        return self._units_per_box
+
+    @units_per_box.setter
+    def units_per_box(self, value: Optional[int]):
+        self._units_per_box = value
+
+    @property
+    def item(self) -> Optional[Any]:
+        return self._item
+
+    @item.setter
+    def item(self, value: Optional[Any]):
+        self._item = value
+
+    # Propriedades PascalCase (maiúsculo) - aliases
+    @property
+    def BoxType(self) -> Optional[BoxType]:
+        return self._box_type
+
+    @BoxType.setter
+    def BoxType(self, value: Optional[BoxType]):
+        self._box_type = value
+
+    @property
+    def UnitsPerBox(self) -> Optional[int]:
+        return self._units_per_box
+
+    @UnitsPerBox.setter
+    def UnitsPerBox(self, value: Optional[int]):
+        self._units_per_box = value
+
+    @property
+    def Item(self) -> Optional[Any]:
+        return self._item
+
+    @Item.setter
+    def Item(self, value: Optional[Any]):
+        self._item = value
 
     @classmethod
     def from_command(cls, cmd: Optional[Any]) -> Optional["ItemMarketplace"]:

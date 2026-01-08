@@ -19,7 +19,7 @@ class Item:
         ClientQuantity: Optional[Dict[int, int]] = None,
         DeliveryOrderSafeSide: Optional[Dict[int, int]] = None,
         DeliveryOrdersClient: Optional[Dict[int, str]] = None,
-        Product: Product = None,
+        Product: Product = Product(),
         DetachedAmount: int = 0,
         UnitAmount: int = 0,
         AmountPerContainer: int = 0,

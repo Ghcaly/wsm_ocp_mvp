@@ -8,12 +8,35 @@ from pathlib import Path
 from ..domain.packing_group import PackingGroup
 from ..domain.pallet_setting import PalletSetting
 from ..domain.factor import Factor
-from ..domain.product import Product, Chopp, Returnable, IsotonicWater, DisposableProduct, Package
+from ..domain.product import BoxTemplate, Product, Chopp, Returnable, IsotonicWater, DisposableProduct, Package
 from ..domain.container_type import ContainerType
 from ..domain.item_marketplace import ItemMarketplace
 
 # Cache global para produtos marketplace
 _marketplace_skus_cache = None
+
+def buscar_item(df, sku_code, UnbCode=None):
+        """Busca o item no DataFrame pelo código."""
+
+        code = str(sku_code)
+        row_data = df.loc[code] 
+
+        if isinstance(row_data, pd.DataFrame):
+            if UnbCode is not None:
+                result = row_data[(row_data['Código Unb'] == UnbCode) | (row_data['Código Unb'] == str(UnbCode))]
+                if result is not None and len(result) > 0:
+                    return result.iloc[0]
+                
+            if len(row_data) > 1:
+                row_data = row_data[(row_data['Código Unb'] == 'None') | (row_data['Código Unb'] == 'nan')]
+                print(len(row_data))
+                return row_data.iloc[0]
+            elif len(row_data) == 1:
+                return row_data.iloc[0]
+            else:
+                return row_data.iloc[0]
+
+        return row_data
 
 def load_marketplace_skus():
     """Carrega lista de SKUs marketplace do CSV uma única vez"""
@@ -231,6 +254,8 @@ def fill_item_from_row(item, combined_groups, support_point, row):
     # cria o ItemMarketplace a partir dos valores crus
     if raw_box_type is not None:
         print(f"[INFO] Valor bruto de Tipo Caixa: {raw_box_type}")
+        if raw_units_per_box is None or (math.isnan(raw_units_per_box)):
+            raw_units_per_box=0
         item_marketplace = ItemMarketplace.from_row_values(raw_box_type, raw_units_per_box)
         item_marketplace.item = item.Code
         item.Product.ItemMarketplace = item_marketplace
@@ -404,10 +429,10 @@ def _log_items_count_by_type(items):
         elif product_type == 'DisposableProduct' or isinstance(product, DisposableProduct):
             counts['disposable'] += 1
             amounts['disposable'] += amount
-        elif product_type == 'Package':
+        elif product_type == 'Package' or isinstance(product, Package):
             counts['package'] += 1
             amounts['package'] += amount
-        elif product_type == 'BoxTemplate':
+        elif product_type == 'BoxTemplate' or isinstance(product, BoxTemplate):
             counts['box_template'] += 1
             amounts['box_template'] += amount
         else:

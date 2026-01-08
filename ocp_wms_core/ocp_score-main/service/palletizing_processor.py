@@ -6,6 +6,7 @@ import logging
 from decimal import Context, Decimal
 import json
 import pandas as pd
+from ..adapters.binpack_mapper import apply_binpack_json, BuildActiveBoxesFromBinpack
 
 from ..adapters.extrair_infos_txt import parse_output_txt_to_dataframe
 from ..adapters.database import _log_items_count_by_type, enrich_items, parse_combined_groups
@@ -29,6 +30,7 @@ from .check import run_reports
 from .check_xml import run_reports_xml
 from .check_txt import run as run_reports_txt
 from ..adapters.logger_instance import logger
+import apply_boxing
 
 class PalletizingProcessor:
     """
@@ -624,7 +626,73 @@ class PalletizingProcessor:
                 # apply_combined_groups_to_product(order.Items, self.context.get_setting('CombinedGroups', []))
                 all_items.extend(order.Items)
                 i=i+1
+            print(len(self.context.get_all_items()))
             _log_items_count_by_type(all_items)
+
+
+            # result = apply_boxing.apply_boxing_2(self.context.orders, df[df['Id Catálogo']==2].set_index("Código"))
+
+
+            # # construir mapa de itens existentes (opcional, para SetUnPalletized)
+            # items = self.context.get_all_items()  # ou sua lista atual de Item
+            # items_by_code = {str(i.Code): i for i in items}
+
+            # # aplicar o mapper
+            # created_items, marketplace_codes = apply_binpack_json(result, items_by_code, self.context)
+
+            # _log_items_count_by_type(all_items)
+
+            # 2. Aplicar Boxing (via API externa)
+            self.logger.info("=== APLICANDO BOXING VIA API ===")
+            result = apply_boxing.apply_boxing_2(self.context.orders, df[df['Id Catálogo']==2].set_index("Código"))
+
+            # 3. Aplicar resultado do Binpack no Context (100% fiel ao C#)
+            self.logger.info("=== PROCESSANDO RESULTADO DO BINPACK ===")
+
+            # Preparar parâmetros
+            items_request = []  # Lista de Item com metadados (equivalente ao ItemDto[] do C#)
+            for order in self.context.orders:
+                items_request.extend(order.Items)
+
+            groups = parse_combined_groups(self.context.get_setting('CombinedGroups', []))  # GroupCombinationDto[]
+            # active_boxes = [
+            #         {
+            #             "code": 296156,
+            #             "length": 31.00,
+            #             "width": 51.00,
+            #             "height": 30.00,
+            #             "box_slots": 0,
+            #             "box_slot_diameter": 0.00
+            #         },
+            #         {
+            #             "code": 188005,
+            #             "length": 40.00,
+            #             "width": 30.00,
+            #             "height": 50.00,
+            #             "box_slots": 12,
+            #             "box_slot_diameter": 9.50
+            #         }
+            #     ]
+            if result!=1:  
+                active_boxes = BuildActiveBoxesFromBinpack(result, groups)
+
+                # Aplicar binpack JSON no context (equivalente ao ToEnumerableOfIOrder do C#)
+                created_items, marketplace_codes = apply_binpack_json(
+                    binpack_json=result,  # Resultado da API de binpack
+                    context=self.context,  # Context com orders
+                    items_request=items_request,  # Metadados dos items
+                    groups=groups,  # Grupos combinados
+                    active_boxes=active_boxes  # Boxes ativas
+                )
+
+                self.logger.info(f"✓ Binpack processado:")
+                self.logger.info(f"  - {len(created_items)} novos items criados (Package/BoxTemplate)")
+                self.logger.info(f"  - {len(marketplace_codes)} códigos marketplace")
+                self.logger.info(f"  - Items originais filtrados automaticamente")
+
+                # Log tipos de items após binpack
+                print(len(self.context.get_all_items()))
+                _log_items_count_by_type(self.context.get_all_items())
 
             if self.context.kind != "Route":
                 print(f"Esse mapa nao eh de Rota. Tipo : {self.context.kind}")
@@ -649,7 +717,10 @@ class PalletizingProcessor:
 
             result_context = self.execute_palletizing_process(self.palletizing_service.common_chain)
 
-            out_path = str(Path(output_dir) / f'palletize_result_map_{result_context.palletize_dto.document_number }.json')
+            # out_path = str(Path(output_dir) / f'palletize_result_map_{result_context.palletize_dto.document_number }.json')
+            
+            out_path = str(Path("C:\\Users\\BRKEY864393\\OneDrive - Anheuser-Busch InBev\\My Documents\\projetos\\POC_OCP_BINPACK\\wsm_ocp_mvp\\mapas\\out") / f'palletize_result_map_{result_context.palletize_dto.document_number }.json')
+
 
             try:
                 #temporario, reverter o merge da order
@@ -784,6 +855,7 @@ class PalletizingProcessor:
         if mapa_env:
             # Usar mapa da variável de ambiente
             base_dir = Path(__file__).parent.parent / f'data/route/{mapa_env}'
+            base_dir = Path("C:\\Users\\BRKEY864393\\OneDrive - Anheuser-Busch InBev\\My Documents\\projetos\\POC_OCP_BINPACK\\wsm_ocp_mvp\\mapas\\in")
             print(f"📍 Processando mapa via MAPA_NUM: {mapa_env}")
         else:
             # Fallback para valor hardcoded original
@@ -822,10 +894,10 @@ class PalletizingProcessor:
         output_dir = base_dir / 'output'
         
         if completo:
-            # config_file = base_dir / 'config_completo.json'
-            # data_file = base_dir / 'inputcompleto.json'
-            config_file = base_dir / 'config.json'
-            data_file = base_dir / 'input.json'
+            config_file = base_dir / 'config_completo.json'
+            data_file = base_dir / 'inputcompleto.json'
+            # config_file = base_dir / 'config.json'
+            # data_file = base_dir / 'input.json'
 
         # Verifica se arquivos existem
         if not config_file.exists():

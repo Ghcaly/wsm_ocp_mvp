@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from .pallet_setting import PalletSetting
 from .container_type import ContainerType
-
+from .packing_group import PackingGroup 
 from .factor import Factor
 
 class Product:
@@ -22,10 +22,10 @@ class Product:
         TotalAreaOccupiedByUnit: Decimal = Decimal(0),
         TotalAreaOccupiedByBallast: Decimal = Decimal(0),
         CalculateAdditionalOccupation: bool = False,
-        PackingGroup: Any = None,
+        PackingGroup: PackingGroup = PackingGroup(),
         Factors: Optional[List[Factor]] = None,
         GroupAssociations: Optional[List[int]] = None,
-        PalletSetting: PalletSetting = None,
+        PalletSetting: PalletSetting = PalletSetting(),
         ContainerType: ContainerType = None,
         GroupAndSubGroup: int = 0,
         SupportPoint: str = "",
