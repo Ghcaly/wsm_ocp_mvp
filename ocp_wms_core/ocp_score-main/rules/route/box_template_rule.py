@@ -64,5 +64,5 @@ class BoxTemplateRule(BaseRule):
                 quantityOfLayer = item.product.get_quantity_of_layer_to_space(space.Size, quantity)
                 occupation = self._factor_converter.occupation(quantity, space.Size, item, context.get_setting('OccupationAdjustmentToPreventExcessHeight', False))
 
-                context.add_execution_log(f"Paletizando o item: {item.Code} na quantidade: {quantity} na baia: {space.number}/{getattr(space, 'Side', getattr(space, 'side', '?'))} e ocupação: {occupation}")
+                context.add_execution_log(f"Paletizando o item: {item.Code} na quantidade: {quantity} na baia: {space.number}/{space.sideDesc} e ocupação: {occupation}")
                 context.AddProduct(space, item, quantity, firstLayer, quantityOfLayer, occupation, item.amount_remaining)

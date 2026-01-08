@@ -283,7 +283,6 @@ def transform_to_boxing_format_2(orders, df):
 def apply_boxing_2(order, df):
     """Aplica boxing e retorna resultado."""
     try:
-        marketplace_skus = load_marketplace_skus()
         boxing_input = transform_to_boxing_format_2(order, df)
 
         if not boxing_input:
