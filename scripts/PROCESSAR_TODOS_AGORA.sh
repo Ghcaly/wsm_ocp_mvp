@@ -91,6 +91,18 @@ for xml in meus_xmls/*.xml; do
 }
 EOF
     
+    # 3.5. Detectar marketplace e aplicar Boxing se necessário
+    BOXING_RESULT=$(python3 detect_and_box.py "mapas/in/input.json" 2>/dev/null)
+    HAS_MARKETPLACE=$(echo "$BOXING_RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('has_marketplace', False))" 2>/dev/null || echo "False")
+    
+    if [ "$HAS_MARKETPLACE" = "True" ]; then
+        BOXING_APPLIED=$(echo "$BOXING_RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('boxing_applied', False))" 2>/dev/null)
+        if [ "$BOXING_APPLIED" = "True" ]; then
+            # Salva resultado do boxing para integração futura
+            echo "$BOXING_RESULT" > "mapas/in/boxing_result_${mapa_num}.json"
+        fi
+    fi
+    
     # 4. Preparar diretório
     WORK_DIR="ocp_wms_core/ocp_score-main/data/route/$mapa_num"
     mkdir -p "$WORK_DIR/output"

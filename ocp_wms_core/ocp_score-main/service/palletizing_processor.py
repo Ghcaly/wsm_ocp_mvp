@@ -98,7 +98,7 @@ class PalletizingProcessor:
             self.logger.info(f"✓ Configuração carregada: Mapa {self.context.MapNumber}")
             self.logger.info(f"✓ {len(self.context.settings)} configurações")
             self.logger.info(f"✓ {len(self.context.orders)} orders")
-            self.logger.info(f"✓ {len(self.context.not_palletized_items)} itens não paletizados")
+            self.logger.info(f"✓ Itens não paletizados serão calculados ao final do processamento")
             
             return self.context
             
@@ -727,6 +727,39 @@ class PalletizingProcessor:
             #     # non-fatal: continue
             #     pass
             
+            # 5. Calcular itens realmente não paletizados
+            original_items = {}
+            for order in result_context.orders:
+                for item in order.Items:
+                    code = item.Code
+                    qty = item.Quantity
+                    original_items[code] = original_items.get(code, 0) + qty
+            
+            palletized_items = {}
+            for pallet in result_context.pallets:
+                for product in pallet.Products:
+                    code = product.Code
+                    qty = product.Quantity
+                    palletized_items[code] = palletized_items.get(code, 0) + qty
+            
+            # Detectar SKUs ausentes e diferenças de quantidade
+            not_palletized_skus = []
+            partial_palletized = []
+            for code, orig_qty in original_items.items():
+                pallet_qty = palletized_items.get(code, 0)
+                if pallet_qty == 0:
+                    not_palletized_skus.append(f"{code} (qty: {orig_qty})")
+                elif pallet_qty < orig_qty:
+                    partial_palletized.append(f"{code} (orig: {orig_qty} → pallet: {pallet_qty})")
+            
+            # Log detalhado se houver problemas
+            if not_palletized_skus or partial_palletized:
+                self.logger.warning(f"⚠️ PRODUTOS NÃO PALETIZADOS COMPLETAMENTE:")
+                if not_palletized_skus:
+                    self.logger.warning(f"   SKUs ausentes ({len(not_palletized_skus)}): {', '.join(not_palletized_skus[:10])}")
+                if partial_palletized:
+                    self.logger.warning(f"   SKUs parciais ({len(partial_palletized)}): {', '.join(partial_palletized[:5])}")
+            
             # 5. Resultado final
             result = {
                 'success': True,
@@ -735,7 +768,9 @@ class PalletizingProcessor:
                     'orders_processed': len(result_context.orders),
                     'pallets_created': len(result_context.pallets),
                     'total_items': sum(len(p.Products) for p in result_context.pallets),
-                    'map_number': result_context.MapNumber
+                    'map_number': result_context.MapNumber,
+                    'not_palletized_skus': len(not_palletized_skus),
+                    'partial_palletized_skus': len(partial_palletized)
                 },
                 # 'output_files': output_files
             }

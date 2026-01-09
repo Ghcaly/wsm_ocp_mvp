@@ -122,7 +122,9 @@ class JsonStepLogger:
 
     def log(self, message: str):
         if not self.current_step:
-            raise RuntimeError("Nenhum passo iniciado. Use start_step() antes.")
+            # Ignora logs quando não há step ativo (chains aninhadas)
+            # Era: raise RuntimeError("Nenhum passo iniciado. Use start_step() antes.")
+            return
 
         self.current_step["logs"].append(message)
         self.current_step["raw"]["Logs"].append(message)

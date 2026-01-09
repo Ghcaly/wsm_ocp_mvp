@@ -24,8 +24,10 @@ class MarketplaceDetector:
             csv_path: Caminho do CSV de produtos marketplace
         """
         if csv_path is None:
-            # Caminho padrão
-            csv_path = "C:\\prd_debian\\data 2(Export).csv"
+            # Caminho padrão - usa Path para ser compatível com WSL e Windows
+            from pathlib import Path
+            base_dir = Path(__file__).parent.parent.parent.parent
+            csv_path = str(base_dir / "data 2(Export).csv")
         
         self.csv_path = csv_path
         self.marketplace_skus: Set[str] = set()

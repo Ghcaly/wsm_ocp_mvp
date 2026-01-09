@@ -644,7 +644,7 @@ class Context:
         """Carrega configurações do arquivo de configuração do mapa"""
         try:
             path = Path(config_path)
-            with open(path, 'r', encoding='utf-8') as f:
+            with open(path, 'r', encoding='utf-8-sig') as f:
                 config_data = json.load(f)
             
             # Carrega configurações principais
@@ -664,7 +664,7 @@ class Context:
                         
             print(f"Configuração carregada: Mapa {self.MapNumber}")
             print(f"Settings carregadas: {len(self.settings)} configurações")
-            print(f"Itens não paletizados: {len(self.not_palletized_items)} itens")
+            print(f"Itens não paletizados: serão calculados ao final")
             
             
         except FileNotFoundError:
