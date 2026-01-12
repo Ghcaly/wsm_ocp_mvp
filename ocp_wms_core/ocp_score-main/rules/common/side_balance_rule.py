@@ -1,9 +1,9 @@
-from ...domain.space_size import SpaceSize
-from ...domain.space import Space
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.space_list import SpaceList
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
+from domain.space_size import SpaceSize
+from domain.space import Space
+from domain.mounted_space_list import MountedSpaceList
+from domain.space_list import SpaceList
+from domain.base_rule import BaseRule
+from domain.context import Context
 from dataclasses import dataclass
 
 

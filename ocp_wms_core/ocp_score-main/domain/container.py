@@ -2,7 +2,7 @@
 from typing import List, Optional, Any, Tuple
 from copy import deepcopy
 # from ..adapters.logger_instance import logger
-from ..domain.container_type import ContainerType
+from domain.container_type import ContainerType
 
 class Container:
     """
@@ -242,7 +242,8 @@ class Container:
     @property
     def DifferentPackingCodeQuantity(self) -> int:
         codes = {
-            getattr(getattr(p, "Product", getattr(p, "product", None)), "Code", getattr(getattr(p, "Product", getattr(p, "product", None)), "code", None))
+            getattr(getattr(p, "Product", getattr(p, "product", None)), "PackingGroup", None)
+                and getattr(getattr(getattr(p, "Product", getattr(p, "product", None)), "PackingGroup"), "PackingCode", None)
             for p in self._products
         }
         codes = {c for c in codes if c is not None}

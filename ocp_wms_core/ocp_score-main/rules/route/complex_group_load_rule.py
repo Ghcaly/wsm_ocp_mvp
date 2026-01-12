@@ -1,6 +1,6 @@
-from ...rules.route.bulk_pallet_rule import BulkPalletRule
-from ...rules.route.chopp_palletization_rule import ChoppPalletizationRule
-from ...domain.base_rule import BaseRule
+from rules.route.bulk_pallet_rule import BulkPalletRule
+from rules.route.chopp_palletization_rule import ChoppPalletizationRule
+from domain.base_rule import BaseRule
 from typing import List
 
 

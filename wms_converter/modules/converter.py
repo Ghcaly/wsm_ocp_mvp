@@ -2,8 +2,12 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 import hashlib
 from pathlib import Path
+import csv
 
 class XmlConverter:
+    def __init__(self):
+        self.bay_sizes_cache = None
+        self.bay_csv_path = Path(__file__).parent.parent / 'data' / 'VehichelBay.csv'
     def convert(self, input_file, output_file, **overrides):
         tree = ET.parse(input_file)
         root = tree.getroot()
@@ -55,13 +59,49 @@ class XmlConverter:
     def _extract_plate(self, root):
         return root.findtext('.//cdPlaca', '')
     
+    def _load_bay_sizes(self):
+        """Carrega tamanhos de baias do CSV"""
+        if self.bay_sizes_cache is not None:
+            return self.bay_sizes_cache
+        
+        self.bay_sizes_cache = {}
+        
+        if not self.bay_csv_path.exists():
+            return self.bay_sizes_cache
+        
+        try:
+            with open(self.bay_csv_path, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    if row['Id'] == '--':  # Skip header separator
+                        continue
+                    key = (int(row['Side']), int(row['Number']))
+                    self.bay_sizes_cache[key] = int(row['BaySize'])
+        except Exception:
+            pass
+        
+        return self.bay_sizes_cache
+    
+    def _get_bay_size(self, side_code, bay_number):
+        """Busca tamanho da baia no CSV ou retorna tamanho padrão"""
+        bay_sizes = self._load_bay_sizes()
+        key = (side_code, bay_number)
+        return bay_sizes.get(key, 35)  # 35 é o tamanho padrão
+    
     def _extract_bays(self, root):
         bays = []
         for baia_elem in root.findall('.//baia'):
+            bay_number = int(baia_elem.findtext('nrBaiaGaveta', '0'))
+            side_letter = baia_elem.findtext('cdLado', 'A')
+            side_code = ord(side_letter)
+            
+            # Converte Side de ord() para 0, 1, 2... (A=65->0, B=66->1, etc)
+            side_index = side_code - ord('A')
+            
             bay = {
-                "Number": int(baia_elem.findtext('nrBaiaGaveta', '0')),
-                "Side": ord(baia_elem.findtext('cdLado', 'A')),
-                "Size": 35
+                "Number": bay_number,
+                "Side": side_code,
+                "Size": self._get_bay_size(side_index, bay_number)
             }
             bays.append(bay)
         return bays

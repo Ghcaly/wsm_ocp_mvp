@@ -1,6 +1,6 @@
 from ..common.reorder_rule import ReorderRule
-from ...domain.base_rule import BaseRule
-from ...domain.mounted_product_list import MountedProductList
+from domain.base_rule import BaseRule
+from domain.mounted_product_list import MountedProductList
 
 
 class GroupReorderRule(BaseRule):

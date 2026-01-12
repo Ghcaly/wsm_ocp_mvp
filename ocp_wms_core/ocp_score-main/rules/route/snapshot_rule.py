@@ -1,4 +1,4 @@
-from ...domain.base_rule import BaseRule
+from domain.base_rule import BaseRule
 
 
 class SnapshotRule(BaseRule):

@@ -190,11 +190,46 @@ class PalletizeTextReport:
                     code = p.Item.Code 
                     name = p.Item.Product.Name 
                     qty = getattr(p, 'Amount', getattr(p, 'amount', getattr(p, 'Quantity', getattr(p, 'quantity', 0)))) or 0
-                    embalagem = getattr(p, 'Packing', getattr(p, 'packing', ''))
-                    grp_sub = getattr(p, 'GrpSub', getattr(p, 'grp_sub', ''))
-                    weight = getattr(p, 'PesoTotal', getattr(p, 'peso_total', getattr(p, 'weight', 0.0))) or 0.0
-                    atributo = getattr(p, 'Attribute', getattr(p, 'attribute', '')) or ''
-                    ocupacao = getattr(p, 'Occupation', getattr(p, 'occupation', ''))
+                    
+                    # Determinar atributo baseado nas propriedades do produto
+                    atributo = "Descartável"
+                    try:
+                        if hasattr(p.Item, 'IsReturnable') and callable(p.Item.IsReturnable) and p.Item.IsReturnable():
+                            atributo = "Retornavel"
+                        elif hasattr(p.Item, 'IsChopp') and callable(p.Item.IsChopp) and p.Item.IsChopp():
+                            atributo = "Chopp"
+                        elif hasattr(p.Item, 'IsIsotonicWater') and callable(p.Item.IsIsotonicWater) and p.Item.IsIsotonicWater():
+                            atributo = "Isotonico"
+                        elif hasattr(p.Item, 'IsTopOfPallet') and callable(p.Item.IsTopOfPallet) and p.Item.IsTopOfPallet():
+                            atributo = "TopoPallet"
+                        elif hasattr(p.Item.Product, 'IsMarketplace') and p.Item.Product.IsMarketplace:
+                            atributo = "BinPack"
+                    except Exception:
+                        pass
+                    
+                    # Pegar embalagem e grupo/subgrupo do PackingGroup
+                    embalagem = ""
+                    grp_sub = ""
+                    try:
+                        if hasattr(p.Item.Product, 'PackingGroup') and p.Item.Product.PackingGroup:
+                            packing = p.Item.Product.PackingGroup
+                            embalagem = str(getattr(packing, 'PackingCode', ''))
+                            grupo = str(getattr(packing, 'GroupCode', ''))
+                            subgrupo = str(getattr(packing, 'SubGroupCode', ''))
+                            if grupo and subgrupo:
+                                grp_sub = f"{grupo}/{subgrupo}"
+                    except Exception:
+                        pass
+                    
+                    # Peso total do produto
+                    weight = 0.0
+                    try:
+                        if hasattr(p.Item.Product, 'GrossWeight'):
+                            weight = float(p.Item.Product.GrossWeight or 0) * int(qty)
+                    except Exception:
+                        pass
+                    
+                    ocupacao = getattr(p, 'Occupation', getattr(p, 'occupation', 0))
 
                     key = str(code)
                     if key not in agg:
@@ -247,13 +282,102 @@ class PalletizeTextReport:
                 # best-effort: skip problematic mounted space
                 continue
 
-        # not-palletized
-        if getattr(context, 'not_palletized_items', None):
-            lines.append("ITENS NÃO PALETIZADOS:")
-            for np in context.not_palletized_items:
-                code = np.get('cdItem') or np.get('Code') or np.get('cd_item') or ''
-                qty = np.get('qtUnVenda') or np.get('Quantity') or np.get('qt_un_venda') or 0
-                lines.append(f"{code:20}  Qty: {qty}")
+        # Produtos fora do caminhão (não paletizados)
+        not_palletized = []
+        palletized_codes = {}
+        
+        # Coletar todos os produtos paletizados
+        for ms in mspaces_for_sum:
+            try:
+                products = ms.GetProducts() if hasattr(ms, 'GetProducts') else list(getattr(ms, 'Products', []) or [])
+                for p in products:
+                    code = str(getattr(p, 'Code', getattr(p, 'code', '')))
+                    qty = getattr(p, 'Amount', getattr(p, 'amount', getattr(p, 'Quantity', getattr(p, 'quantity', 0)))) or 0
+                    palletized_codes[code] = palletized_codes.get(code, 0) + int(qty)
+            except Exception:
+                continue
+        
+        # Coletar todos os itens do contexto
+        all_items = []
+        try:
+            orders = getattr(context, 'Orders', getattr(context, 'orders', []))
+            for order in (orders or []):
+                items = getattr(order, 'Items', getattr(order, 'items', []))
+                for item in (items or []):
+                    all_items.append(item)
+        except Exception:
+            pass
+        
+        # Identificar produtos não paletizados
+        total_np_weight = 0.0
+        for item in all_items:
+            try:
+                code = str(getattr(item, 'Code', getattr(item, 'code', '')))
+                qty_total = int(getattr(item, 'Quantity', getattr(item, 'quantity', 0)) or 0)
+                qty_palletized = palletized_codes.get(code, 0)
+                qty_not_palletized = qty_total - qty_palletized
+                
+                if qty_not_palletized > 0:
+                    name = str(getattr(item, 'Name', getattr(item, 'name', getattr(item, 'Description', ''))) or '')
+                    weight = float(getattr(item, 'Weight', getattr(item, 'weight', 0)) or 0)
+                    total_item_weight = weight * qty_not_palletized
+                    
+                    # Determinar embalagem e grupo
+                    packing = getattr(item, 'PackingGroup', getattr(item, 'packing_group', None))
+                    embalagem = ''
+                    grp_sub = ''
+                    if packing:
+                        try:
+                            emb_code = getattr(packing, 'Code', getattr(packing, 'code', ''))
+                            grp = getattr(packing, 'GroupCode', getattr(packing, 'group_code', getattr(packing, 'Group', '')))
+                            sub = getattr(packing, 'SubGroupCode', getattr(packing, 'subgroup_code', getattr(packing, 'SubGroup', '')))
+                            embalagem = str(emb_code)
+                            grp_sub = f"{grp}/{sub}" if grp and sub else ''
+                        except Exception:
+                            pass
+                    
+                    # Determinar atributo
+                    atributo = ''
+                    try:
+                        if getattr(item, 'IsReturnable', False) or getattr(item, 'is_returnable', False):
+                            atributo = 'Retornavel'
+                        elif getattr(item, 'IsIsotonicWater', False) or getattr(item, 'is_isotonic_water', False):
+                            atributo = 'Isotonico'
+                        elif getattr(item, 'Marketplace', False) or getattr(item, 'marketplace', False):
+                            atributo = 'BinPack'
+                        elif getattr(item, 'IsTopOfPallet', False) or getattr(item, 'is_top_of_pallet', False):
+                            atributo = 'TopoPallet'
+                        else:
+                            atributo = 'Descartável'
+                    except Exception:
+                        atributo = 'Descartável'
+                    
+                    not_palletized.append({
+                        'code': code,
+                        'name': name,
+                        'qty': qty_not_palletized,
+                        'embalagem': embalagem,
+                        'grp_sub': grp_sub,
+                        'weight': total_item_weight,
+                        'atributo': atributo
+                    })
+                    total_np_weight += total_item_weight
+            except Exception:
+                continue
+        
+        if not_palletized:
+            lines.append(f"Produtos fora do caminhão - Peso: {total_np_weight:.2f}:")
+            lines.append("-" * 125)
+            for np in not_palletized:
+                code = str(np['code']).ljust(14)
+                name = np['name'][:60].ljust(60)
+                qty = str(np['qty']).rjust(4)
+                emb = str(np['embalagem']).ljust(11)
+                grp = str(np['grp_sub']).ljust(11)
+                peso_str = f"{np['weight']:.2f}".rjust(10)
+                atr = np['atributo'].ljust(16)
+                lines.append(f"            |          {code} {name} {qty} {emb} {grp} {peso_str} {atr}|")
+            lines.append("-" * 125)
 
         with out_path.open('w', encoding='utf-8') as fh:
             fh.write('\n'.join(lines))

@@ -11,12 +11,12 @@ import logging
 from typing import Any, List
 
 from .rule_chain import RuleChain
-from ..rules.common import *
-from ..rules.route import *
-from ..rules.as_rules import *
-from ..rules.mixed import *
-from ..rules.crossdocking import *
-from ..rules.t4 import *
+from rules.common import *
+from rules.route import *
+from rules.as_rules import *
+from rules.mixed import *
+from rules.crossdocking import *
+from rules.t4 import *
 from .factor_converter import FactorConverter
 from .base_rule import BaseRule
 

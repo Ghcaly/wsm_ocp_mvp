@@ -1,7 +1,7 @@
-from ...domain.factor_converter import FactorConverter
-from ...domain.base_rule import BaseRule
+from domain.factor_converter import FactorConverter
+from domain.base_rule import BaseRule
 from .reassignment_non_palletized_items_rule import ReassignmentNonPalletizedItemsRule
-from ...domain.itemList import ItemList
+from domain.itemList import ItemList
 
 class ReassignmentNonPalletizedItemsWithSplitItemRule(BaseRule):
     def __init__(self, factor_converter=None):

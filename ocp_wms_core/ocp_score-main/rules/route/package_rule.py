@@ -1,6 +1,6 @@
-from ...domain.itemList import ItemList
-from ...domain.space_list import SpaceList
-from ...domain.base_rule import BaseRule
+from domain.itemList import ItemList
+from domain.space_list import SpaceList
+from domain.base_rule import BaseRule
 
 
 class PackageRule(BaseRule):
@@ -19,6 +19,8 @@ class PackageRule(BaseRule):
         if not available_spaces:
             context.add_execution_log("Não foram encontradas baias não cheias para paletizar os itens marketplace, parando execução da regra")
             return False
+        
+        return True
 
     def execute(self, context):
 
@@ -49,6 +51,6 @@ class PackageRule(BaseRule):
 
                     first_layer = mounted_space.get_next_layer() if mounted_space is not None else 0
                     quantity_of_layer = item.product.get_quantity_of_layer_to_space(space.size, units_per_box)
-                    mounted_space = context.add_product(space, item, units_per_box, first_layer, quantity_of_layer, min_occupation, packages_quantity)
+                    mounted_space = context.AddProduct(space, item, units_per_box, first_layer, quantity_of_layer, min_occupation, packages_quantity)
                     retries += 1
-                    print("Classe PackageRule executada com sucesso")
+                    context.add_execution_log(f"Paletizando o item: {item.Code} na quantidade: {units_per_box} na baia: {mounted_space.Space.Number} / {mounted_space.Space.sideDesc} e ocupação {min_occupation}")

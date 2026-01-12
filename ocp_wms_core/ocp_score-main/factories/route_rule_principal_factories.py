@@ -1,7 +1,7 @@
-from ..rules.route.principal import *
+from rules.route.principal import *
 
-from ..domain.rule_chain import RuleChain
-from ..domain.factor_converter import FactorConverter
+from domain.rule_chain import RuleChain
+from domain.factor_converter import FactorConverter
 
 class RouteRulePrincipalFactories:
     def __init__(self) -> None:

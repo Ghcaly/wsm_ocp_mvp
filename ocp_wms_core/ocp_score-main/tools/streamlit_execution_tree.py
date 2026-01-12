@@ -7,7 +7,7 @@ import streamlit.components.v1 as components
 import datetime 
 import re
 
-from ..domain.context import Context
+from domain.context import Context
 
 
 st.set_page_config(page_title="Execution Tree Viewer", layout="wide")

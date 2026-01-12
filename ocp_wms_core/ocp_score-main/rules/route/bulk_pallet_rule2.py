@@ -1,4 +1,4 @@
-from ...domain.base_rule import BaseRule
+from domain.base_rule import BaseRule
 
 class BulkPalletRule_old(BaseRule):
     def __init__(self, complex_customer: int = None):

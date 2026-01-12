@@ -10,9 +10,9 @@ and a custom rules_registry if you want to override them in tests.
 from typing import Optional
 import logging
 
-from ..domain.rule_chain  import RuleChain
-from ..domain.factories import RuleFactories
-from ..factories.route_rule_principal_factories import RouteRulePrincipalFactories
+from domain.rule_chain  import RuleChain
+from domain.factories import RuleFactories
+from factories.route_rule_principal_factories import RouteRulePrincipalFactories
 # from . import rules_registry
 
 logger = logging.getLogger(__name__)

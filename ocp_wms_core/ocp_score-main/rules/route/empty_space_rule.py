@@ -1,7 +1,7 @@
-from ...domain.mounted_product_list import MountedProductList
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.base_rule import BaseRule
-from ...domain.space import NotBulk, NotBlocked, NotChopp
+from domain.mounted_product_list import MountedProductList
+from domain.mounted_space_list import MountedSpaceList
+from domain.base_rule import BaseRule
+from domain.space import NotBulk, NotBlocked, NotChopp
 from typing import Iterable
 import math
 

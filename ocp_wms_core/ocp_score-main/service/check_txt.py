@@ -3,14 +3,14 @@ from pathlib import Path
 from typing import List, Dict, Any
 
 # reuse report building utilities from check.py to produce identical .md/.html output
-from ..service.check import (
+from service.check import (
     build_table,
     save_markdown,
     save_html,
     load_json,
     count_input_items,
 )
-from ..service.check import normalize_code, aggregate_items_list, count_item_attributes
+from service.check import normalize_code, aggregate_items_list, count_item_attributes
 
 
 def _normalize_json_code_for_match(code: str) -> str:

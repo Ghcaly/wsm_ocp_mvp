@@ -2,11 +2,11 @@ from typing import List
 from decimal import Decimal
 import math
 
-from ...domain.itemList import ItemList
-from ...domain.order_list import OrderList
+from domain.itemList import ItemList
+from domain.order_list import OrderList
 
-from ...domain.space_size import SpaceSize
-from ...domain.base_rule import BaseRule
+from domain.space_size import SpaceSize
+from domain.base_rule import BaseRule
 
 
 # Conservative constant (same as C# CalculatorConstants.BOXES_QUANTITY_IN_PALLET)

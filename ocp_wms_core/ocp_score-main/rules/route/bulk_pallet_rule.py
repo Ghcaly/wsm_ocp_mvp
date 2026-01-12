@@ -1,10 +1,10 @@
 from decimal import Decimal
 from typing import Optional
 
-from ...domain.space_size import SpaceSize
+from domain.space_size import SpaceSize
 
-from ...domain.itemList import ItemList
-from ...domain.base_rule import BaseRule
+from domain.itemList import ItemList
+from domain.base_rule import BaseRule
 
 
 class BulkPalletRule(BaseRule):

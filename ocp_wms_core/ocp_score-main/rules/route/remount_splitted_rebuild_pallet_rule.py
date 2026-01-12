@@ -2,8 +2,8 @@ from .isotonic_water_rule import IsotonicWaterRule
 from .non_layer_on_layer_pallet_rule import NonLayerOnLayerPalletRule
 from .pallet_group_subgroup_rule import PalletGroupSubGroupRule
 from .returnable_and_disposable_split_remount_rule import ReturnableAndDisposableSplitRemountRule
-from ...domain.base_rule import BaseRule
-from ...domain.itemList import ItemList
+from domain.base_rule import BaseRule
+from domain.itemList import ItemList
 
 
 class RemountSplittedRebuildPalletRule(BaseRule):

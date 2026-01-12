@@ -1,6 +1,6 @@
-from ..domain.space_list import SpaceList
+from domain.space_list import SpaceList
 from types import SimpleNamespace
-from ..domain.container_type import ContainerType
+from domain.container_type import ContainerType
 
 class MountedSpaceList:
     """Fluent filtering interface for MountedSpace collections (similar to ItemList).

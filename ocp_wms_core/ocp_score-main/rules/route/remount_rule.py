@@ -1,8 +1,8 @@
-from ...domain.itemList import ItemList
+from domain.itemList import ItemList
 from .non_palletized_products_rule import NonPalletizedProductsRule
 from .returnable_and_disposable_split_remount_rule import ReturnableAndDisposableSplitRemountRule
-from ...domain.base_rule import BaseRule
-from ...domain.factor_converter import FactorConverter
+from domain.base_rule import BaseRule
+from domain.factor_converter import FactorConverter
 
 class RemountRule(BaseRule):
     """Faithful port of C# RemountRule.

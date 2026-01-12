@@ -1,7 +1,7 @@
-from ..rules.as_rules import *
+from rules.as_rules import *
 
-from ..domain.rule_chain import RuleChain
-from ..domain.factor_converter import FactorConverter
+from domain.rule_chain import RuleChain
+from domain.factor_converter import FactorConverter
 
 class AsRuleFactories:
     def __init__(self) -> None:

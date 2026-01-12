@@ -6,12 +6,12 @@ from typing import Any, Callable, Iterable, List, Optional, TYPE_CHECKING, Union
 from decimal import Decimal
 from types import SimpleNamespace
 
-from ..domain.itemList import ItemList
-from ..domain.mounted_product_list import MountedProductList
-from ..adapters.logger_instance import logger
-from ..domain.palletize_dto import PalletizeDto
-from ..domain.operations import DomainOperations
-from ..domain.factor_converter import FactorConverter
+from domain.itemList import ItemList
+from domain.mounted_product_list import MountedProductList
+from adapters.logger_instance import logger
+from domain.palletize_dto import PalletizeDto
+from domain.operations import DomainOperations
+from domain.factor_converter import FactorConverter
 from .order import Order
 from .item import Item
 from .mounted_product import MountedProduct

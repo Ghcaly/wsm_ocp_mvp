@@ -1,4 +1,4 @@
-from ..domain.container_type import ContainerType
+from domain.container_type import ContainerType
 
 
 class ItemList:
@@ -216,9 +216,9 @@ class ItemList:
             key=lambda x: (
                 0 if x.IsReturnable() else 1,  # OrderByDescending
                 x.Product.PackingGroup.GroupCode 
-                    if x.Product and x.Product.PackingGroup else None,
+                    if x.Product and x.Product.PackingGroup and x.Product.PackingGroup.GroupCode is not None else 0,
                 x.Product.PackingGroup.SubGroupCode
-                    if x.Product and x.Product.PackingGroup else None
+                    if x.Product and x.Product.PackingGroup and x.Product.PackingGroup.SubGroupCode is not None else 0
             )
         )
 

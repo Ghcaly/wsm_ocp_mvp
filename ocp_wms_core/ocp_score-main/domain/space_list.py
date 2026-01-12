@@ -1,7 +1,7 @@
 
 from collections.abc import Callable
 from typing import Any
-from ..domain.ordered_space_list import OrderedSpaceList
+from domain.ordered_space_list import OrderedSpaceList
 
 
 class SpaceList:

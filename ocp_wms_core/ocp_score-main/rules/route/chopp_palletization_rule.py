@@ -4,9 +4,9 @@ Port fiel do C# ChoppPalletizationRule.
 """
 from decimal import Decimal
 
-from ...domain.subsequences import SubsequenceGenerator
-from ...domain.base_rule import BaseRule
-from ...domain.itemList import ItemList
+from domain.subsequences import SubsequenceGenerator
+from domain.base_rule import BaseRule
+from domain.itemList import ItemList
 from typing import List, Dict, Callable
 import math
 

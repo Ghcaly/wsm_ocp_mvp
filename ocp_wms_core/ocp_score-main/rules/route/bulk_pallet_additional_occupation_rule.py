@@ -1,5 +1,5 @@
-from ...domain.itemList import ItemList
-from ...domain.base_rule import BaseRule
+from domain.itemList import ItemList
+from domain.base_rule import BaseRule
 
 class BulkPalletAdditionalOccupationRule(BaseRule):
     def __init__(self, factor_converter = None):

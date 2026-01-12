@@ -1,7 +1,7 @@
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.base_rule import BaseRule
-from ...domain.factor_converter import FactorConverter
-from ...domain.space import NotBulk
+from domain.mounted_space_list import MountedSpaceList
+from domain.base_rule import BaseRule
+from domain.factor_converter import FactorConverter
+from domain.space import NotBulk
 
 class RecalculatePalletOccupationRule(BaseRule):
     """Direct port of C# RecalculatePalletOccupationRule.

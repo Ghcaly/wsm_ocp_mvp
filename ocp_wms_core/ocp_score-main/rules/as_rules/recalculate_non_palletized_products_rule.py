@@ -1,8 +1,8 @@
 import logging
 
-from ...domain.space_size import SpaceSize
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
+from domain.space_size import SpaceSize
+from domain.base_rule import BaseRule
+from domain.context import Context
 
 
 class RecalculateNonPalletizedProductsRule(BaseRule):

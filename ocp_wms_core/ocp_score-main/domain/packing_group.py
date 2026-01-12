@@ -38,11 +38,11 @@ class PackingGroup:
         packing_name: Optional[str] = None,
     ):
         self._Code = code if code is not None else Code
-        self._PackingCode = int(packing_code) if packing_code is not None else int(PackingCode)
+        self._PackingCode = int(packing_code) if packing_code is not None else (int(PackingCode) if PackingCode is not None else 0)
         self._PackingName = packing_name if packing_name is not None else PackingName
-        self._GroupCode = int(GroupCode)
-        self._SubGroupCode = int(SubGroupCode)
-        self._ProductTypeCode = int(ProductTypeCode)
+        self._GroupCode = int(GroupCode) if GroupCode and str(GroupCode).strip() else 0
+        self._SubGroupCode = int(SubGroupCode) if SubGroupCode and str(SubGroupCode).strip() else 0
+        self._ProductTypeCode = int(ProductTypeCode) if ProductTypeCode and str(ProductTypeCode).strip() else 0
         self._ProductTypeName = ProductTypeName
         self._IsGlobal = IsGlobal
         self._IsRegional = IsRegional

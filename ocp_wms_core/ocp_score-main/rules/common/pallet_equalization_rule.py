@@ -1,6 +1,6 @@
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
-from ...domain.factor_converter import FactorConverter
+from domain.base_rule import BaseRule
+from domain.context import Context
+from domain.factor_converter import FactorConverter
 from dataclasses import dataclass
 from typing import List, Any
 

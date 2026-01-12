@@ -1,13 +1,13 @@
 from decimal import Decimal
 from typing import Iterable, List
 
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.subsequences import SubsequenceGenerator
-from ...domain.base_rule import BaseRule
-from ...domain.itemList import ItemList
+from domain.mounted_space_list import MountedSpaceList
+from domain.subsequences import SubsequenceGenerator
+from domain.base_rule import BaseRule
+from domain.itemList import ItemList
 from itertools import combinations
 
-from ...domain.space_size_extensions import space_size_chains
+from domain.space_size_extensions import space_size_chains
 
 
 class PalletGroupSubGroupRule(BaseRule):

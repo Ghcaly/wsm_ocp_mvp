@@ -5,11 +5,11 @@ import math
 import re
 from pathlib import Path
 
-from ..domain.packing_group import PackingGroup
-from ..domain.pallet_setting import PalletSetting
-from ..domain.factor import Factor
-from ..domain.product import Product, Chopp, Returnable, IsotonicWater, DisposableProduct, Package
-from ..domain.container_type import ContainerType
+from domain.packing_group import PackingGroup
+from domain.pallet_setting import PalletSetting
+from domain.factor import Factor
+from domain.product import Product, Chopp, Returnable, IsotonicWater, DisposableProduct, Package
+from domain.container_type import ContainerType
 
 # Cache global para produtos marketplace
 _marketplace_skus_cache = None
@@ -214,7 +214,11 @@ def fill_item_from_row(item, combined_groups, support_point, row):
     
     # Additional occupation settings (Product properties, not Item)
     item.Product.CalculateAdditionalOccupation = bool(row.get("Ocupação extra", False))
-    item.Product.BallastQuantity = int(row.get("Quantidade de Lastros/Camadas", 0) or 0)
+    try:
+        ballast = row.get("Quantidade de Lastros/Camadas", 0)
+        item.Product.BallastQuantity = int(ballast) if ballast and str(ballast).strip() else 0
+    except:
+        item.Product.BallastQuantity = 0
     # Note: TotalAreaOccupiedByUnit and TotalAreaOccupiedByBallast need column names from your database
     # item.Product.TotalAreaOccupiedByUnit = row.get("Área total ocupada por unidade", 0) or 0
     # item.Product.TotalAreaOccupiedByBallast = row.get("Área total ocupada por lastro", 0) or 0

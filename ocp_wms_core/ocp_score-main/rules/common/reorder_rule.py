@@ -1,6 +1,6 @@
-from ...domain.base_rule import BaseRule
-from ...domain.context import RouteRuleContext
-from ...domain.mounted_product_list import MountedProductList
+from domain.base_rule import BaseRule
+from domain.context import RouteRuleContext
+from domain.mounted_product_list import MountedProductList
 
 
 class ReorderRule(BaseRule):

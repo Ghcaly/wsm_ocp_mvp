@@ -1,7 +1,7 @@
-from ...domain.base_rule import BaseRule
-from ...domain.itemList import ItemList
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.product import ContainerType
+from domain.base_rule import BaseRule
+from domain.itemList import ItemList
+from domain.mounted_space_list import MountedSpaceList
+from domain.product import ContainerType
 
 
 class NonLayerOnLayerPalletRule(BaseRule):

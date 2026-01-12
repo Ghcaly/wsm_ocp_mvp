@@ -1,5 +1,5 @@
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
+from domain.base_rule import BaseRule
+from domain.context import Context
 
 
 class CalculatorOccupationRule(BaseRule):

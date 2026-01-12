@@ -1,7 +1,7 @@
-from ...domain.mounted_product_list import MountedProductList
-from ...domain.itemList import ItemList
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
+from domain.mounted_product_list import MountedProductList
+from domain.itemList import ItemList
+from domain.base_rule import BaseRule
+from domain.context import Context
 from typing import Iterable
 
 

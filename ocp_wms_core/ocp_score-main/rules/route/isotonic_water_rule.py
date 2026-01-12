@@ -1,13 +1,13 @@
 from typing import List, Optional
 
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.space_list import SpaceList
-from ...domain.subsequences import SubsequenceGenerator
+from domain.mounted_space_list import MountedSpaceList
+from domain.space_list import SpaceList
+from domain.subsequences import SubsequenceGenerator
 
 from ..route.non_layer_on_layer_pallet_rule import NonLayerOnLayerPalletRule
-from ...domain.itemList import ItemList
-from ...domain.base_rule import BaseRule
-from ...domain.container_type import ContainerType
+from domain.itemList import ItemList
+from domain.base_rule import BaseRule
+from domain.container_type import ContainerType
 
 
 class IsotonicWaterRule(BaseRule):

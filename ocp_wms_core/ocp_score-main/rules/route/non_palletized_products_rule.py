@@ -1,9 +1,9 @@
-from ...domain.itemList import ItemList
-from ...rules.route.pallet_group_subgroup_rule import PalletGroupSubGroupRule
-from ...domain.base_rule import BaseRule
+from domain.itemList import ItemList
+from rules.route.pallet_group_subgroup_rule import PalletGroupSubGroupRule
+from domain.base_rule import BaseRule
 
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.container_type import ContainerType
+from domain.mounted_space_list import MountedSpaceList
+from domain.container_type import ContainerType
 import math
 
 class NonPalletizedProductsRule(BaseRule):

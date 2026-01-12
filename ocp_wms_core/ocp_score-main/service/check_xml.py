@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List, Dict, Any
 
 # reuse report building utilities from check.py to produce identical .md/.html output
-from ..service.check import (
+from service.check import (
     build_table,
     save_markdown,
     save_html,

@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from .pallet_setting import PalletSetting
 from .container_type import ContainerType
-
+from .packing_group import PackingGroup 
 from .factor import Factor
 
 class Product:
@@ -22,13 +22,15 @@ class Product:
         TotalAreaOccupiedByUnit: Decimal = Decimal(0),
         TotalAreaOccupiedByBallast: Decimal = Decimal(0),
         CalculateAdditionalOccupation: bool = False,
-        PackingGroup: Any = None,
+        PackingGroup: PackingGroup = PackingGroup(),
         Factors: Optional[List[Factor]] = None,
         GroupAssociations: Optional[List[int]] = None,
-        PalletSetting: PalletSetting = None,
+        PalletSetting: PalletSetting = PalletSetting(),
         ContainerType: ContainerType = None,
         GroupAndSubGroup: int = 0,
         SupportPoint: str = "",
+        ItemMarketplace: Any = None,
+
     ):
         # private backing fields (pythonic) - keep PascalCase properties for compatibility
         self._code = Code
@@ -51,6 +53,7 @@ class Product:
         self._container_type = ContainerType
         self._group_and_sub_group = int(GroupAndSubGroup)
         self._support_point = SupportPoint
+        self._item_marketplace = ItemMarketplace
 
     # --- backward-compatible PascalCase properties that map to private fields ---
     @property
@@ -95,7 +98,7 @@ class Product:
 
     @GrossWeight.setter
     def GrossWeight(self, v):
-        self._gross_weight = Decimal(v)
+        self._gross_weight = Decimal(v) if v is not None else Decimal(0)
 
     @property
     def LayerCode(self):
@@ -134,6 +137,23 @@ class Product:
     def Factor(self, v):
         self._factor = Decimal(v)
 
+    @property
+    def ItemMarketplace(self):
+        return self._item_marketplace
+
+    @ItemMarketplace.setter
+    def ItemMarketplace(self, v):
+        self._item_marketplace = v
+
+    @property
+    def item_marketplace(self):
+        """Pythonic snake_case alias for `ItemMarketplace`."""
+        return self.ItemMarketplace
+
+    @item_marketplace.setter
+    def item_marketplace(self, v):
+        self.ItemMarketplace = v
+        
     @property
     def BallastQuantity(self):
         return self._ballast_quantity
@@ -343,6 +363,32 @@ class Product:
         self.TotalAreaOccupiedByUnit = Decimal(totalAreaOccupiedByUnit)
         self.TotalAreaOccupiedByBallast = Decimal(totalAreaOccupiedByBallast)
 
+    # --- UnitsPerBox compatibility (PascalCase + snake_case) ----------------
+    @property
+    def UnitsPerBox(self) -> int:
+        """Backward-compatible PascalCase property for number of units per box.
+
+        Default to 0 for products that are not package-type. Package subclass
+        may override or set `_units_per_box`.
+        """
+        return int(getattr(self, '_units_per_box', 0) or 0)
+
+    @UnitsPerBox.setter
+    def UnitsPerBox(self, v):
+        try:
+            self._units_per_box = int(v)
+        except Exception:
+            self._units_per_box = 0
+
+    @property
+    def units_per_box(self) -> int:
+        """Pythonic snake_case alias for `UnitsPerBox`."""
+        return self.UnitsPerBox
+
+    @units_per_box.setter
+    def units_per_box(self, v):
+        self.UnitsPerBox = v
+
     # --- lower-case aliases for Python code that may call them ---
     def set_factors(self, factors: List[Any]):
         self.SetFactors(factors)
@@ -439,6 +485,15 @@ class Product:
         """Check if product is TopOfPallet type"""
         return self.is_top_of_pallet()
 
+    def mudar_tipo_produto(self, nova_classe, **atributos_extra):
+        """Change product to new class type while preserving attributes"""
+        # Get all current attributes
+        atributos = self.__dict__.copy()
+        # Update with extra attributes (if any)
+        atributos.update(atributos_extra)
+        # Create a new product of the new class
+        return nova_classe(**atributos)
+    
     @property
     def factors(self):
         return self._factors
@@ -503,6 +558,19 @@ class BoxTemplate(Product):
     @property
     def ItemsInBox(self):
         return self._items_in_box
+
+    @ItemsInBox.setter
+    def ItemsInBox(self, v):
+        self._items_in_box = v or []
+
+    @property
+    def items_in_box(self):
+        """Pythonic snake_case alias for `ItemsInBox`."""
+        return self.ItemsInBox
+
+    @items_in_box.setter
+    def items_in_box(self, v):
+        self.ItemsInBox = v
     
     @property
     def ContainerType(self) -> ContainerType:

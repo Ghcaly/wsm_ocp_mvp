@@ -1,5 +1,5 @@
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.base_rule import BaseRule
+from domain.mounted_space_list import MountedSpaceList
+from domain.base_rule import BaseRule
 
 
 class JoinMountedSpacesWithLessOccupationRule(BaseRule):

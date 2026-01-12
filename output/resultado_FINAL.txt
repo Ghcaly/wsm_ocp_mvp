@@ -1,0 +1,13 @@
+Relatório de Paletização
+================================================================================
+
+{
+  "mounted_spaces": [],
+  "statistics": {
+    "total_mounted_spaces": 0,
+    "total_orders": 22
+  },
+  "success": true,
+  "timestamp": "2026-01-11T13:16:05.303076",
+  "type": "route"
+}

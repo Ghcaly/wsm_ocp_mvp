@@ -1,7 +1,7 @@
-from ...domain.container_type import ContainerType
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.itemList import ItemList
-from ...domain.base_rule import BaseRule
+from domain.container_type import ContainerType
+from domain.mounted_space_list import MountedSpaceList
+from domain.itemList import ItemList
+from domain.base_rule import BaseRule
 
 
 class ReturnableAndDisposableSplitRemountRule(BaseRule):

@@ -1,0 +1,5 @@
+{
+  "error": "Paletiza\u00e7\u00e3o falhou: {\n  \"available_endpoints\": [\n    \"/\",\n    \"/health\",\n    \"/palletize\",\n    \"/palletize/file\"\n  ],\n  \"error\": \"Endpoint n\\u00e3o encontrado\",\n  \"success\": false\n}\n",
+  "session_id": "20260111_125255",
+  "success": false
+}

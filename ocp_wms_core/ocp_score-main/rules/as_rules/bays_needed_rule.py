@@ -6,9 +6,9 @@ current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if current_dir not in sys.path:
     sys.path.insert(0, current_dir)
     
-from ...domain.base_rule import BaseRule
+from domain.base_rule import BaseRule
 # from domain import Order, Pallet, ItemPallet
-from ...domain.context import Context
+from domain.context import Context
 from typing import List
 from decimal import Decimal
 

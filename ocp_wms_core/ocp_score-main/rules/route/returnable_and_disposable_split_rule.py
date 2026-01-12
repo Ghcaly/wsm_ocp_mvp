@@ -1,7 +1,7 @@
-from ...domain.itemList import ItemList
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.mounted_product import MountedProduct
-from ...domain.base_rule import BaseRule
+from domain.itemList import ItemList
+from domain.mounted_space_list import MountedSpaceList
+from domain.mounted_product import MountedProduct
+from domain.base_rule import BaseRule
 from types import SimpleNamespace
 import math
 

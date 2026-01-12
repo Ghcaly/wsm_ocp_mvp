@@ -1,10 +1,10 @@
-from ...domain.itemList import ItemList
+from domain.itemList import ItemList
 from .isotonic_water_rule import IsotonicWaterRule
 from .non_layer_on_layer_pallet_rule import NonLayerOnLayerPalletRule
 from .returnable_and_disposable_split_remount_rule import ReturnableAndDisposableSplitRemountRule
 from .returnable_and_disposable_split_rule import ReturnableAndDisposableSplitRule
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
+from domain.base_rule import BaseRule
+from domain.context import Context
 
 class IsotonicWaterWithoutMinimumOccupationRule(BaseRule):
     def __init__(self, isotonic_rule=None, returnable_split_rule=None, non_layer_rule=None, returnable_split_remount_rule=None):

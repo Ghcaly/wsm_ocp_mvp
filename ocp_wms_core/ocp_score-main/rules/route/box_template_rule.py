@@ -1,7 +1,7 @@
-from ...domain.itemList import ItemList
-from ...domain.space_list import SpaceList
-from ...domain.base_rule import BaseRule
-from ...domain.factor_converter import FactorConverter
+from domain.itemList import ItemList
+from domain.space_list import SpaceList
+from domain.base_rule import BaseRule
+from domain.factor_converter import FactorConverter
 import math
 
 

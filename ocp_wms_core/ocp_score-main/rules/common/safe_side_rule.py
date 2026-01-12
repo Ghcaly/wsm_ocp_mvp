@@ -1,9 +1,9 @@
-from ...domain.truck_safe_side import TruckSafeSide
-from ...domain.truck_bay_side import TruckBaySide
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
-from ...domain.calculator_constants import CalculatorConstants
-from ...domain.factor_converter import FactorConverter
+from domain.truck_safe_side import TruckSafeSide
+from domain.truck_bay_side import TruckBaySide
+from domain.base_rule import BaseRule
+from domain.context import Context
+from domain.calculator_constants import CalculatorConstants
+from domain.factor_converter import FactorConverter
 from typing import List, Iterable, Optional
 from dataclasses import dataclass
 import itertools

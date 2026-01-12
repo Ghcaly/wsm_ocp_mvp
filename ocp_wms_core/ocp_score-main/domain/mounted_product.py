@@ -150,38 +150,7 @@ class MountedProduct:
 
     @property
     def PercentOccupationIntoDefaultPalletSize(self) -> Decimal:
-        # If an explicit stored value exists and is non-zero, prefer it
-        try:
-            val = self._percent_occupation_into_default_pallet_size
-            if val is not None:
-                try:
-                    if float(val) != 0:
-                        return Decimal(val)
-                except Exception:
-                    # non-numeric stored value — ignore and compute dynamically
-                    pass
-        except Exception:
-            pass
-
-        # Compute as: (Amount / Product.PalletSetting.Quantity) * 100 (C# parity)
-        try:
-            prod = getattr(self, 'Product', None)
-            if prod is None:
-                return Decimal(0)
-
-            pallet_setting = getattr(prod, 'PalletSetting', getattr(prod, 'pallet_setting', None))
-            if pallet_setting is None:
-                return Decimal(0)
-
-            qty = getattr(pallet_setting, 'Quantity', getattr(pallet_setting, 'quantity', None))
-            if qty in (None, 0):
-                return Decimal(0)
-
-            amount = Decimal(int(self.Amount))
-            qty_dec = Decimal(int(qty))
-            return (amount / qty_dec) * Decimal(100)
-        except Exception:
-            return Decimal(0)
+        return (Decimal(self.Amount) / Decimal(self.Product.PalletSetting.Quantity)) * Decimal(100)
 
     @property
     def Occupation(self) -> Decimal:

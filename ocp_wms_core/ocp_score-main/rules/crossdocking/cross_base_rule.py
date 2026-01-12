@@ -1,9 +1,9 @@
 from typing import Any
 import logging
 
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
-from ...factories.as_rule_factories import AsRuleFactories
+from domain.base_rule import BaseRule
+from domain.context import Context
+from factories.as_rule_factories import AsRuleFactories
 
 class CrossBaseRule(BaseRule):
     """Base helper for cross-docking rules. Provides ExecuteAsRules helper that

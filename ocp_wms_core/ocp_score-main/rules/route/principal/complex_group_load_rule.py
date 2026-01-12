@@ -1,8 +1,8 @@
-from ....domain.factor_converter import FactorConverter
-from ....domain.itemList import ItemList
-from ....rules.route.bulk_pallet_rule import BulkPalletRule
-from ....rules.route.chopp_palletization_rule import ChoppPalletizationRule
-from ....domain.base_rule import BaseRule
+from domain.factor_converter import FactorConverter
+from domain.itemList import ItemList
+from rules.route.bulk_pallet_rule import BulkPalletRule
+from rules.route.chopp_palletization_rule import ChoppPalletizationRule
+from domain.base_rule import BaseRule
 
 class ComplexGroupLoadRule(BaseRule):
     """Faithful port of C# ComplexGroupLoadRule.

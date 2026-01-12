@@ -1,7 +1,7 @@
 from typing import List
-from ...domain.base_rule import BaseRule
-from ...domain.order import Order
-from ...domain.context import Context
+from domain.base_rule import BaseRule
+from domain.order import Order
+from domain.context import Context
 
 class T4MixedRule(BaseRule):
     """

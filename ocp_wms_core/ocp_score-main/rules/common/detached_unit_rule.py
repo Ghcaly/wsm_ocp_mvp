@@ -1,13 +1,13 @@
 from collections import defaultdict
 from typing import List, Iterable
 
-from ...domain.itemList import ItemList
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.mounted_product import MountedProduct
-from ...domain.mounted_space import MountedSpace
-from ...domain.container import Container
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
+from domain.itemList import ItemList
+from domain.mounted_space_list import MountedSpaceList
+from domain.mounted_product import MountedProduct
+from domain.mounted_space import MountedSpace
+from domain.container import Container
+from domain.base_rule import BaseRule
+from domain.context import Context
 
 
 class DetachedUnitRule(BaseRule):

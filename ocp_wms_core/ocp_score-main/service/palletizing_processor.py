@@ -7,17 +7,17 @@ from decimal import Context, Decimal
 import json
 import pandas as pd
 
-from ..adapters.extrair_infos_txt import parse_output_txt_to_dataframe
-from ..adapters.database import _log_items_count_by_type, enrich_items, parse_combined_groups
-from ..adapters.palletize_result_event_adapter import publish_result_calculated_strict, save_palletize_result, publish_result_calculated_from_context
-from ..adapters.palletize_result_mapper import PalletizeResultMapper
-from ..domain.convert_context import convert_context
-from ..adapters.palletize_text_report import PalletizeTextReport
+from adapters.extrair_infos_txt import parse_output_txt_to_dataframe
+from adapters.database import _log_items_count_by_type, enrich_items, parse_combined_groups
+from adapters.palletize_result_event_adapter import publish_result_calculated_strict, save_palletize_result, publish_result_calculated_from_context
+from adapters.palletize_result_mapper import PalletizeResultMapper
+from domain.convert_context import convert_context
+from adapters.palletize_text_report import PalletizeTextReport
 from .calculator_palletizing_service import CalculatorPalletizingService, RuleChain
 # from ..domain.context import Context
-from ..adapters import build_palletize_result_event, to_json  # adapter
-from ..service.map_file_service import save_palletize_report_on_storage
-from ..domain.context import (
+from adapters import build_palletize_result_event, to_json  # adapter
+from service.map_file_service import save_palletize_report_on_storage
+from domain.context import (
             Context,
             RouteRuleContext,
             ASRuleContext,
@@ -28,7 +28,7 @@ from ..domain.context import (
 from .check import run_reports
 from .check_xml import run_reports_xml
 from .check_txt import run as run_reports_txt
-from ..adapters.logger_instance import logger
+from adapters.logger_instance import logger
 
 class PalletizingProcessor:
     """

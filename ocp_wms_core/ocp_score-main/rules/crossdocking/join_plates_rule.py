@@ -1,5 +1,5 @@
 import logging
-from ...domain.context import Context
+from domain.context import Context
 from .cross_base_rule import CrossBaseRule
 
 

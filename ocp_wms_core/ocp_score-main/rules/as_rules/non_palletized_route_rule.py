@@ -1,7 +1,7 @@
 import logging
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
-from ...factories.route_rule_factories import RouteRuleFactories
+from domain.base_rule import BaseRule
+from domain.context import Context
+from factories.route_rule_factories import RouteRuleFactories
 
 class NonPalletizedRouteRule(BaseRule):
     def __init__(self):

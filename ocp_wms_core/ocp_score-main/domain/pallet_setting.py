@@ -22,14 +22,14 @@ class PalletSetting:
         include_top_of_pallet: Optional[bool] = None,
         base_pallet: Optional[bool] = None,
     ):
-        self._quantity = int(quantity) if quantity is not None else int(Quantity)
+        self._quantity = int(quantity) if quantity is not None else (int(Quantity) if Quantity is not None else 0)
         self._bulk_priority = int(bulk_priority) if bulk_priority is not None else (int(BulkPriority) if BulkPriority is not None else None)
         self._quantity_dozen = int(quantity_dozen) if quantity_dozen is not None else (int(QuantityDozen) if QuantityDozen is not None else None)
-        self._quantity_ballast = int(quantity_ballast) if quantity_ballast is not None else int(QuantityBallast)
-        self._quantity_ballast_min = int(quantity_ballast_min) if quantity_ballast_min is not None else int(QuantityBallastMin)
-        self._layers = int(layers) if layers is not None else int(Layers)
-        self._include_top_of_pallet = bool(include_top_of_pallet) if include_top_of_pallet is not None else bool(IncludeTopOfPallet)
-        self._base_pallet = bool(base_pallet) if base_pallet is not None else bool(BasePallet)
+        self._quantity_ballast = int(quantity_ballast) if quantity_ballast is not None else (int(QuantityBallast) if QuantityBallast is not None else 0)
+        self._quantity_ballast_min = int(quantity_ballast_min) if quantity_ballast_min is not None else (int(QuantityBallastMin) if QuantityBallastMin is not None else 0)
+        self._layers = int(layers) if layers is not None else (int(Layers) if Layers is not None else 0)
+        self._include_top_of_pallet = bool(include_top_of_pallet) if include_top_of_pallet is not None else (bool(IncludeTopOfPallet) if IncludeTopOfPallet is not None else False)
+        self._base_pallet = bool(base_pallet) if base_pallet is not None else (bool(BasePallet) if BasePallet is not None else False)
 
     # PascalCase properties (compat)
     @property

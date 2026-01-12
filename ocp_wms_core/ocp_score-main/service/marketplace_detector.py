@@ -35,6 +35,13 @@ class MarketplaceDetector:
     def _load_marketplace_products(self):
         """Carrega lista de produtos marketplace do CSV"""
         try:
+            # Verifica se o arquivo existe
+            import os
+            if not os.path.exists(self.csv_path):
+                logging.warning(f"CSV de marketplace não encontrado: {self.csv_path}")
+                logging.warning("Marketplace detector funcionará sem dados (sempre retornará False)")
+                return
+            
             # Tenta diferentes encodings
             for encoding in ['utf-8', 'latin-1', 'iso-8859-1', 'cp1252']:
                 try:

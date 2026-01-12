@@ -1,14 +1,14 @@
 from decimal import Decimal, getcontext, ROUND_DOWN, ROUND_HALF_EVEN
 import math
 from typing import Any, Optional
-from ..domain.space import Space
+from domain.space import Space
 from multipledispatch import dispatch
-from ..domain.mounted_product import MountedProduct
-from ..domain.pallet_setting import PalletSetting
-from ..domain.space_size import SpaceSize
-from ..domain.item import Item
-from ..domain.factor import Factor
-from ..domain.mounted_space import MountedSpace
+from domain.mounted_product import MountedProduct
+from domain.pallet_setting import PalletSetting
+from domain.space_size import SpaceSize
+from domain.item import Item
+from domain.factor import Factor
+from domain.mounted_space import MountedSpace
 
 class FactorConverter:
     """A minimal port of the C# FactorConverter used by the rules.

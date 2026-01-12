@@ -1,9 +1,9 @@
-from ...domain.mounted_space_list import MountedSpaceList
-from ...domain.base_rule import BaseRule
-from ...domain.context import Context
+from domain.mounted_space_list import MountedSpaceList
+from domain.base_rule import BaseRule
+from domain.context import Context
 from dataclasses import dataclass
 from typing import List, Optional
-from ...domain.calculator_constants import CalculatorConstants
+from domain.calculator_constants import CalculatorConstants
 
 @dataclass
 class SpaceWithMountedSpaceDto:
