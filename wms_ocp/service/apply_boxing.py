@@ -24,7 +24,6 @@ def buscar_item(df, sku_code, UnbCode=None):
             
         if len(row_data) > 1:
             row_data = row_data[(row_data['Código Unb'] == 'None') | (row_data['Código Unb'] == 'nan')]
-            print(len(row_data))
             return row_data.iloc[0]
         elif len(row_data) == 1:
             return row_data.iloc[0]
@@ -251,29 +250,6 @@ def transform_to_boxing_format_2(orders, df):
             "box_slots": int(row["HiveQuantity"]),
             "box_slot_diameter": float(row["HiveDiameter"])
         })
-
-
-    
-    print("Total:", len(boxes))
-
-    # boxes = [
-	# 	{
-	# 		"code": 296156,
-	# 		"length": 31.00,
-	# 		"width": 51.00,
-	# 		"height": 30.00,
-	# 		"box_slots": 0,
-	# 		"box_slot_diameter": 0.00
-	# 	},
-	# 	{
-	# 		"code": 188005,
-	# 		"length": 40.00,
-	# 		"width": 30.00,
-	# 		"height": 50.00,
-	# 		"box_slots": 12,
-	# 		"box_slot_diameter": 9.50
-	# 	}
-    # ]
 
     return {
         "maps": [{"code": 1, "clients": clients}],
