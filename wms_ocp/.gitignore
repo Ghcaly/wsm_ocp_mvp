@@ -1,0 +1,11 @@
+# === AMBIENTES VIRTUAIS ===
+venv/
+wms_venv/
+env/
+ENV/
+.venv/
+*/venv/
+*/.venv/
+wms_ocp/.venv/
+*/wms_ocp/.venv/
+*/wms_venv/

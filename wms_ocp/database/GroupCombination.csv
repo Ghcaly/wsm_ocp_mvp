@@ -1,0 +1,70 @@
+Id,Name,Active,IsGlobal,IsRegional,WarehouseId,ZoneCountryId,CatalogId
+--,----,------,--------,----------,-----------,-------------,---------
+597dffed-424c-4271-bef4-07679bbfe4b6,Corrientes - Barriles ,1,0,0,395,NULL,NULL
+a02b0c2e-3b9c-4278-acc0-078ef5f0eb30,Bolivia - Barril,1,0,0,NULL,NULL,12
+d14bc0ff-19d8-4fa5-bd92-0a1ee5437d62,Tucuman -90,1,0,0,362,NULL,NULL
+0bc9fe14-5a89-4c48-82d9-0e57de8b4a13, RET + WO - Oviedo,1,1,0,465,NULL,NULL
+b207a6e9-1795-4b79-9cf6-10aec24ce4c1,RET + WO Paraguay ,1,0,1,NULL,NULL,11
+603b64d5-a867-4786-8011-174562cfe017,Can + Pet - Paraguay,1,1,0,NULL,NULL,11
+c528d843-8512-4055-8048-18753e4cf96a,Corrientes 40 + 41,1,0,0,395,NULL,NULL
+4f8eebee-14bb-4c1c-a7ad-1bd406d01fff,KEG 2003 + 2000 - PY,1,0,1,NULL,NULL,11
+738b556e-2a46-4e5d-862b-249e910ab2cb,Combi Brasil Pet ,0,1,0,184,NULL,NULL
+46d18c7c-90c6-4c47-85f5-263ba3c25702,Bolivia -  RGB Grandes,1,1,0,NULL,NULL,12
+9b9fde55-de22-430f-9c61-2fa77786428b,Mendonza - 90,1,0,0,394,NULL,NULL
+8ad3848d-0e75-4304-a639-345fa465e89c,Santa Fé - Barriles ,1,0,0,388,NULL,NULL
+53dceaa9-74b4-4eed-846a-3defc7e72b48,Mendonza - Barriles,1,0,0,394,NULL,NULL
+769bd0df-6661-46a7-b30c-41318b44a79b,Combinação Brasil RGB+Chopp,1,1,0,NULL,NULL,2
+7d502340-1583-483d-98d4-444bf2e2e935,Combinação 40,60,1,0,0,364,NULL,NULL
+e88c8f47-95bf-4b2a-a8a4-452266d7be32,Rosário - Barriles ,1,0,0,389,NULL,NULL
+df9e923b-469c-4dc6-be4e-47c081f4f8cb,Bolivia - Barril Oruro,0,0,0,449,NULL,NULL
+249d5074-834a-4de3-95ef-48da84bfa6db,Neuquen - 90,1,0,0,392,NULL,NULL
+e590ab1d-3346-456e-a235-494beedc2390,Solo Botellas 710,1,0,0,364,NULL,NULL
+336c9457-2d8f-44fb-bd7a-504b0165531a,Tucuman - Combianação geral,1,0,0,362,NULL,NULL
+ab52f949-a673-4b03-a3a3-5497a6cfd188,Corrientes - 21 + 71,1,0,0,395,NULL,NULL
+fbde979e-61fb-45e7-8ee7-5adab5d63f8f,Corrientes - 90,1,0,0,395,NULL,NULL
+5716bd61-2302-42d8-a9d7-5c6ed791487d,Boli, Can - Now ,0,0,0,449,NULL,NULL
+2aadd8c6-3718-4165-96f4-67c7212b4df0,Rosário II - 21 + 71 ,1,0,0,393,NULL,NULL
+67e0b444-d3bd-4a75-89b6-69658281dadd,Combinação 10,20,0,0,0,362,NULL,NULL
+71c9b28a-c0b8-4c2a-9ed8-6e36ed71cd75,Bolivia - CAN + OW,1,0,0,NULL,NULL,12
+2b389d91-ad85-4163-8ce9-7ead9e0fdd78,Rosário - Combinación 90,1,0,0,393,NULL,NULL
+c88ea26c-c80e-401c-8484-81ff38cda75e,POP - PY,0,1,0,NULL,NULL,NULL
+b16560dd-a1fc-44ed-9923-84ceea6cc8c2,Solo Barriles,1,0,0,364,NULL,NULL
+442dd172-cb55-4ab3-bcbf-854ff6ef739a,Rosário - Combinação geral ,1,0,0,389,NULL,NULL
+9d84f40c-4e14-4c83-a90d-8cbea16292b1,Neuquen - 41 + 40,1,0,0,392,NULL,NULL
+6080e41f-d2f5-415e-9113-8dc19f1deeda,Santa Fé - Kitting,1,0,0,388,NULL,NULL
+f7ea4d33-bd05-42ab-a87c-935683fe48f7,Neuquen - Combinação Geral,1,0,0,392,NULL,NULL
+278cbe78-6fe0-478b-89d9-945c390d7495,Tucuman - Combinação 60,1,0,0,362,NULL,NULL
+169fc34b-310d-4a61-8682-9621623570cc,Combinação Geral,1,0,0,364,NULL,NULL
+02780047-dc61-47d3-889c-976fff0195b9,KEG 2000 - PY,0,1,0,NULL,NULL,NULL
+c9886fa6-b475-48f6-90d7-9775e51ff1ed,Bolivia - RGB 235,1,0,0,NULL,NULL,12
+ae7ef314-1661-442b-8efe-9835512f5eee,Lata + PET,1,0,1,NULL,9,11
+ac2e81c8-c75c-41ae-a586-9b612dda6dd5,Santa Fé - Combinação geral ,1,0,0,388,NULL,NULL
+7745625e-b5dd-45f3-9920-a3dc30541ee0,Santa Fé - 90,1,0,0,388,NULL,NULL
+52698459-7c13-499e-bdf3-a68d68893258,Mendonza - 40 + 41 ,1,0,0,394,NULL,NULL
+9f6ddd2d-a147-44f5-b6c1-abc76e556ed0,Chopp,0,1,0,435,NULL,NULL
+6728fa20-0a56-487a-bbb3-ac4d79ec033d,Rosário II - 40 + 41,1,0,0,393,NULL,NULL
+474b61e1-20e1-4395-95e1-b126eccab89c,Rosário II - Barriles,1,0,0,393,NULL,NULL
+3dffefc5-1a77-49f8-932b-b16b736e7b29,Rosário - 40 + 41 ,1,0,0,389,NULL,NULL
+252babea-d977-4c5b-960b-b24f3270599e,Tucuman - 21 + 71 ,1,0,0,362,NULL,NULL
+5cb0856e-d69b-41a7-9cae-bcd09dcef5f6, Oruro - PET + POP,0,1,0,449,NULL,NULL
+7576dd60-4d72-41be-9c2d-bcdb44c8ff31,CAN + PET - Guarambaré ,1,1,0,455,NULL,NULL
+5b0edd9a-d25d-4cb1-a7b6-bd043758cc5d,Oruro GRB+GRB,0,1,0,449,NULL,NULL
+6417e712-a376-4d4e-a1a4-c00acb39867d,Neuquen - 21 + 71 ,1,0,0,392,NULL,NULL
+e0ffbf6d-6dee-46d6-8846-c6c07784e361,Bolivia - PET + POP,1,0,0,NULL,NULL,12
+0ae69b1c-b62c-4d52-bbbe-ca2e48322451,RGB,0,1,0,435,NULL,NULL
+02792d8b-b0dc-400b-a70f-cca47800862c,Mendonza - Combinação Geral ,1,0,0,394,NULL,NULL
+936316dd-ec2d-488b-9bc2-ce71b6bfb9c4,Comb Brasil Long/ Latas/ Pet/ TetraPack/Alimen/Hig,1,1,0,NULL,NULL,2
+268e5eaf-5ec5-45c6-a6b7-d479187eae25,Combinación de Tucuman 40 + 41,1,0,0,362,NULL,NULL
+fed3a775-12ed-42d1-b35d-d6012801de24,Santa Fé - 40 + 41,1,0,0,388,NULL,NULL
+7d922b72-5a75-465b-a75f-dbe163a82b3f,Santos Lugares ,1,0,0,364,NULL,NULL
+31a7ce07-d737-4a0d-8cbe-dccbb48f8a4c,Neuquen - Barriles ,1,0,0,392,NULL,NULL
+f326a5fc-f5ac-4d87-8485-df9ef68bff2a,Mendonza - 21 + 71 ,1,0,0,394,NULL,NULL
+21e5cfd8-8936-4a68-8b4f-e02a784494c2,Rosário - 90,1,0,0,389,NULL,NULL
+e477c8e2-c921-493d-b46c-e21cf05fc2e9,MKTP + POP - PY,1,0,1,NULL,NULL,11
+af8925ae-27cb-42a7-9f3c-e72b28e459a8,Corrientes - Combinação Geral,1,0,0,395,NULL,NULL
+e1547c69-93a6-4a55-b096-ead25883319c,21 71,1,0,0,364,NULL,NULL
+790830b5-c91f-4646-82f1-f60e51a870e5,Rosário II -  Combinação Geral ,1,0,0,393,NULL,NULL
+1cc522d2-cce7-4ae2-a16a-fcb881f6ad6b,Santa Fé - 21+71,1,0,0,388,NULL,NULL
+3dc1439c-a3d0-4f00-8aed-fdd2984d6f66,ROS - AGUAS 500,0,1,0,389,NULL,NULL
+
+(66 rows affected)

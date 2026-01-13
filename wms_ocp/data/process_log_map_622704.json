@@ -1,0 +1,957 @@
+{
+  "start_date": "2026-01-13T11:36:33.974596",
+  "end_date": "2026-01-13T11:36:57.985545",
+  "steps": [
+    {
+      "sequence": 1,
+      "rule": "ComplexGroupLoadRule",
+      "type": "principal_route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:50.269257",
+      "end_date": "2026-01-13T11:36:50.303098",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Cliente: 36614, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+        "Cliente: 40203, não atende a configuração de quantidade mínima de skus de 30, SKUS 2",
+        "Cliente: 34961, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+        "Cliente: 11794, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+        "Cliente: 48401, não atende a configuração de quantidade mínima de skus de 30, SKUS 7",
+        "Cliente: 43670, não atende a configuração de quantidade mínima de skus de 30, SKUS 6",
+        "Cliente: 13980, não atende a configuração de quantidade mínima de skus de 30, SKUS 6",
+        "Cliente: 37541, não atende a configuração de quantidade mínima de skus de 30, SKUS 5",
+        "Cliente: 55209, não atende a configuração de quantidade mínima de skus de 30, SKUS 2",
+        "Cliente: 13610, não atende a configuração de quantidade mínima de skus de 30, SKUS 8",
+        "Cliente: 99628, não atende a configuração de quantidade mínima de skus de 30, SKUS 2",
+        "Cliente: 47539, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+        "Cliente: 99765, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+        "Cliente: 48952, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+        "Cliente: 48827, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+        "Cliente: 44348, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+        "Cliente: 19134, não atende a configuração de quantidade mínima de skus de 30, SKUS 2",
+        "Cliente: 25417, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+        "Cliente: 48466, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+        "Cliente: 50133, não atende a configuração de quantidade mínima de skus de 30, SKUS 5",
+        "Cliente: 40533, não atende a configuração de quantidade mínima de skus de 30, SKUS 5",
+        "Cliente: 47838, não atende a configuração de quantidade mínima de skus de 30, SKUS 6",
+        "Cliente: 41440, não atende a configuração de quantidade mínima de skus de 30, SKUS 5",
+        "Cliente: 63471, não atende a configuração de quantidade mínima de skus de 30, SKUS 4",
+        "Cliente: 37108, não atende a configuração de quantidade mínima de skus de 30, SKUS 9",
+        "Cliente: 48254, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+        "Cliente: 44671, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+        "Cliente complexo: False, mapa ",
+        "Regra ComplexGroupLoadRule não executada!"
+      ],
+      "raw": {
+        "Rule": "ComplexGroupLoadRule",
+        "Logs": [
+          "Cliente: 36614, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+          "Cliente: 40203, não atende a configuração de quantidade mínima de skus de 30, SKUS 2",
+          "Cliente: 34961, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+          "Cliente: 11794, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+          "Cliente: 48401, não atende a configuração de quantidade mínima de skus de 30, SKUS 7",
+          "Cliente: 43670, não atende a configuração de quantidade mínima de skus de 30, SKUS 6",
+          "Cliente: 13980, não atende a configuração de quantidade mínima de skus de 30, SKUS 6",
+          "Cliente: 37541, não atende a configuração de quantidade mínima de skus de 30, SKUS 5",
+          "Cliente: 55209, não atende a configuração de quantidade mínima de skus de 30, SKUS 2",
+          "Cliente: 13610, não atende a configuração de quantidade mínima de skus de 30, SKUS 8",
+          "Cliente: 99628, não atende a configuração de quantidade mínima de skus de 30, SKUS 2",
+          "Cliente: 47539, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+          "Cliente: 99765, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+          "Cliente: 48952, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+          "Cliente: 48827, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+          "Cliente: 44348, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+          "Cliente: 19134, não atende a configuração de quantidade mínima de skus de 30, SKUS 2",
+          "Cliente: 25417, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+          "Cliente: 48466, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+          "Cliente: 50133, não atende a configuração de quantidade mínima de skus de 30, SKUS 5",
+          "Cliente: 40533, não atende a configuração de quantidade mínima de skus de 30, SKUS 5",
+          "Cliente: 47838, não atende a configuração de quantidade mínima de skus de 30, SKUS 6",
+          "Cliente: 41440, não atende a configuração de quantidade mínima de skus de 30, SKUS 5",
+          "Cliente: 63471, não atende a configuração de quantidade mínima de skus de 30, SKUS 4",
+          "Cliente: 37108, não atende a configuração de quantidade mínima de skus de 30, SKUS 9",
+          "Cliente: 48254, não atende a configuração de quantidade mínima de skus de 30, SKUS 3",
+          "Cliente: 44671, não atende a configuração de quantidade mínima de skus de 30, SKUS 1",
+          "Cliente complexo: False, mapa ",
+          "Regra ComplexGroupLoadRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "BulkPalletRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:50.305118",
+      "end_date": "2026-01-13T11:36:50.318948",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "BulkPalletRule: processing 48 items (post-filter)",
+        "Regra BulkPalletRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "BulkPalletRule",
+        "Logs": [
+          "BulkPalletRule: processing 48 items (post-filter)",
+          "Regra BulkPalletRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "ChoppPalletizationRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:50.318948",
+      "end_date": "2026-01-13T11:36:50.322566",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Nao foram encontrados items chope para paletizar",
+        "Regra ChoppPalletizationRule não executada!"
+      ],
+      "raw": {
+        "Rule": "ChoppPalletizationRule",
+        "Logs": [
+          "Nao foram encontrados items chope para paletizar",
+          "Regra ChoppPalletizationRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "BulkPalletAdditionalOccupationRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:50.336008",
+      "end_date": "2026-01-13T11:36:50.338054",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Motivo - Configuração 'OccupationAdjustmentToPreventExcessHeight' está desabilitada",
+        "Regra BulkPalletAdditionalOccupationRule não executada!"
+      ],
+      "raw": {
+        "Rule": "BulkPalletAdditionalOccupationRule",
+        "Logs": [
+          "Motivo - Configuração 'OccupationAdjustmentToPreventExcessHeight' está desabilitada",
+          "Regra BulkPalletAdditionalOccupationRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "LayerRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:50.338054",
+      "end_date": "2026-01-13T11:36:50.340075",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra LayerRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "LayerRule",
+        "Logs": [
+          "Regra LayerRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "PalletGroupSubGroupRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:50.344853",
+      "end_date": "2026-01-13T11:36:50.369331",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Pallet adicionado na baia 1 / A, tamanho 35 CC com 4 itens de 1388-SKOL GFA VD 1L 2 99, ocupacao 3.50 CC",
+        "Pallet adicionado na baia 1 / A, tamanho 35 CC com 3 itens de 1743-ANTARCTICA PILSEN GFA VD 1L COM TTC               , ocupacao 2.62 CC",
+        "Pallet adicionado na baia 1 / A, tamanho 35 CC com 2 itens de 29253-ORIGINAL GFA VD 1L, ocupacao 1.75 CC",
+        "Pallet adicionado na baia 1 / A, tamanho 35 CC com 1 itens de 20533-BRAHMA DUPLO MALTE GFA VD 1L, ocupacao 0.87 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 4 itens de 982-SKOL 600ML GFA                              , ocupacao 4.00 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 2 itens de 23186-SPATEN N 600ML, ocupacao 2 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 2 itens de 32749-CORONA EXTRA N 600ML, ocupacao 2 CC",
+        "Regra PalletGroupSubGroupRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "PalletGroupSubGroupRule",
+        "Logs": [
+          "Pallet adicionado na baia 1 / A, tamanho 35 CC com 4 itens de 1388-SKOL GFA VD 1L 2 99, ocupacao 3.50 CC",
+          "Pallet adicionado na baia 1 / A, tamanho 35 CC com 3 itens de 1743-ANTARCTICA PILSEN GFA VD 1L COM TTC               , ocupacao 2.62 CC",
+          "Pallet adicionado na baia 1 / A, tamanho 35 CC com 2 itens de 29253-ORIGINAL GFA VD 1L, ocupacao 1.75 CC",
+          "Pallet adicionado na baia 1 / A, tamanho 35 CC com 1 itens de 20533-BRAHMA DUPLO MALTE GFA VD 1L, ocupacao 0.87 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 4 itens de 982-SKOL 600ML GFA                              , ocupacao 4.00 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 2 itens de 23186-SPATEN N 600ML, ocupacao 2 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 2 itens de 32749-CORONA EXTRA N 600ML, ocupacao 2 CC",
+          "Regra PalletGroupSubGroupRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "NonPalletizedProductsRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:50.369331",
+      "end_date": "2026-01-13T11:36:54.153291",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Item adicionado 2532 no espaco 1 / M - Quantidade: 2",
+        "Item adicionado 978 no espaco 1 / M - Quantidade: 2",
+        "Item adicionado 29700 no espaco 1 / M - Quantidade: 1",
+        "Item adicionado 972 no espaco 1 / M - Quantidade: 1",
+        "Juntando espacos para evitar remonte",
+        "Adicionando os items nos pallets com o mesmo tipo",
+        "Produtos trocados de 1 / M para 1 / A, nova ocupacao de 20.23",
+        "Chamando a regra PalletDeMesmoGrupoESubgrupo para os items e mountedSpaces filtrados anteriormente",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 37 itens de 1745-Skol LT 269ML C15, ocupacao 5.2 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 34 itens de 20603-ORIGINAL LT 269ML CX CARTAO C/8 NPAL, ocupacao 2.74 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 12 itens de 9068-SKOL LATA 350ML SH C/12 NPAL                      , ocupacao 1.59 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 5 itens de 26204-SPATEN LT 269ML CX CARTAO C/8 NPAL, ocupacao 0.4 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 5 itens de 12948-BRAHMA ZERO LATA SHRINK 350, ocupacao 0.73 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 5 itens de 13839-BUD LT 269ML CX C/8 FRIDGE PACK , ocupacao 0.4 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 4 itens de 9084-GUARANA LATA 350 ML C/12 NPAL, ocupacao 0.58 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 4 itens de 21119-SKOL BEATS GT LT 269ML C/8 NPAL, ocupacao 0.32 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 3 itens de 18856-MULTPACK 15 SKOL LT 269ML SH C/15, ocupacao 0.41 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 23184-PITU AGUARDENTE LT 350ML CX C/12, ocupacao 0.19 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 9092-TONICA ANTARCTICA DIET LATA 350ML SH C/12 NPAL, ocupacao 0.14 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 9085-GUARANA CHP ANTARCTICA DIET LATA 350ML SH C/12 NPAL, ocupacao 0.14 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 9096-PEPSI LATA 350ML C12, ocupacao 0.14 CC",
+        "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 9093-PEPSI TWIST LATA 350ML SH C/12 NPAL               , ocupacao 0.14 CC",
+        "Item adicionado 19229 no espaco 1 / M - Quantidade: 8",
+        "Item adicionado 21658 no espaco 1 / M - Quantidade: 3",
+        "Item adicionado 24306 no espaco 1 / M - Quantidade: 2",
+        "Item adicionado 20651 no espaco 1 / M - Quantidade: 1",
+        "Item adicionado 20498 no espaco 1 / M - Quantidade: 1",
+        "Item adicionado 21020 no espaco 1 / M - Quantidade: 1",
+        "Item adicionado 22177 no espaco 1 / M - Quantidade: 1",
+        "Item adicionado 19231 no espaco 1 / M - Quantidade: 1",
+        "Adicionando os items nos pallets com o mesmo tipo de produto",
+        "Item adicionado 18836 no espaco 1 / M - Quantidade: 4",
+        "Item adicionado 33432 no espaco 1 / M - Quantidade: 3",
+        "Item adicionado 33428 no espaco 1 / M - Quantidade: 3",
+        "Item adicionado 23271 no espaco 1 / M - Quantidade: 2",
+        "Item adicionado 27866 no espaco 1 / M - Quantidade: 1",
+        "Item adicionado 35528 no espaco 1 / M - Quantidade: 1",
+        "Adicionando os items em 2 pallets do tipo do produto",
+        "Juntando espacos para evitar remonte",
+        "Adicionando os items nos pallets do tipo retornavel",
+        "Adicionando os items nos pallets com o mesmo tipo",
+        "Regra NonPalletizedProductsRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "NonPalletizedProductsRule",
+        "Logs": [
+          "Item adicionado 2532 no espaco 1 / M - Quantidade: 2",
+          "Item adicionado 978 no espaco 1 / M - Quantidade: 2",
+          "Item adicionado 29700 no espaco 1 / M - Quantidade: 1",
+          "Item adicionado 972 no espaco 1 / M - Quantidade: 1",
+          "Juntando espacos para evitar remonte",
+          "Adicionando os items nos pallets com o mesmo tipo",
+          "Produtos trocados de 1 / M para 1 / A, nova ocupacao de 20.23",
+          "Chamando a regra PalletDeMesmoGrupoESubgrupo para os items e mountedSpaces filtrados anteriormente",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 37 itens de 1745-Skol LT 269ML C15, ocupacao 5.2 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 34 itens de 20603-ORIGINAL LT 269ML CX CARTAO C/8 NPAL, ocupacao 2.74 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 12 itens de 9068-SKOL LATA 350ML SH C/12 NPAL                      , ocupacao 1.59 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 5 itens de 26204-SPATEN LT 269ML CX CARTAO C/8 NPAL, ocupacao 0.4 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 5 itens de 12948-BRAHMA ZERO LATA SHRINK 350, ocupacao 0.73 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 5 itens de 13839-BUD LT 269ML CX C/8 FRIDGE PACK , ocupacao 0.4 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 4 itens de 9084-GUARANA LATA 350 ML C/12 NPAL, ocupacao 0.58 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 4 itens de 21119-SKOL BEATS GT LT 269ML C/8 NPAL, ocupacao 0.32 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 3 itens de 18856-MULTPACK 15 SKOL LT 269ML SH C/15, ocupacao 0.41 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 23184-PITU AGUARDENTE LT 350ML CX C/12, ocupacao 0.19 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 9092-TONICA ANTARCTICA DIET LATA 350ML SH C/12 NPAL, ocupacao 0.14 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 9085-GUARANA CHP ANTARCTICA DIET LATA 350ML SH C/12 NPAL, ocupacao 0.14 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 9096-PEPSI LATA 350ML C12, ocupacao 0.14 CC",
+          "Pallet adicionado na baia 1 / M, tamanho 35 CC com 1 itens de 9093-PEPSI TWIST LATA 350ML SH C/12 NPAL               , ocupacao 0.14 CC",
+          "Item adicionado 19229 no espaco 1 / M - Quantidade: 8",
+          "Item adicionado 21658 no espaco 1 / M - Quantidade: 3",
+          "Item adicionado 24306 no espaco 1 / M - Quantidade: 2",
+          "Item adicionado 20651 no espaco 1 / M - Quantidade: 1",
+          "Item adicionado 20498 no espaco 1 / M - Quantidade: 1",
+          "Item adicionado 21020 no espaco 1 / M - Quantidade: 1",
+          "Item adicionado 22177 no espaco 1 / M - Quantidade: 1",
+          "Item adicionado 19231 no espaco 1 / M - Quantidade: 1",
+          "Adicionando os items nos pallets com o mesmo tipo de produto",
+          "Item adicionado 18836 no espaco 1 / M - Quantidade: 4",
+          "Item adicionado 33432 no espaco 1 / M - Quantidade: 3",
+          "Item adicionado 33428 no espaco 1 / M - Quantidade: 3",
+          "Item adicionado 23271 no espaco 1 / M - Quantidade: 2",
+          "Item adicionado 27866 no espaco 1 / M - Quantidade: 1",
+          "Item adicionado 35528 no espaco 1 / M - Quantidade: 1",
+          "Adicionando os items em 2 pallets do tipo do produto",
+          "Juntando espacos para evitar remonte",
+          "Adicionando os items nos pallets do tipo retornavel",
+          "Adicionando os items nos pallets com o mesmo tipo",
+          "Regra NonPalletizedProductsRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "SnapshotRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.155304",
+      "end_date": "2026-01-13T11:36:54.155304",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra SnapshotRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "SnapshotRule",
+        "Logs": [
+          "Regra SnapshotRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "NonLayerOnLayerPalletRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.157319",
+      "end_date": "2026-01-13T11:36:54.159943",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Palete nao se encaixa na regra de nao layer. Executando proxima regra.",
+        "Regra NonLayerOnLayerPalletRule não executada!"
+      ],
+      "raw": {
+        "Rule": "NonLayerOnLayerPalletRule",
+        "Logs": [
+          "Palete nao se encaixa na regra de nao layer. Executando proxima regra.",
+          "Regra NonLayerOnLayerPalletRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "ReturnableAndDisposableSplitRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.164502",
+      "end_date": "2026-01-13T11:36:54.166514",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra ReturnableAndDisposableSplitRule desabilitada nas configurações, pulando execução.",
+        "Regra ReturnableAndDisposableSplitRule não executada!"
+      ],
+      "raw": {
+        "Rule": "ReturnableAndDisposableSplitRule",
+        "Logs": [
+          "Regra ReturnableAndDisposableSplitRule desabilitada nas configurações, pulando execução.",
+          "Regra ReturnableAndDisposableSplitRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "ReturnableAndDisposableSplitRemountRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.168537",
+      "end_date": "2026-01-13T11:36:54.186857",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Adicionado o item 2349 - GUARANA  ANTARCTICA PET 2L CAIXA C/6            na baia 1 / A, na quantidade 0 ficando com a ocupacao de 22.41",
+        "Adicionado o item 18266 - PEPSI COLA PET 200ML SH C/12 na baia 1 / A, na quantidade 0 ficando com a ocupacao de 22.72",
+        "Adicionado o item 8411 - GUARANA ANTARCTICA PET 1,5 SHRINK C/6 na baia 1 / A, na quantidade 0 ficando com a ocupacao de 23.48",
+        "Adicionado o item 8919 - GUARANA  ANTARCTICA PET 600ML CX12 NPAL         na baia 1 / A, na quantidade 0 ficando com a ocupacao de 24.06",
+        "Adicionado o item 27522 -  51 PIRASSUNUNGA  RETORNAVEL 965ML CX C/12 na baia 1 / A, na quantidade 0 ficando com a ocupacao de 24.93",
+        "Adicionado o item 2132 - GUARANA  ANTARCTICA PET 1L CAIXA C/6 NOVA RIO na baia 1 / A, na quantidade 0 ficando com a ocupacao de 25.16",
+        "Adicionado o item 504 - PEPSI COLA PET 2L CAIXA C/6                        na baia 1 / A, na quantidade 0 ficando com a ocupacao de 25.59",
+        "Adicionado o item 35324 - ELMA CHIPS AMENDOIM OVINHO PCT 145G CX C26 na baia 1 / A, na quantidade 0 ficando com a ocupacao de 26.46",
+        "Regra ReturnableAndDisposableSplitRemountRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "ReturnableAndDisposableSplitRemountRule",
+        "Logs": [
+          "Adicionado o item 2349 - GUARANA  ANTARCTICA PET 2L CAIXA C/6            na baia 1 / A, na quantidade 0 ficando com a ocupacao de 22.41",
+          "Adicionado o item 18266 - PEPSI COLA PET 200ML SH C/12 na baia 1 / A, na quantidade 0 ficando com a ocupacao de 22.72",
+          "Adicionado o item 8411 - GUARANA ANTARCTICA PET 1,5 SHRINK C/6 na baia 1 / A, na quantidade 0 ficando com a ocupacao de 23.48",
+          "Adicionado o item 8919 - GUARANA  ANTARCTICA PET 600ML CX12 NPAL         na baia 1 / A, na quantidade 0 ficando com a ocupacao de 24.06",
+          "Adicionado o item 27522 -  51 PIRASSUNUNGA  RETORNAVEL 965ML CX C/12 na baia 1 / A, na quantidade 0 ficando com a ocupacao de 24.93",
+          "Adicionado o item 2132 - GUARANA  ANTARCTICA PET 1L CAIXA C/6 NOVA RIO na baia 1 / A, na quantidade 0 ficando com a ocupacao de 25.16",
+          "Adicionado o item 504 - PEPSI COLA PET 2L CAIXA C/6                        na baia 1 / A, na quantidade 0 ficando com a ocupacao de 25.59",
+          "Adicionado o item 35324 - ELMA CHIPS AMENDOIM OVINHO PCT 145G CX C26 na baia 1 / A, na quantidade 0 ficando com a ocupacao de 26.46",
+          "Regra ReturnableAndDisposableSplitRemountRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "RemountRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.188874",
+      "end_date": "2026-01-13T11:36:54.195026",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Nenhum item elegivel para remount encontrado, pulando regra de remount.",
+        "Regra RemountRule não executada!"
+      ],
+      "raw": {
+        "Rule": "RemountRule",
+        "Logs": [
+          "Nenhum item elegivel para remount encontrado, pulando regra de remount.",
+          "Regra RemountRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "IsotonicWaterRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.196544",
+      "end_date": "2026-01-13T11:36:54.220742",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "IsotonicWaterRule: iniciando execução com MinimumOccupationPercentage=0",
+        "IsotonicWaterRule: tentando adicionar água no primeiro espaço vazio",
+        "IsotonicWaterRule: tentando juntar 0 grupos de espaços",
+        "IsotonicWaterRule: tentando adicionar água no primeiro espaço vazio (segunda tentativa)",
+        "Adicionado 7977 quantidade 0 no espaco 1 / A, ocupacao de 26.73",
+        "IsotonicWaterRule: executando NonLayerOnLayerPalletRule",
+        "Regra IsotonicWaterRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "IsotonicWaterRule",
+        "Logs": [
+          "IsotonicWaterRule: iniciando execução com MinimumOccupationPercentage=0",
+          "IsotonicWaterRule: tentando adicionar água no primeiro espaço vazio",
+          "IsotonicWaterRule: tentando juntar 0 grupos de espaços",
+          "IsotonicWaterRule: tentando adicionar água no primeiro espaço vazio (segunda tentativa)",
+          "Adicionado 7977 quantidade 0 no espaco 1 / A, ocupacao de 26.73",
+          "IsotonicWaterRule: executando NonLayerOnLayerPalletRule",
+          "Regra IsotonicWaterRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "IsotonicWaterWithoutMinimumOccupationRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.222942",
+      "end_date": "2026-01-13T11:36:54.235369",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "IsotonicWaterRule: iniciando execução com MinimumOccupationPercentage=0",
+        "IsotonicWaterRule: tentando adicionar água no primeiro espaço vazio",
+        "IsotonicWaterRule: tentando juntar 0 grupos de espaços",
+        "IsotonicWaterRule: tentando adicionar água no primeiro espaço vazio (segunda tentativa)",
+        "Regra IsotonicWaterWithoutMinimumOccupationRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "IsotonicWaterWithoutMinimumOccupationRule",
+        "Logs": [
+          "IsotonicWaterRule: iniciando execução com MinimumOccupationPercentage=0",
+          "IsotonicWaterRule: tentando adicionar água no primeiro espaço vazio",
+          "IsotonicWaterRule: tentando juntar 0 grupos de espaços",
+          "IsotonicWaterRule: tentando adicionar água no primeiro espaço vazio (segunda tentativa)",
+          "Regra IsotonicWaterWithoutMinimumOccupationRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "RemountSplittedRebuildPalletRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.237392",
+      "end_date": "2026-01-13T11:36:54.237392",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Snapshot nao possui produtos divididos, pulando regra de remount com rebuild.",
+        "Regra RemountSplittedRebuildPalletRule não executada!"
+      ],
+      "raw": {
+        "Rule": "RemountSplittedRebuildPalletRule",
+        "Logs": [
+          "Snapshot nao possui produtos divididos, pulando regra de remount com rebuild.",
+          "Regra RemountSplittedRebuildPalletRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "EmptySpaceRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.239404",
+      "end_date": "2026-01-13T11:36:54.241423",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Motivo - Não há baias vazias ou não há espaços montados elegíveis, regra não será executada",
+        "Regra EmptySpaceRule não executada!"
+      ],
+      "raw": {
+        "Rule": "EmptySpaceRule",
+        "Logs": [
+          "Motivo - Não há baias vazias ou não há espaços montados elegíveis, regra não será executada",
+          "Regra EmptySpaceRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "BuildMountedSpacesWithFewDisposableProductsRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.249272",
+      "end_date": "2026-01-13T11:36:54.254029",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Motivo - Configuração 'JoinDisposableContainers' está desabilitada",
+        "Regra BuildMountedSpacesWithFewDisposableProductsRule não executada!"
+      ],
+      "raw": {
+        "Rule": "BuildMountedSpacesWithFewDisposableProductsRule",
+        "Logs": [
+          "Motivo - Configuração 'JoinDisposableContainers' está desabilitada",
+          "Regra BuildMountedSpacesWithFewDisposableProductsRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "PackageRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.254029",
+      "end_date": "2026-01-13T11:36:54.256062",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Não foram encontrados itens marketplace com quantidade a paletizar, parando execução da regra",
+        "Regra PackageRule não executada!"
+      ],
+      "raw": {
+        "Rule": "PackageRule",
+        "Logs": [
+          "Não foram encontrados itens marketplace com quantidade a paletizar, parando execução da regra",
+          "Regra PackageRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "BoxTemplateRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.258077",
+      "end_date": "2026-01-13T11:36:54.267648",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Paletizando o item: 188005 na quantidade: 1 na baia: 1/A e ocupação: 0.87",
+        "Paletizando o item: 563890 na quantidade: 1 na baia: 1/A e ocupação: 1",
+        "Regra BoxTemplateRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "BoxTemplateRule",
+        "Logs": [
+          "Paletizando o item: 188005 na quantidade: 1 na baia: 1/A e ocupação: 0.87",
+          "Paletizando o item: 563890 na quantidade: 1 na baia: 1/A e ocupação: 1",
+          "Regra BoxTemplateRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "RecalculatePalletOccupationRule",
+      "type": "route",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.267648",
+      "end_date": "2026-01-13T11:36:54.272696",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra RecalculatePalletOccupationRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "RecalculatePalletOccupationRule",
+        "Logs": [
+          "Regra RecalculatePalletOccupationRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "ReassignmentNonPalletizedItemsRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.289449",
+      "end_date": "2026-01-13T11:36:54.295789",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Não foram encontrados itens não paletizados, a regra não será executada",
+        "Regra ReassignmentNonPalletizedItemsRule não executada!"
+      ],
+      "raw": {
+        "Rule": "ReassignmentNonPalletizedItemsRule",
+        "Logs": [
+          "Não foram encontrados itens não paletizados, a regra não será executada",
+          "Regra ReassignmentNonPalletizedItemsRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "ReassignmentNonPalletizedItemsWithSplitItemRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.297827",
+      "end_date": "2026-01-13T11:36:54.300060",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Não foram encontrados itens não paletizados, a regra não será executada",
+        "Regra ReassignmentNonPalletizedItemsWithSplitItemRule não executada!"
+      ],
+      "raw": {
+        "Rule": "ReassignmentNonPalletizedItemsWithSplitItemRule",
+        "Logs": [
+          "Não foram encontrados itens não paletizados, a regra não será executada",
+          "Regra ReassignmentNonPalletizedItemsWithSplitItemRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "JoinMountedSpacesWithLessOccupationRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.303189",
+      "end_date": "2026-01-13T11:36:54.303189",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Não há palete com ocupação inferior a 29%",
+        "Nenhum espaço montado com ocupação menor que o limite configurado foi encontrado. Executando proxima regra.",
+        "Regra JoinMountedSpacesWithLessOccupationRule não executada!"
+      ],
+      "raw": {
+        "Rule": "JoinMountedSpacesWithLessOccupationRule",
+        "Logs": [
+          "Não há palete com ocupação inferior a 29%",
+          "Nenhum espaço montado com ocupação menor que o limite configurado foi encontrado. Executando proxima regra.",
+          "Regra JoinMountedSpacesWithLessOccupationRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "PalletEqualizationRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.305718",
+      "end_date": "2026-01-13T11:36:54.305718",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra desativada, não será executada",
+        "Regra PalletEqualizationRule não executada!"
+      ],
+      "raw": {
+        "Rule": "PalletEqualizationRule",
+        "Logs": [
+          "Regra desativada, não será executada",
+          "Regra PalletEqualizationRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "ReorderRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.314312",
+      "end_date": "2026-01-13T11:36:54.316334",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Configurações conflitantes detectadas, a regra não será executada",
+        "Regra ReorderRule não executada!"
+      ],
+      "raw": {
+        "Rule": "ReorderRule",
+        "Logs": [
+          "Configurações conflitantes detectadas, a regra não será executada",
+          "Regra ReorderRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "NewReorderRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.318350",
+      "end_date": "2026-01-13T11:36:54.331109",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Reordenando produtos do espaco 1 / A",
+        "Reordenando produtos do espaco 1 / M",
+        "Reordenando produtos do espaco 1 / A",
+        "Reordenando produtos do espaco 1 / M",
+        "Finalizado execucao da regra",
+        "Regra NewReorderRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "NewReorderRule",
+        "Logs": [
+          "Reordenando produtos do espaco 1 / A",
+          "Reordenando produtos do espaco 1 / M",
+          "Reordenando produtos do espaco 1 / A",
+          "Reordenando produtos do espaco 1 / M",
+          "Finalizado execucao da regra",
+          "Regra NewReorderRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "LoadBalancerRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.336284",
+      "end_date": "2026-01-13T11:36:54.338308",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra SideBalanceRule ativada, LoadBalancerRule nao sera executada",
+        "Regra LoadBalancerRule não executada!"
+      ],
+      "raw": {
+        "Rule": "LoadBalancerRule",
+        "Logs": [
+          "Regra SideBalanceRule ativada, LoadBalancerRule nao sera executada",
+          "Regra LoadBalancerRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "SideBalanceRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.340274",
+      "end_date": "2026-01-13T11:36:54.355538",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Iniciando execucao da regra",
+        "Inicio do balanceamento - Lado Motorista: 44.61% - Lado Ajudante: 55.39%",
+        "Movendo os produtos da Baia:65/1 para a Baia:77/1",
+        "Recalculado ocupação da Baia:77/1 - Antes:28.60 - Depois:28.60",
+        "Recalculando palete fechado da Baia:77/1 - Antes: False - Depois: False",
+        "Recalculado ocupação da Baia:65/1 - Antes:20.70 - Depois:20.70",
+        "Recalculando palete fechado da Baia:65/1 - Antes: False - Depois: False",
+        "Inicio do balanceamento - Lado Motorista: 55.39% - Lado Ajudante: 44.61%",
+        "Fim do balanceamento - Lado Motorista: 55.39% - Lado Ajudante: 44.61%",
+        "Regra SideBalanceRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "SideBalanceRule",
+        "Logs": [
+          "Iniciando execucao da regra",
+          "Inicio do balanceamento - Lado Motorista: 44.61% - Lado Ajudante: 55.39%",
+          "Movendo os produtos da Baia:65/1 para a Baia:77/1",
+          "Recalculado ocupação da Baia:77/1 - Antes:28.60 - Depois:28.60",
+          "Recalculando palete fechado da Baia:77/1 - Antes: False - Depois: False",
+          "Recalculado ocupação da Baia:65/1 - Antes:20.70 - Depois:20.70",
+          "Recalculando palete fechado da Baia:65/1 - Antes: False - Depois: False",
+          "Inicio do balanceamento - Lado Motorista: 55.39% - Lado Ajudante: 44.61%",
+          "Fim do balanceamento - Lado Motorista: 55.39% - Lado Ajudante: 44.61%",
+          "Regra SideBalanceRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "SafeSideRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.362052",
+      "end_date": "2026-01-13T11:36:54.364082",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Mapa 622704, O veiculo deve ter mais de 2 baias",
+        "Regra SafeSideRule não executada!"
+      ],
+      "raw": {
+        "Rule": "SafeSideRule",
+        "Logs": [
+          "Mapa 622704, O veiculo deve ter mais de 2 baias",
+          "Regra SafeSideRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "RecalculatePalletOccupationRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.366114",
+      "end_date": "2026-01-13T11:36:54.371585",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra RecalculatePalletOccupationRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "RecalculatePalletOccupationRule",
+        "Logs": [
+          "Regra RecalculatePalletOccupationRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "VehicleCapacityOverflowRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.373640",
+      "end_date": "2026-01-13T11:36:54.375166",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra VehicleCapacityOverflowRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "VehicleCapacityOverflowRule",
+        "Logs": [
+          "Regra VehicleCapacityOverflowRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "CalculatorOccupationRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.381809",
+      "end_date": "2026-01-13T11:36:54.383836",
+      "executed": true,
+      "mounted_spaces": [],
+      "logs": [
+        "Regra CalculatorOccupationRule executada com sucesso"
+      ],
+      "raw": {
+        "Rule": "CalculatorOccupationRule",
+        "Logs": [
+          "Regra CalculatorOccupationRule executada com sucesso"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    },
+    {
+      "sequence": 1,
+      "rule": "DetachedUnitRule",
+      "type": "common",
+      "registers": null,
+      "start_date": "2026-01-13T11:36:54.385865",
+      "end_date": "2026-01-13T11:36:54.387878",
+      "executed": false,
+      "mounted_spaces": [],
+      "logs": [
+        "Nenhum item com quantidade avulsa encontrado. Regra nao sera executada.",
+        "Regra DetachedUnitRule não executada!"
+      ],
+      "raw": {
+        "Rule": "DetachedUnitRule",
+        "Logs": [
+          "Nenhum item com quantidade avulsa encontrado. Regra nao sera executada.",
+          "Regra DetachedUnitRule não executada!"
+        ],
+        "Children": [],
+        "Debug": null
+      }
+    }
+  ]
+}

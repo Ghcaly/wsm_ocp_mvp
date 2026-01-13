@@ -1,0 +1,13 @@
+Id,OriginalId,Code,Name,Description,IsActive
+--,----------,----,----,-----------,--------
+1,339be0c0-b2fe-4d4c-8636-af2d008930ea,1,teste,teste,0
+2,a5e1a6b8-9146-4097-b8ae-af50011009e7,01,Região 01,Região 01,0
+3,a421c870-c0ed-437d-8e62-af5000c9b5d3,1,SAZ,SAZ,0
+4,c7dea35c-c26a-4ee2-aacc-b06d00e40b3a,SAZ - Argentina,SAZ - Argentina,SAZ - Argentina,1
+5,f7386554-a29e-4a0c-9d22-ae9700e9a266,Geral,Geral,Geral,0
+6,78c93b78-d919-4476-988e-af3b00eb7217,brsky297033,Fernando Vieira Boiani,Analista de Risco,1
+7,72b8bee0-921d-44ec-befe-b08f00e64a17,2200,Zona no accesible,Zona no accesible,1
+8,287b53be-3943-4870-ac0d-b0fb010d26a3,1000,SAZ - Bolivia,SAZ - Bolivia,1
+9,648b42e6-c5e5-4f3d-a70a-b11c00e88347,1001,SAZ - Paraguay,SAZ - Paraguay,1
+
+(9 rows affected)

@@ -1,0 +1,1370 @@
+{
+  "Type": 1,
+  "Number": "622704",
+  "DeliveryDate": "2025-12-18T00:00:00",
+  "Warehouse": {
+    "UnbCode": "916",
+    "FileName": "tmpb5qctosc.xml",
+    "Company": "029",
+    "Branch": "0916"
+  },
+  "Vehicle": {
+    "Plate": "GJP7G55",
+    "Bays": [
+      {
+        "Number": 1,
+        "Side": 65,
+        "Size": 35
+      },
+      {
+        "Number": 1,
+        "Side": 77,
+        "Size": 35
+      }
+    ]
+  },
+  "Orders": [
+    {
+      "RoadShow": 1,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "11794"
+      },
+      "Items": [
+        {
+          "Code": "982",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 2,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "13610"
+      },
+      "Items": [
+        {
+          "Code": "504",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20651",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "1745",
+          "Quantity": {
+            "Sales": 4,
+            "Unit": 60,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20498",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "2349",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "18266",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20603",
+          "Quantity": {
+            "Sales": 4,
+            "Unit": 32,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "26204",
+          "Quantity": {
+            "Sales": 3,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 3,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "13980"
+      },
+      "Items": [
+        {
+          "Code": "33432",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "23184",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "33428",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "19229",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "982",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "34779",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 21,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "2532",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 4,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "19134"
+      },
+      "Items": [
+        {
+          "Code": "18856",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 30,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9084",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 5,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "25417"
+      },
+      "Items": [
+        {
+          "Code": "23186",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 6,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "34961"
+      },
+      "Items": [
+        {
+          "Code": "18836",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 7,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "36614"
+      },
+      "Items": [
+        {
+          "Code": "1745",
+          "Quantity": {
+            "Sales": 14,
+            "Unit": 210,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 8,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "37108"
+      },
+      "Items": [
+        {
+          "Code": "1745",
+          "Quantity": {
+            "Sales": 15,
+            "Unit": 225,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20603",
+          "Quantity": {
+            "Sales": 20,
+            "Unit": 160,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9092",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "982",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "21658",
+          "Quantity": {
+            "Sales": 3,
+            "Unit": 36,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9068",
+          "Quantity": {
+            "Sales": 10,
+            "Unit": 120,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "18836",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "1743",
+          "Quantity": {
+            "Sales": 3,
+            "Unit": 36,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "978",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 9,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "37541"
+      },
+      "Items": [
+        {
+          "Code": "2349",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20603",
+          "Quantity": {
+            "Sales": 4,
+            "Unit": 32,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "8919",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "1745",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 15,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "19231",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 4,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 10,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "40203"
+      },
+      "Items": [
+        {
+          "Code": "19229",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "19229",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20603",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 11,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "40533"
+      },
+      "Items": [
+        {
+          "Code": "29700",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "12948",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "12948",
+          "Quantity": {
+            "Sales": 4,
+            "Unit": 48,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "7977",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "13839",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9068",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 12,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "41440"
+      },
+      "Items": [
+        {
+          "Code": "982",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "1745",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 15,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "21020",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20603",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "18266",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 13,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "43670"
+      },
+      "Items": [
+        {
+          "Code": "2349",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9085",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9084",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "19229",
+          "Quantity": {
+            "Sales": 4,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "18836",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "27866",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 14,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "44348"
+      },
+      "Items": [
+        {
+          "Code": "24306",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "7977",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "19229",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 15,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "44671"
+      },
+      "Items": [
+        {
+          "Code": "1388",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 16,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "47539"
+      },
+      "Items": [
+        {
+          "Code": "1388",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "23186",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "29253",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 17,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "47838"
+      },
+      "Items": [
+        {
+          "Code": "1745",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 15,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "2532",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "18836",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "972",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "23271",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "13839",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 18,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "48254"
+      },
+      "Items": [
+        {
+          "Code": "22177",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "35324",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 26,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "35528",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 19,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "48401"
+      },
+      "Items": [
+        {
+          "Code": "18266",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "2349",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9096",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9093",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "8919",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "9084",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "2132",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 20,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "48466"
+      },
+      "Items": [
+        {
+          "Code": "8411",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 21,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "48827"
+      },
+      "Items": [
+        {
+          "Code": "1745",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 15,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "23271",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20603",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 22,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "48952"
+      },
+      "Items": [
+        {
+          "Code": "32749",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 48,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 23,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "50133"
+      },
+      "Items": [
+        {
+          "Code": "9068",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "18856",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 15,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "1388",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20533",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "29253",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 24,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "55209"
+      },
+      "Items": [
+        {
+          "Code": "9084",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "2349",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 6,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 25,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "63471"
+      },
+      "Items": [
+        {
+          "Code": "978",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "33428",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 48,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "33432",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 48,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "13839",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 26,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "99628"
+      },
+      "Items": [
+        {
+          "Code": "21119",
+          "Quantity": {
+            "Sales": 3,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "21119",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 8,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "20603",
+          "Quantity": {
+            "Sales": 3,
+            "Unit": 24,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    },
+    {
+      "RoadShow": 27,
+      "Cross": {
+        "Vehicle": {
+          "Plate": "",
+          "Bays": []
+        },
+        "SupportPoint": "",
+        "MapNumber": ""
+      },
+      "Client": {
+        "Code": "99765"
+      },
+      "Items": [
+        {
+          "Code": "22562",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 1,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "27522",
+          "Quantity": {
+            "Sales": 1,
+            "Unit": 12,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "13839",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 16,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        },
+        {
+          "Code": "26204",
+          "Quantity": {
+            "Sales": 2,
+            "Unit": 16,
+            "Detached": 0
+          },
+          "UnitOfMeasurement": null
+        }
+      ]
+    }
+  ],
+  "UniqueKey": "cef8de0c073175269cfb9289d9689ff0"
+}
