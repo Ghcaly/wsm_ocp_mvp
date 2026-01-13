@@ -1,0 +1,288 @@
+{
+  "01234": {
+    "0": {
+      "21540": 12,
+      "21783": 1,
+      "22197": 12,
+      "22332": 8
+    },
+    "1": {
+      "21779": 18,
+      "22147": 14
+    },
+    "2": {
+      "21886": 1,
+      "21976": 17,
+      "22007": 1
+    },
+    "3": {
+      "22332": 9,
+      "22446": 12,
+      "22495": 5
+    },
+    "4": {
+      "21526": 4,
+      "21777": 12,
+      "22003": 8,
+      "22051": 13
+    },
+    "5": {
+      "21529": 3,
+      "22005": 2,
+      "22495": 17,
+      "22514": 7
+    },
+    "6": {
+      "21887": 18,
+      "21924": 6
+    },
+    "7": {
+      "21529": 4,
+      "21789": 2,
+      "21923": 3,
+      "21973": 15,
+      "22448": 12
+    }
+  },
+  "skus": {
+    "21526": {
+      "length": 7.0,
+      "height": 30.5,
+      "width": 8.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 2,
+      "subcategory": 1
+    },
+    "21529": {
+      "length": 8.5,
+      "height": 27.0,
+      "width": 8.5,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 2,
+      "subcategory": 1
+    },
+    "21540": {
+      "length": 10.0,
+      "height": 27.0,
+      "width": 10.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 2,
+      "subcategory": 1
+    },
+    "21777": {
+      "length": 7.5,
+      "height": 32.0,
+      "width": 7.5,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 2,
+      "subcategory": 1
+    },
+    "21779": {
+      "length": 10.0,
+      "height": 27.0,
+      "width": 10.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.2,
+      "subcategory": 1
+    },
+    "21783": {
+      "length": 9.0,
+      "height": 33.0,
+      "width": 9.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 2,
+      "subcategory": 1
+    },
+    "21789": {
+      "length": 7.5,
+      "height": 32.0,
+      "width": 7.5,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.5,
+      "subcategory": 1
+    },
+    "21886": {
+      "length": 6.5,
+      "height": 28.0,
+      "width": 6.5,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.5,
+      "subcategory": 1
+    },
+    "21887": {
+      "length": 7.5,
+      "height": 32.0,
+      "width": 7.5,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.5,
+      "subcategory": 1
+    },
+    "21923": {
+      "length": 6.0,
+      "height": 40.0,
+      "width": 8.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1,
+      "subcategory": 1
+    },
+    "21924": {
+      "length": 6.0,
+      "height": 40.0,
+      "width": 8.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1,
+      "subcategory": 1
+    },
+    "21973": {
+      "length": 14.0,
+      "height": 3.5,
+      "width": 9.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 0.3,
+      "subcategory": 1
+    },
+    "21976": {
+      "length": 14.0,
+      "height": 3.5,
+      "width": 9.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 0.3,
+      "subcategory": 1
+    },
+    "22003": {
+      "length": 13.5,
+      "height": 5.5,
+      "width": 10.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 0.6,
+      "subcategory": 1
+    },
+    "22005": {
+      "length": 13.5,
+      "height": 5.5,
+      "width": 10.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 0.6,
+      "subcategory": 1
+    },
+    "22007": {
+      "length": 13.5,
+      "height": 5.5,
+      "width": 10.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 0.6,
+      "subcategory": 1
+    },
+    "22051": {
+      "length": 7.0,
+      "height": 29.0,
+      "width": 7.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1,
+      "subcategory": 1
+    },
+    "22147": {
+      "length": 8.0,
+      "height": 33.0,
+      "width": 8.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.5,
+      "subcategory": 1
+    },
+    "22197": {
+      "length": 9.5,
+      "height": 30.0,
+      "width": 9.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.1,
+      "subcategory": 1
+    },
+    "22332": {
+      "length": 33.0,
+      "height": 9.0,
+      "width": 24.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 6,
+      "subcategory": 1
+    },
+    "22446": {
+      "length": 15.0,
+      "height": 30.0,
+      "width": 25.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 5,
+      "subcategory": 1
+    },
+    "22448": {
+      "length": 15.0,
+      "height": 30.0,
+      "width": 25.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 12,
+      "subcategory": 1
+    },
+    "22495": {
+      "length": 6.9,
+      "height": 27.6,
+      "width": 15.4,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 0,
+      "gross_weight": 1,
+      "subcategory": 1
+    },
+    "22514": {
+      "length": 9.5,
+      "height": 25.5,
+      "width": 6.5,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.35,
+      "subcategory": 1
+    }
+  },
+  "boxes": {
+    "1": {
+      "length": 0,
+      "width": 0,
+      "height": 0,
+      "box_slots": 9,
+      "box_slot_diameter": 10.392304
+    },
+    "2": {
+      "length": 40,
+      "width": 58,
+      "height": 34,
+      "box_slots": 0,
+      "box_slot_diameter": 0
+    }
+  },
+  "family_groups": [
+    {
+      "subcategory": 1,
+      "cant_go_with": [
+      ]
+    }
+  ]
+}

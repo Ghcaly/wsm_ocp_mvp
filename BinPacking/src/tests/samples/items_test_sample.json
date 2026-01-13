@@ -1,0 +1,24 @@
+{
+    "21526": {
+      "length": 7.0,
+      "height": 30.5,
+      "width": 8.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1
+    },
+    "21529": {
+      "length": 8.5,
+      "height": 27.0,
+      "width": 8.5,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1
+    },
+    "21540": {
+        "length": 10.0,
+        "height": 27.0,
+        "width": 10.0,
+        "units_in_boxes": 12,
+        "tipo_garrafa": 1
+    }
+}
+    

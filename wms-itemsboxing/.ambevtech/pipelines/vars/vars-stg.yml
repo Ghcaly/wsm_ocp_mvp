@@ -1,0 +1,41 @@
+variables:
+  environmentName: stg
+  environmentApproval: "STG_K8S_T2"
+  privateCluster: true
+  poolName: "ambev-azagent-pool-1-logco-stg-brs-1-lx"
+  
+  ### Container settings ###
+  containerRegistryConnection: 'acr-logistica-prd'
+  containerRegistryName: 'logcoprdbrsacr.azurecr.io'
+  helmReleaseName: "wms-items-boxing"
+  helmNamespace: "wmst2-stg"
+
+  ### Kubernetes settings ###
+  datadogEnv: logco.warehouse.wmst2.stg
+  nodeSelectorAgentpool: "warehouse"
+  ingresshost: "wmst2stg.ambevdevs.com.br"
+
+  helmKubernetesCluster: "aks-logco-stg-brs-001"
+  helmAzureResourceGroup: "aks-001-rg-stg-brs"
+  helmAksServiceConnection: "aks-logco-stg-brs-001"
+  helmChartPath: "PIPELINE-TEMPLATES/cd/step/helm/charts"
+  helmValueFilePath: "$(Build.Repository.Name)/.ambevtech/pipelines/vars/helm"
+  getHelmChartsFromArtifacts: true
+  helmArtifactName: helmCharts
+  helmOverrideValues: >
+    image.repository=logcoprdbrsacr.azurecr.io/$(dockerImageName)
+    --set image.tag=$(Build.BuildNumber)
+    --set datadog.version=$(Build.BuildNumber)
+    --set ambevtech.uniqueKey=$(uniqueKey)
+    --set datadog.env=$(datadogEnv)
+    --set nodeSelector.agentpool=$(nodeSelectorAgentpool)
+    --set ingress.hosts[0].host=$(ingresshost)
+
+  # keyvault
+  getSecrets: true
+  azureSubscription: "ambev-logco-wms-logco-rg-logco-stg-brs"
+  KeyVaultName: "kv-wms-stg"
+  SecretsFilter: "wms-servicebus-,wms-rabbit-"
+  
+  ### APIM settings ###
+  apimEnabled: false

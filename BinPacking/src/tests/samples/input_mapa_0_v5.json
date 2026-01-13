@@ -1,0 +1,137 @@
+{
+  "01234": {
+    "0": {
+      "21540": 12,
+      "21783": 1,
+      "22197": 12,
+      "22332": 8
+    },
+    "1": {
+      "21779": 18,
+      "22147": 14
+    },
+    "2": {
+      "21886": 1,
+      "21976": 17,
+      "22007": 1
+    }
+  },
+  "skus": {
+    "21540": {
+      "length": 10.0,
+      "height": 27.0,
+      "width": 10.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 2,
+      "subcategory": 1
+    },
+    "21779": {
+      "length": 10.0,
+      "height": 27.0,
+      "width": 10.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.2,
+      "subcategory": 2
+    },
+    "21783": {
+      "length": 9.0,
+      "height": 33.0,
+      "width": 9.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 2,
+      "subcategory": 1
+    },
+    "21886": {
+      "length": 6.5,
+      "height": 28.0,
+      "width": 6.5,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.5,
+      "subcategory": 2
+    },
+    "21976": {
+      "length": 14.0,
+      "height": 3.5,
+      "width": 9.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 0.3,
+      "subcategory": 2
+    },
+    "22007": {
+      "length": 13.5,
+      "height": 5.5,
+      "width": 10.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 0.6,
+      "subcategory": 1
+    },
+    "22147": {
+      "length": 8.0,
+      "height": 33.0,
+      "width": 8.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.5,
+      "subcategory": "a"
+    },
+    "22197": {
+      "length": 9.5,
+      "height": 30.0,
+      "width": 9.0,
+      "units_in_boxes": 12,
+      "tipo_garrafa": 1,
+      "gross_weight": 1.1,
+      "subcategory": 1
+    },
+    "22332": {
+      "length": 33.0,
+      "height": 9.0,
+      "width": 24.0,
+      "units_in_boxes": 1,
+      "tipo_garrafa": 0,
+      "gross_weight": 6,
+      "subcategory": "a"
+    }
+  },
+  "boxes": {
+    "1": {
+      "length": 0,
+      "width": 0,
+      "height": 0,
+      "box_slots": 9,
+      "box_slot_diameter": 10.392304
+    },
+    "2": {
+      "length": 40,
+      "width": 58,
+      "height": 34,
+      "box_slots": 0,
+      "box_slot_diameter": 0
+    }
+  },
+  "family_groups": [
+    {
+      "subcategory": 1,
+      "cant_go_with": [
+        2
+      ]
+    },
+    {
+      "subcategory": 2,
+      "cant_go_with": [
+        1
+      ]
+    },
+    {
+      "subcategory": "a",
+      "cant_go_with": [
+      ]
+    }
+  ]
+}

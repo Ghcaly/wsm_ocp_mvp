@@ -1,0 +1,21 @@
+---
+variables:
+  - template: ./vars-global.yml
+
+    ### General settings ###
+  - name: environmentName
+    value: "dev"
+
+  - name: poolName
+    value: "ambev-azagent-pool-1-logco-dev-scus-1-lx"
+    
+    ### Container settings ###
+  - name: containerRegistryConnection
+    value: "acr-logistica-dev"
+
+  - name: containerRegistryName
+    value: "logcodevscusacr.azurecr.io"
+    
+    ### Key vault settings ###
+  - name: getSecrets
+    value: false
