@@ -61,7 +61,7 @@ class XmlConverter:
             bay = {
                 "Number": int(baia_elem.findtext('nrBaiaGaveta', '0')),
                 "Side": ord(baia_elem.findtext('cdLado', 'A')),
-                "Size": 35
+                "Size": int(baia_elem.findtext('capacCx11', '42')) #35
             }
             bays.append(bay)
         return bays
