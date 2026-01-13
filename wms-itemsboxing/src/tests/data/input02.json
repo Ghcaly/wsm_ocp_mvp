@@ -1,0 +1,97 @@
+{
+  "maps": [
+    {
+      "code": 426924,
+      "clients": [
+        {
+          "code": 27850,
+          "skus": [
+            { "code": 21968, "quantity": 2 },
+            { "code": 22051, "quantity": 13 }
+          ]
+        },
+        {
+          "code": 31183,
+          "skus": [
+            { "code": 21426, "quantity": 1 },
+            { "code": 22051, "quantity": 2 }
+          ]
+        }
+      ]
+    }
+  ],
+  "boxes": [
+    {
+      "code": 138165,
+      "length": 5.0,
+      "width": 4.0,
+      "height": 3.0,
+      "box_slots": 12,
+      "box_slot_diameter": 9.1
+    },
+    {
+      "code": 90000308,
+      "length": 31.0,
+      "width": 51.0,
+      "height": 30.0,
+      "box_slots": 0,
+      "box_slot_diameter": 0.0
+    },
+    {
+      "code": 925,
+      "length": 15.0,
+      "width": 10.0,
+      "height": 5.0,
+      "box_slots": 10,
+      "box_slot_diameter": 20.0
+    },
+    {
+      "code": 198213,
+      "length": 8.0,
+      "width": 7.0,
+      "height": 7.0,
+      "box_slots": 1,
+      "box_slot_diameter": 3.0
+    }
+  ],
+  "skus": [
+    {
+      "code": 22051,
+      "length": 4.0,
+      "height": 6.0,
+      "width": 7.0,
+      "units_in_boxes": 12,
+      "is_bottle": true,
+      "gross_weight": 1.0,
+      "subcategory":"00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "code": 21968,
+      "length": 14.0,
+      "height": 3.5,
+      "width": 9.0,
+      "units_in_boxes": 21,
+      "is_bottle": false,
+      "gross_weight": 0.3,
+      "subcategory":"00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "code": 21426,
+      "length": 99.5,
+      "height": 30.0,
+      "width": 8.0,
+      "units_in_boxes": 12,
+      "is_bottle": true,
+      "gross_weight": 1.5,
+      "subcategory":"00000000-0000-0000-0000-000000000000"
+    }
+  ],  
+  "family_groups":[
+    {
+       "subcategory":"00000000-0000-0000-0000-000000000000",
+       "cant_go_with":[
+          
+       ]
+    }
+  ]
+}

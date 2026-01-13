@@ -1,0 +1,52 @@
+variables:
+  ### General settings ###
+  environmentType: "helm_deploy"
+  versioningType: "SemVer"
+  workingDirectory: "src"
+  runSecurityTools: false
+  multi_stg: true
+  
+  ### Project settings ###
+  uniqueKey: "logco-warehouse-wms-wms-itemsboxing"
+  projectName: "logco-warehouse-wms-wms-itemsboxing"
+  techmetricsProductId: 14
+  techmetricsModuleId: 2783
+
+  ### Container settings ###
+  startupCommand: "ddtrace-run uwsgi --ini wsgi.ini --enable-threads"
+  
+  ### Sonar settings ###
+  sonarServiceConnectionName: "sonar-wms-prd"
+  sonarProjectVersion: "$(Build.BuildNumber)"
+  sonarCoverageExclusions: "**/__init__.py,**/app.py"
+  sonarDuplicationExclusions: "**/__init__.py,**/app.py"
+  sonarExclusions: "**/__init__.py,**/app.py,deployment/*.yaml"
+  sonarDisableCache: false
+  sonarBuildBreak: false
+
+  ### Build settings ###
+  pythonVersion: "3.9"
+  requirementsFilePath: "./requirements.txt"
+  dockerBuildArguments: >
+    --build-arg DOCKER_IMAGE_BASE=python:3.9-slim
+  copyOutputsPython: |
+    requirements.txt
+    wsgi.ini
+    app.py
+    config.py
+    wsgi.py
+    api/**
+    core/**
+    libs/**
+    tests/**
+    util/**
+  packageManager: "pip"
+  feedCredentials: "AMBEV-WMS/Wms.Infrastructure,ambevtech-wms-analytics"
+  dockerfileInjection: |
+      EXPOSE 8001
+      RUN apt-get update
+      RUN apt-get install -y curl lsb-release libgssapi-krb5-2 autoconf automake libtool
+      RUN pip3 install uwsgi
+
+  ### openapi settings ###
+  openapiEnabled: false

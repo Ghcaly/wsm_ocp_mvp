@@ -1,0 +1,61 @@
+resources:
+  repositories:
+    - repository: build
+      type: git
+      ref: refs/heads/master
+      name: Wms.BuildScripts
+
+    - repository: configFiles
+      type: git
+      ref: refs/heads/master
+      name: ConfigurationFiles
+
+    - repository: devsecops-templates
+      type: git
+      name: AMBEV-OPERATIONS-APPLICATION_SECURITY_SAZ/_git/pipelines-template
+    
+    - repository: APIM-NONPROD
+      type: git
+      name: 'PLATAFORMA/APIM-NONPROD'
+      endpoint: ApimRepository
+
+    - repository: APIM-PROD
+      type: git
+      name: 'PLATAFORMA/APIM-PROD'
+      endpoint: ApimRepository
+
+variables:
+  version: ''
+
+trigger:
+  branches:
+    include:
+    - master
+    - develop
+    - release/*
+    - hotfix/*
+    - bugfix/*
+  paths:
+    include:
+    - '*'
+
+stages:
+  - template: Azure/templates/warehouse-ci-cd/wms-cycle-python.yaml@build
+    parameters:
+      imageName: "warehouse/wms-items-boxing"
+      configFilesResourceRepositoryName: "configFiles"
+      templatesResourceRepositoryName: "build"
+      dynamicCustomization: true
+      releaseName: "wms-items-boxing"
+      versionIncrement: $(version)
+      keyVaultDatabasePattern: ''
+      artifactory: 
+        authenticate: true
+        feeds: 'ambevtech-wms-analytics'
+      tierEnvironments:
+        - T2
+        - K8S
+        - K8S_T2
+        - REVENDAS
+      pythonVersion: '3.9'
+      requirementsFileRelativePath: 'src/requirements.txt'

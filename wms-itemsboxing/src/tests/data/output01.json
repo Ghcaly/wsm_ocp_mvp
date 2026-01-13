@@ -1,0 +1,32 @@
+{
+  "boxes": [
+    {
+      "code": 12,
+      "skus": [
+        { "code": 21526, "quantity": 1 },
+        { "code": 21777, "quantity": 2 },
+        { "code": 22564, "quantity": 2 },
+        { "code": 21791, "quantity": 4 }
+      ]
+    },
+    {
+      "code": 12,
+      "skus": [
+        { "code": 21791, "quantity": 2 },
+        { "code": 21787, "quantity": 3 },
+        { "code": 21530, "quantity": 4 }
+      ]
+    },
+    { "code": 12, "skus": [{ "code": 21530, "quantity": 4 }] },    
+    {
+      "code": 23,
+      "skus": [
+        { "code": 18142, "quantity": 1 },
+        { "code": 23275, "quantity": 2 }
+      ]
+    },
+    { "code": 23, "skus": [{ "code": 23275, "quantity": 3 }] }
+  ],
+  "packages": [],
+  "unboxed_items": []
+}

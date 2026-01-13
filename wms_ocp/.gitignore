@@ -9,3 +9,6 @@ ENV/
 wms_ocp/.venv/
 */wms_ocp/.venv/
 */wms_venv/
+*.pyc
+__pycache__/
+*.Identifier

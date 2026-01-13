@@ -1,0 +1,16 @@
+{
+  "boxes": [
+    {
+      "code": 925,
+      "skus": [
+        { "code": 22051, "quantity": 3 }
+      ]
+    },
+    {
+      "code": 90000308,
+      "skus": [{ "code": 21968, "quantity": 2 }]
+    }
+  ],
+  "packages": [{ "code": 22051, "quantity": 12 }],
+  "unboxed_items": [{ "code": 21426, "quantity": 1 }]
+}

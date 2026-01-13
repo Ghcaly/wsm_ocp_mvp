@@ -1,4 +1,4 @@
-# === AMBIENTES VIRTUAIS ===
+git # === AMBIENTES VIRTUAIS ===
 venv/
 wms_venv/
 env/
