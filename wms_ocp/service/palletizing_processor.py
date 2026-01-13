@@ -31,7 +31,7 @@ from ..domain.rule_configuration import build_settings_for_unb_code
 
 # Load environment from .env if present and provide converter host default
 load_dotenv()
-HOST_CONVERTER = os.getenv('HOST_CONVERTER', 'http://localhost:8002/convert')
+HOST_CONVERTER = os.getenv('HOST_CONVERTER', 'http://localhost:8081/convert')
 
 class PalletizingProcessor:
     """
@@ -601,7 +601,7 @@ class PalletizingProcessor:
             with open(saved_path, 'rb') as f:
                 response = requests.post(
                     HOST_CONVERTER,
-                    files={'file': f},
+                    files={'file': (Path(saved_path).name, f, 'application/xml')},
                     timeout=30
                 )
             
