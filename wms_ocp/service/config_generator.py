@@ -266,6 +266,20 @@ class ConfigGenerator:
                             settings["MaxPackageGroups"] = "6"
                             settings["OrderPalletByGroupSubGroupAndPackagingItem"] = "True"
                             settings["ShouldLimitPackageGroups"] = "True"
+                        elif unb_code == '970':
+                            settings["OrderPalletByPackageCodeOccupation"] = "True"
+                            settings["OrderPalletByCancha"] = "True"
+                            settings["LimitPackageGroups"] = "True"
+                            settings["BulkAllPallets"] = "False"
+                            settings["NotMountBulkPallets"] = "True"
+                            settings["ReturnableAndDisposableSplitRuleDisabled"] = "True"
+                            settings["IsotonicTopPalletCustomOrderRule"] = "True"
+                            settings["ReassignmentOfNonPalletizedItems"] = "True"
+                            settings["SideBalanceRule"] = "False"
+                            settings["PalletizeDetached"] = "True"
+                            settings["MaxPackageGroups"] = "6"
+                            settings["OrderPalletByGroupSubGroupAndPackagingItem"] = "True"
+                            settings["ShouldLimitPackageGroups"] = "True"
                         else:
                             settings["OrderPalletByPackageCodeOccupation"] = str(
                                 result.get("OrderPalletByPackageCodeOccupation", settings.get("OrderPalletByPackageCodeOccupation"))
