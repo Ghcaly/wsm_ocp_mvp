@@ -20,9 +20,14 @@ async def process_xml(file: UploadFile = File(...)):
         )
 
     # run palletization using an instance (synchronous)
-    processor = PalletizingProcessor(debug_enabled=True)
-    result = processor.run_from_xml(content, filename=file.filename)
-
+    try:
+        processor = PalletizingProcessor(debug_enabled=True)
+        result = processor.run_from_xml(content, filename=file.filename)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Erro ao processar o XML: {str(e)}"
+        )
     return {
         "filename": file.filename,
         "bytes": len(content),

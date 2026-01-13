@@ -6,6 +6,7 @@ import logging
 from decimal import Context, Decimal
 import json
 import pandas as pd
+from dotenv import load_dotenv
 
 from ..service import apply_boxing 
 from ..adapters.database import _log_items_count_by_type, enrich_items, parse_combined_groups 
@@ -27,6 +28,10 @@ from ..adapters.logger_instance import logger
 from .config_generator import ConfigGenerator
 from ..adapters.binpack_mapper import apply_binpack_json, BuildActiveBoxesFromBinpack
 from ..domain.rule_configuration import build_settings_for_unb_code
+
+# Load environment from .env if present and provide converter host default
+load_dotenv()
+HOST_CONVERTER = os.getenv('HOST_CONVERTER', 'http://localhost:8002/convert')
 
 class PalletizingProcessor:
     """
@@ -595,7 +600,7 @@ class PalletizingProcessor:
         try:
             with open(saved_path, 'rb') as f:
                 response = requests.post(
-                    "http://localhost:8002/convert", 
+                    HOST_CONVERTER,
                     files={'file': f},
                     timeout=30
                 )
@@ -1323,12 +1328,12 @@ class PalletizingProcessor:
             self.gerar_arquivos_jsons(saved_path=str(saved), input_file=str(input_file), config_file=config_file)
         except Exception as e:
             self.logger.error(f"Erro ao executar o Converter: {e}")
-            return {'success': False, 'error': str(e)}
+            raise e
         try:
             result = self.execute_palletization(config_file=str(config_file), data_file=str(input_file), output_dir=str(output_dir), validation_file=str(validacao_file))
         except Exception as e:
             self.logger.error(f"Erro ao executar palletization a partir do XML salvo: {e}")
-            return {'success': False, 'error': str(e)}
+            raise e
         
         # save logger file into the same output directory used for palletization
         try:

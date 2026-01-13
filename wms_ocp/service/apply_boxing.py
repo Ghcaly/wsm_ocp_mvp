@@ -9,6 +9,11 @@ import sys
 import requests
 from pathlib import Path
 import pandas as pd
+from dotenv import load_dotenv
+import os 
+
+load_dotenv()
+HOST_ITEMS_BOXSING = os.getenv('HOST_ITEMS_BOXSING', 'http://localhost:8001/api/items-boxing/v1/calculate/')
 
 def buscar_item(df, sku_code, UnbCode=None):
     """Busca o item no DataFrame pelo código."""
@@ -270,7 +275,7 @@ def apply_boxing_2(order, df):
         print(f"DEBUG: {total_mktp_items} produtos marketplace detectados", file=sys.stderr)
 
         response = requests.post(
-            "http://localhost:8001/api/items-boxing/v1/calculate/",
+            HOST_ITEMS_BOXSING,
             json=boxing_input,
             timeout=30
         )
@@ -305,7 +310,7 @@ def apply_boxing(input_file):
         print(f"DEBUG: {total_mktp_items} produtos marketplace detectados", file=sys.stderr)
 
         response = requests.post(
-            "http://localhost:8001/api/items-boxing/v1/calculate/",
+            HOST_ITEMS_BOXSING,
             json=boxing_input,
             timeout=30
         )
