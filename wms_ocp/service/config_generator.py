@@ -335,10 +335,10 @@ class ConfigGenerator:
                             settings["ProductGroupSpecific"] = str(
                                 result.get("productGroupSpecific", settings.get("ProductGroupSpecific"))
                             )
-                            settings["OccupationToJoinMountedSpaces"] = str(
+                            settings["PalletEqualizationRule"] = str(
                                 result.get(
-                                    "OccupationToJoinMountedSpaces",
-                                    settings.get("OccupationToJoinMountedSpaces"),
+                                    "PalletEqualizationRule",
+                                    settings.get("PalletEqualizationRule"),
                                 )
                             )
 
