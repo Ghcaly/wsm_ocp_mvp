@@ -177,7 +177,7 @@ def load_rule_configurations_from_csv(csv_path: Path, filter_by_warehouse_unb_co
                 if (row.get("WarehouseUnbCode") or "").strip() != filter_by_warehouse_unb_code:
                     continue
             
-            if row.get("MapType")!=1 and row.get("MapType")!='1':
+            if row.get("MapType")!=0 and row.get("MapType")!='0':
                 continue
 
             # parse type safely (int -> enum)
