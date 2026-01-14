@@ -26,7 +26,7 @@ class ReassignmentNonPalletizedItemsRule(BaseRule):
         # preserve a light-weight debug hook similar to WriteLogDebug
         # call logger.debug directly (faithful to C# behavior)
         try:
-            self.logger.debug(message)
+            context.add_execution_log(message)
             return
         except Exception:
             # fallback to stdout if logger not available
