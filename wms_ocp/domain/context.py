@@ -2568,7 +2568,7 @@ class Context:
     #  MERGE IN-PLACE DE ORDERS NO CONTEXT (mutação direta)
     # ============================================================
 
-    def merge_orders_in_place(self) -> Order:
+    def merge_orders_in_place(self, marketplace_created_itens, marketplace_code_itens) -> Order:
         """
         Merge todas as orders do context._orders em uma única order.
         Substitui diretamente context._orders por uma lista com apenas a order consolidada.
@@ -2581,13 +2581,14 @@ class Context:
 
         for order in self._orders:
             for item in order._items:
-                # salva metadata reversível dentro do próprio item
-                item._source_order_identifier = order._identifier
-                item._source_order_delivery = order._delivery_order
-                item._source_order_support_point = order._support_point
-                item._source_order_map_number = order._map_number
-                item._source_order_license_plate = order._license_plate
-                all_items.append(item)
+                if str(item.Code) not in marketplace_code_itens:
+                    # salva metadata reversível dentro do próprio item
+                    item._source_order_identifier = order._identifier
+                    item._source_order_delivery = order._delivery_order
+                    item._source_order_support_point = order._support_point
+                    item._source_order_map_number = order._map_number
+                    item._source_order_license_plate = order._license_plate
+                    all_items.append(item)
 
         # Ordena os itens de forma equivalente ao C#:
         # orderedItems = allItems.OrderByDescending(x => x.Product is IReturnable)
@@ -2597,6 +2598,8 @@ class Context:
         
         # mescla itens iguais mantendo metadata (usa ordem do C#)
         merged_items = self.merge_items_by_code_with_metadata(ordered_items)
+
+        merged_items[:0] = marketplace_created_itens
 
         # cria a order consolidada
         consolidated = Order(

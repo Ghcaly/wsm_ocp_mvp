@@ -1186,7 +1186,7 @@ class PalletizingProcessor:
 
             # 3. Aplicar resultado do Binpack no Context (100% fiel ao C#)
             self.logger.info("=== PROCESSANDO RESULTADO DO BINPACK ===")
-
+            created_items, marketplace_codes = [], []
             if result!=1:  
                 # Preparar parâmetros
                 items_request = []  # Lista de Item com metadados (equivalente ao ItemDto[] do C#)
@@ -1218,7 +1218,7 @@ class PalletizingProcessor:
             # 3. Cria cadeia de regras
             match self.context.kind:
                 case "Route":
-                    self.context.merge_orders_in_place()
+                    self.context.merge_orders_in_place(created_items, marketplace_codes)
                     result_context = self.execute_palletizing_process(self.palletizing_service.principal_route_chain)
                 case "AS":
                     result_context = self.execute_palletizing_process(self.palletizing_service.as_chain)
