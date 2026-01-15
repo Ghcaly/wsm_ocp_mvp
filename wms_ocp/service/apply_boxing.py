@@ -234,7 +234,7 @@ def transform_to_boxing_format_2(orders, df):
                 "length": row.get("Comprimento do item", None),
                 "height": row.get("Altura do item", None),
                 "width": row.get("Largura do item", None),
-                "units_in_boxes": row.get("Quantidade de unidades por caixa	", None),
+                "units_in_boxes": row.get("Quantidade de unidades por caixa", None),
                 "is_bottle": row.get("Tipo Caixa", None)=='Garrafeira',
                 "gross_weight": row.get("Peso bruto do item", None)
             })
