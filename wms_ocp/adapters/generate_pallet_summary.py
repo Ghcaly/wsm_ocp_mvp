@@ -185,8 +185,10 @@ def write_full_report(data: dict, out_path: Path):
             is_chopp = it.get('IsChopp') or it.get('isChopp')
             
             # Prioridade: BinPack > TopoPallet > outros atributos
-            if is_marketplace:
-                atributo = 'BinPack'
+            if is_marketplace and is_marketplace.get('BoxCode', None)  is not None:
+                atributo = 'Market/Caixa'
+            elif is_marketplace:
+                atributo = 'Market/Pacote'
             elif is_top:
                 atributo = 'TopoPallet'
             elif is_returnable:
@@ -291,8 +293,10 @@ def write_full_report(data: dict, out_path: Path):
             is_chopp = it.get('IsChopp') or it.get('isChopp')
             
             # Prioridade: BinPack > TopoPallet > outros atributos
-            if is_marketplace:
-                atributo = 'BinPack'
+            if is_marketplace and is_marketplace.get('BoxCode', None)  is not None:
+                atributo = 'Market/Caixa'
+            elif is_marketplace:
+                atributo = 'Market/Pacote'
             elif is_top:
                 atributo = 'TopoPallet'
             elif is_returnable:
