@@ -79,7 +79,7 @@ class PalletizeResultMapper:
 
         delivery = None
         try:
-            delivery = getattr(getattr(mp, 'Order', None), 'DeliveryOrder', None) or getattr(getattr(mp, 'order', None), 'delivery_order', None)
+            delivery = getattr(getattr(mp, 'Item', None), 'DeliveryOrder', None) or getattr(getattr(mp, 'Item', None), '_delivery_orders', None)
         except Exception:
             delivery = None
 
@@ -104,8 +104,8 @@ class PalletizeResultMapper:
         }
 
         order_obj = getattr(mp, 'Order', None) or getattr(mp, 'order', None) or (mp.get('Order') if isinstance(mp, dict) else None)
-        customer = None
-        if order_obj is not None:
+        customer = next(iter(mp.Item.ClientQuantity)) or None if mp.Item is not None else None
+        if order_obj is not None and customer is None:
             items_list = getattr(order_obj, 'Items', None) or getattr(order_obj, 'items', None) or (order_obj.get('Items') if isinstance(order_obj, dict) else None) or []
             first_item = None
             if items_list:
@@ -425,12 +425,19 @@ class PalletizeResultMapper:
 
         # roadShowOrder: collect delivery orders from items
         road_orders = []
+        # for it in items_out:
+        #     ds = it.get('DeliverySequence')
+        #     if ds is not None:
+        #         ds_s = str(ds)
+        #         if ds_s not in road_orders:
+        #             road_orders.append(ds_s)
         for it in items_out:
-            ds = it.get('DeliverySequence')
+            ds = it.get('DeliverySequence', {})
             if ds is not None:
-                ds_s = str(ds)
-                if ds_s not in road_orders:
-                    road_orders.append(ds_s)
+                for k in ds:
+                    k_s = str(k)
+                    if k_s not in road_orders:
+                        road_orders.append(k_s)
         road_show = "|".join(road_orders) if road_orders else None
 
         # customer: prefer mounted_space.Order.Customer / ms.Customer ; if empty, infer from first item
