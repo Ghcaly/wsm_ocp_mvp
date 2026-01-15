@@ -11,10 +11,29 @@ from pathlib import Path
 import pandas as pd
 from dotenv import load_dotenv
 import os 
+import math
+import numpy as np
 
 load_dotenv()
 HOST_ITEMS_BOXSING = os.getenv('HOST_ITEMS_BOXSING', 'http://localhost:8001/api/items-boxing/v1/calculate/')
 
+def sanitize_for_json(obj):
+    if obj is None:
+        return None
+
+    if isinstance(obj, float):
+        if math.isnan(obj) or math.isinf(obj):
+            return None
+        return obj
+
+    if isinstance(obj, dict):
+        return {k: sanitize_for_json(v) for k, v in obj.items()}
+
+    if isinstance(obj, list):
+        return [sanitize_for_json(v) for v in obj]
+
+    return obj
+    
 def buscar_item(df, sku_code, UnbCode=None):
     """Busca o item no DataFrame pelo código."""
 
@@ -256,11 +275,11 @@ def transform_to_boxing_format_2(orders, df):
             "box_slot_diameter": float(row["HiveDiameter"])
         })
 
-    return {
+    return sanitize_for_json({
         "maps": [{"code": 1, "clients": clients}],
         "skus": skus_list,
         "boxes": boxes
-    }
+    })
 
 def apply_boxing_2(order, df):
     """Aplica boxing e retorna resultado."""
