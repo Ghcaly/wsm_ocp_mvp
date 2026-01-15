@@ -104,7 +104,7 @@ class PalletizeResultMapper:
         }
 
         order_obj = getattr(mp, 'Order', None) or getattr(mp, 'order', None) or (mp.get('Order') if isinstance(mp, dict) else None)
-        customer = next(iter(mp.Item.ClientQuantity)) or None if mp.Item is not None else None
+        customer = next(iter(mp.Item.ClientQuantity)) or None if getattr(mp, 'Item', None) is not None else None
         if order_obj is not None and customer is None:
             items_list = getattr(order_obj, 'Items', None) or getattr(order_obj, 'items', None) or (order_obj.get('Items') if isinstance(order_obj, dict) else None) or []
             first_item = None
