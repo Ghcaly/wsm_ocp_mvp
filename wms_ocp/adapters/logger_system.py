@@ -9,21 +9,30 @@ from decimal import Decimal
 class JsonStepLogger:
     _instance = None  # Singleton
 
-    def __new__(cls, filepath="process_log.json"):
-        if cls._instance is None:
-            cls._instance = super(JsonStepLogger, cls).__new__(cls)
-            cls._instance._initialized = False
-        return cls._instance
+    # def __new__(cls, filepath="process_log.json"):
+    #     if cls._instance is None:
+    #         cls._instance = super(JsonStepLogger, cls).__new__(cls)
+    #         cls._instance._initialized = False
+    #     return cls._instance
 
     def __init__(self, filepath="process_log.json"):
-        if self._initialized:
-            return
+        # if self._initialized:
+        #     return
 
         self.filepath = Path(filepath)
         self.steps = []
         self.current_step = None
         self.start_date = datetime.utcnow().isoformat()
         self._initialized = True
+
+    def reset(self):
+        """
+        Reset logger state to start a new run: clear steps and current step,
+        and refresh start_date. Use before each pipeline execution.
+        """
+        self.steps = []
+        self.current_step = None
+        self.start_date = datetime.utcnow().isoformat()
 
     # ---------------------------------------------------------------
     # UNIVERSAL SAFE SERIALIZER (resolve todos JSON errors)
