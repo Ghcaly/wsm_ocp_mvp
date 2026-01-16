@@ -266,6 +266,12 @@ class ConfigGenerator:
                             settings["MaxPackageGroups"] = "6"
                             settings["OrderPalletByGroupSubGroupAndPackagingItem"] = "True"
                             settings["ShouldLimitPackageGroups"] = "True"
+                            settings["PalletEqualizationRule"] = str(
+                                result.get(
+                                    "PalletEqualizationRule",
+                                    settings.get("PalletEqualizationRule"),
+                                )
+                            )
                         elif unb_code == '970':
                             settings["OrderPalletByPackageCodeOccupation"] = "True"
                             settings["OrderPalletByCancha"] = "True"
@@ -280,6 +286,12 @@ class ConfigGenerator:
                             settings["MaxPackageGroups"] = "6"
                             settings["OrderPalletByGroupSubGroupAndPackagingItem"] = "True"
                             settings["ShouldLimitPackageGroups"] = "True"
+                            settings["PalletEqualizationRule"] = str(
+                                result.get(
+                                    "PalletEqualizationRule",
+                                    settings.get("PalletEqualizationRule"),
+                                )
+                            )
                         else:
                             settings["OrderPalletByPackageCodeOccupation"] = str(
                                 result.get("OrderPalletByPackageCodeOccupation", settings.get("OrderPalletByPackageCodeOccupation"))
@@ -356,7 +368,7 @@ class ConfigGenerator:
                                 
                                 if date_obj >= cutoff_date:
                                     self.logger.info(f"Override: Data {date_obj.date()} >= 02/dez/2025, OccupationToJoinMountedSpaces: {settings['OccupationToJoinMountedSpaces']} → 29")
-                                    settings["OccupationToJoinMountedSpaces"] = "29"
+                                    settings["OccupationToJoinMountedSpaces"] = "22"
                                 else:
                                     self.logger.info(f"Data {date_obj.date()} < 02/dez/2025, mantendo OccupationToJoinMountedSpaces = {settings['OccupationToJoinMountedSpaces']}")
                             except Exception as e:
