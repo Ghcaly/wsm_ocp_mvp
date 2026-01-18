@@ -146,11 +146,10 @@ def BuildPackageProduct(groups: List[Any], package_dto: Any, code: int, support_
     # SetGroupAssociations (C# linha 451)
     if groups and hasattr(package_product, 'PackingGroup') and package_product.PackingGroup:
         for group_combination in groups:
-            if hasattr(group_combination, 'GroupCodes') and hasattr(package_product.PackingGroup, 'GroupCode'):
-                if package_product.PackingGroup.GroupCode in group_combination.GroupCodes:
-                    if hasattr(package_product, 'SetGroupAssociations'):
-                        package_product.SetGroupAssociations(list(group_combination.GroupCodes))
-                    break
+            if package_product.PackingGroup.GroupCode in group_combination:
+                if hasattr(package_product, 'SetGroupAssociations'):
+                    package_product.SetGroupAssociations(list(group_combination))
+                break
     
     return package_product
 
@@ -247,6 +246,7 @@ def GetPackages(
         package_context_item = Item(
             Code=int(code) if str(code).isdigit() else code,
             Amount=int(quantity or 0),
+            AmountRemaining=int(quantity or 0),
             Product=package_product,
             UnitAmount=unit_amount
         )

@@ -210,6 +210,7 @@ def transform_to_boxing_format_2(orders, df):
             total_items += 1
             sku_code = str(item.Code)
             total_qty = item.Amount
+            client_code = item.Customer
 
             is_marketplace = False
 
@@ -248,12 +249,19 @@ def transform_to_boxing_format_2(orders, df):
     for sku_code in unique_skus:
         try: 
             row = buscar_item(df, sku_code)
+            val = row.get("Quantidade de unidades por caixa")
+
+            if val is None or pd.isna(val) or str(val).strip().lower() == "nan":
+                units = 0
+            else:
+                units = int(val)
+                
             skus_list.append({
                 "code": int(sku_code),
                 "length": row.get("Comprimento do item", None),
                 "height": row.get("Altura do item", None),
                 "width": row.get("Largura do item", None),
-                "units_in_boxes": row.get("Quantidade de unidades por caixa", None),
+                "units_in_boxes": units,
                 "is_bottle": row.get("Tipo Caixa", None)=='Garrafeira',
                 "gross_weight": row.get("Peso bruto do item", None)
             })
