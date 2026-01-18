@@ -246,6 +246,7 @@ def GetPackages(
         package_context_item = Item(
             Code=int(code) if str(code).isdigit() else code,
             Amount=int(quantity or 0),
+            AmountRemaining=int(quantity or 0),
             Product=package_product,
             UnitAmount=unit_amount
         )
