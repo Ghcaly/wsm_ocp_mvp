@@ -545,12 +545,17 @@ class Package(Product):
     @property
     def UnitsPerBox(self) -> int:
         return self._units_per_box
-    
+
+    @UnitsPerBox.setter
+    def UnitsPerBox(self, v):
+        try:
+            self._units_per_box = int(v)
+        except Exception:
+            self._units_per_box = 0
     
     @property
     def ContainerType(self) -> ContainerType:
         return ContainerType.PACKAGE
-
 
 class BoxTemplate(Product):
     def __init__(self, **kwargs):
