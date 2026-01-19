@@ -277,7 +277,8 @@ class Item:
         except Exception:
             # if cannot convert, store as -1 keyed count under a numeric key
             key = -1
-        self.ClientQuantity[key] = self.ClientQuantity.get(key, 0) + quantity
+        # self.ClientQuantity[key] = self.ClientQuantity.get(key, 0) + quantity
+        self._client_quantity[key] = self._client_quantity.get(key, 0) + quantity
 
     def SubtractClientQuantity(self, clientCode: int, quantity: int):
         prev = self.ClientQuantity.get(clientCode, 0)
