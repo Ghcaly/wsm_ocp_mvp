@@ -103,17 +103,17 @@ class FactorConverter:
 
         factor_value = self._factor_value(factor, item)
         #temporario 17_12_2025
-        # precision = int(math.pow(10, decimal_places))
+        precision = int(math.pow(10, decimal_places))
 
-        # occupation = qty * (factor_value if factor_value != 0 else Decimal(1)) / Decimal(2)
-        # truncated = (math.trunc(precision * float(occupation)) / precision) if precision != 0 else occupation
-
-        # return self._to_decimal(truncated) + additional
-        #temporario 17_12_2025
-        precision = Decimal(10) ** decimal_places
         occupation = qty * (factor_value if factor_value != 0 else Decimal(1)) / Decimal(2)
-        truncated = (occupation * precision).to_integral_value(rounding=ROUND_DOWN) / precision
-        return truncated + additional
+        truncated = (math.trunc(precision * float(occupation)) / precision) if precision != 0 else occupation
+
+        return self._to_decimal(truncated) + additional
+        #temporario 17_12_2025
+        # precision = Decimal(10) ** decimal_places
+        # occupation = qty * (factor_value if factor_value != 0 else Decimal(1)) / Decimal(2)
+        # truncated = (occupation * precision).to_integral_value(rounding=ROUND_DOWN) / precision
+        # return truncated + additional
 
     def unitary_occupation(self, item: Any, factor: Any, pallet_setting: Any) -> Decimal:
         """Occupation for a single unit (C# UnitaryOccupation)."""
