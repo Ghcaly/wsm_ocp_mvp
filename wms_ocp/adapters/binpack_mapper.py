@@ -186,7 +186,7 @@ def UpdatePackageWithDeliveryOrders(
             if remaining_quantity <= 0:
                 break
             
-            customer = details.Customer
+            customer = details.Customer if details.Customer else package_context_item.Customer
             value_order = details.Amount
             
             # Calcula quantos packages completos cabem
@@ -248,7 +248,8 @@ def GetPackages(
             Amount=int(quantity or 0),
             AmountRemaining=int(quantity or 0),
             Product=package_product,
-            UnitAmount=unit_amount
+            UnitAmount=unit_amount,
+            Customer=package_dto.Customer 
         )
         
         # Atualiza delivery orders (equivalente linha 241)
