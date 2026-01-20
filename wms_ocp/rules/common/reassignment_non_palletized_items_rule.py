@@ -80,9 +80,17 @@ class ReassignmentNonPalletizedItemsRule(BaseRule):
 
         return context
 
+    def GetNonPalletizedItems(self, context: Context, order):
+        if self._can_split_item:
+            return ItemList(context.get_items_palletizable_by_order(order)).not_marketplace().with_amount_remaining()
+
+        return ItemList(context.get_items_palletizable_by_order(order)).with_amount_remaining()
+        
     def _reassignment_non_palletized_items(self, context: Context, orders: List):
         for order in orders:
-            non_palletized_items = ItemList(context.get_items_palletizable_by_order(order)).with_amount_remaining()
+            # non_palletized_items = ItemList(context.get_items_palletizable_by_order(order)).with_amount_remaining()
+            non_palletized_items = self.GetNonPalletizedItems(context, order)
+            
             if not non_palletized_items.any():
                 continue
             
