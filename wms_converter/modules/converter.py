@@ -11,7 +11,8 @@ class XmlConverter:
         filename = Path(input_file).name
         
         result = {
-            "Type": 1,
+            # "Type": 1,
+            "Type": int(root.findtext('.//tpCanal', '0')),
             "Number": overrides.get('number', self._extract_number(root)),
             "DeliveryDate": overrides.get('delivery_date', self._extract_delivery_date(root)),
             "Warehouse": {
