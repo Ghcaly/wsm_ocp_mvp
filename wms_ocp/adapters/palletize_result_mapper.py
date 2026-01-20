@@ -278,9 +278,7 @@ class PalletizeResultMapper:
             try:
                 base_data = Path(__file__).parent.parent / 'database'
                 candidate_files = [
-                    base_data / "csv-itens_17122025.csv",
-                    base_data / "csv-itens.csv",
-                    base_data / "csv-itens.csv".lower()
+                    base_data / "csv-itens-19012026.csv"
                 ]
                 df = None
                 for fpath in candidate_files:
