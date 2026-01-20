@@ -17,6 +17,8 @@ import numpy as np
 load_dotenv()
 HOST_ITEMS_BOXSING = os.getenv('HOST_ITEMS_BOXSING', 'http://localhost:8001/api/items-boxing/v1/calculate/')
 
+_DF_FINAL_CACHE = None
+
 def sanitize_for_json(obj):
     if obj is None:
         return None
@@ -244,6 +246,15 @@ def transform_to_boxing_format_2(orders, df):
             except (ValueError, TypeError):
                 continue
 
+    base_dir = Path(__file__).parent.parent / 'database'
+    df_cat = pd.read_csv(base_dir / 'Category.csv', sep=";", header=None,
+            names=[ 
+                "CategoryId",
+                "Descrition",
+                "Descrition2",
+                "Active"
+            ])
+    family_groups = []
     skus_list = []
     unique_skus = set(sku for items in marketplace_items.values() for sku in items.keys())
     for sku_code in unique_skus:
@@ -255,7 +266,20 @@ def transform_to_boxing_format_2(orders, df):
                 units = 0
             else:
                 units = int(val)
-                
+
+            cod = row.get("Código subtipo")
+            if cod is None or pd.isna(cod) or str(cod).strip().lower() == "nan":
+                cod = None
+            else:
+                cod = int(cod)
+
+            category_id , associeted_ids = get_associated_category_ids(
+                    cod=cod,
+                    path_subtypes=base_dir / 'Subtype.csv',
+                    path_catsub=base_dir / 'CategorySubtype.csv',
+                    path_asso_cat=base_dir / 'AssociatedCategory.csv'
+                )
+            
             skus_list.append({
                 "code": int(sku_code),
                 "length": row.get("Comprimento do item", None),
@@ -263,12 +287,41 @@ def transform_to_boxing_format_2(orders, df):
                 "width": row.get("Largura do item", None),
                 "units_in_boxes": units,
                 "is_bottle": row.get("Tipo Caixa", None)=='Garrafeira',
-                "gross_weight": row.get("Peso bruto do item", None)
+                "gross_weight": row.get("Peso bruto do item", None),
+                "subcategory":category_id
             })
+
+            associated_set = {cat.lower() for cat in associeted_ids}
+
+            categories_cant_go_with = [
+                cat_id
+                for cat_id in df_cat.loc[
+                    (df_cat["Active"] == 1) &
+                    (df_cat["CategoryId"].str.lower() != category_id),
+                    "CategoryId"
+                ]
+                if cat_id.lower() not in associated_set
+            ]
+
+            categories_cant_go_with = [x.lower() for x in categories_cant_go_with if isinstance(x, str)]
+
+            if category_id!='00000000-0000-0000-0000-000000000000': 
+                categories_cant_go_with.append('00000000-0000-0000-0000-000000000000')
+
+            if not any(item["subcategory"] == category_id.lower() for item in family_groups):
+                family_groups.append({
+                    "subcategory": category_id,
+                    "cant_go_with": categories_cant_go_with
+                })
         except (ValueError, TypeError):
             continue
 
-    base_dir = Path(__file__).parent.parent / 'database'
+
+    special_id = "00000000-0000-0000-0000-000000000000"
+    # atualiza cant_go_with do item especial se existir
+    if (item := next((i for i in family_groups if i["subcategory"] == special_id), None)):
+        item["cant_go_with"] = [i["subcategory"] for i in family_groups if i["subcategory"] != special_id]
+        
     df = pd.read_csv(base_dir / "boxes_completo_merge.csv")
     df = df.where(pd.notnull(df), None).astype(object)
     df_boxs = df[(df.WarehouseId=='401') | (df.WarehouseId==401)]
@@ -286,9 +339,107 @@ def transform_to_boxing_format_2(orders, df):
     return sanitize_for_json({
         "maps": [{"code": 1, "clients": clients}],
         "skus": skus_list,
-        "boxes": boxes
+        "boxes": boxes,
+        "family_groups": family_groups
     })
 
+def _load_and_prepare_data(
+    path_subtypes: str,
+    path_catsub: str,
+    path_asso_cat: str
+):
+    global _DF_FINAL_CACHE
+
+    if _DF_FINAL_CACHE is not None:
+        return _DF_FINAL_CACHE
+
+    # -------------------------------
+    # Leitura dos CSVs
+    # -------------------------------
+    df_subtypes = pd.read_csv(path_subtypes, dtype=str)
+    df_catsub = pd.read_csv(path_catsub, dtype=str)
+    df_asso_cat = pd.read_csv(path_asso_cat, dtype=str, sep=";", header=None,
+                                names=[
+                                    "Id",
+                                    "CategoryId",
+                                    "AssociatedCategoryId"
+                                ])
+
+    # -------------------------------
+    # Normalização (minúsculo)
+    # -------------------------------
+    df_subtypes['Id'] = df_subtypes['Id'].str.strip().str.lower()
+    df_subtypes['Code'] = df_subtypes['Code'].str.strip().str.lower()
+
+    df_catsub['SubtypeId'] = df_catsub['SubtypeId'].str.strip().str.lower()
+    df_catsub['CategoryId'] = df_catsub['CategoryId'].str.strip().str.lower()
+
+    df_asso_cat['CategoryId'] = df_asso_cat['CategoryId'].str.strip().str.lower()
+    df_asso_cat['AssociatedCategoryId'] = (
+        df_asso_cat['AssociatedCategoryId']
+        .str.strip()
+        .str.lower()
+    )
+
+    # -------------------------------
+    # Merge 1: subtypes + catsub
+    # -------------------------------
+    df_1 = df_subtypes.merge(
+        df_catsub,
+        left_on='Id',
+        right_on='SubtypeId',
+        how='inner',
+        suffixes=('_subtypes_df', '_catsub_df')
+    )
+
+    # -------------------------------
+    # Merge 2: + asso_cat
+    # -------------------------------
+    df_final = df_1.merge(
+        df_asso_cat,
+        on='CategoryId',
+        how='inner',
+        suffixes=('_catsub_df', '_asso_cat_df')
+    )
+
+    # Mantém apenas o necessário (mais leve)
+    _DF_FINAL_CACHE = df_final[['Code','CategoryId', 'AssociatedCategoryId']]
+
+    return _DF_FINAL_CACHE
+
+def get_associated_category_ids(
+    cod: str,
+    path_subtypes: str,
+    path_catsub: str,
+    path_asso_cat: str
+) -> list:
+    """
+    Recebe um código (cod) e retorna uma lista de AssociatedCategoryId
+    """
+
+    if cod is None:
+        return '00000000-0000-0000-0000-000000000000', []
+    
+    df_final = _load_and_prepare_data(
+        path_subtypes,
+        path_catsub,
+        path_asso_cat
+    )
+
+    cod = str(cod).strip().lower()
+
+    if df_final[df_final['Code'] == cod].shape[0]>0:
+        cat_id = df_final[df_final['Code'] == cod].CategoryId.values[0]
+        if cat_id is None or pd.isna(cat_id) or str(cat_id).strip() == "":
+            cat_id = '00000000-0000-0000-0000-000000000000'
+        return  cat_id , (
+            df_final[df_final['Code'] == cod]['AssociatedCategoryId']
+            .dropna()
+            .unique()
+            .tolist()
+        )
+    return None, []
+    
 def apply_boxing_2(order, df):
     """Aplica boxing e retorna resultado."""
     try:
