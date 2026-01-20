@@ -663,8 +663,7 @@ class PalletizingProcessor:
             # database.
             # file = r"C:\Users\BRKEY864393\Downloads\csv-itens (1).csv"
             base_dir = Path(__file__).parent.parent / 'database'
-            file = base_dir / "csv-itens.csv"
-            file = base_dir / "csv-itens_17122025.csv"
+            file = base_dir / "csv-itens-19012026.csv"
             df = pd.read_csv(file, sep=';')
             df = df.where(pd.notnull(df), None).astype(object)
             df['Código'] = df['Código'].astype(str)
@@ -1160,8 +1159,7 @@ class PalletizingProcessor:
             self.load_configuration_and_data(config_file, data_file)
             
             base_dir = Path(__file__).parent.parent / 'database'
-            file = base_dir / "csv-itens.csv"
-            file = base_dir / "csv-itens_17122025.csv"
+            file = base_dir / "csv-itens-19012026.csv"
             df = pd.read_csv(file, sep=';')
             df = df.where(pd.notnull(df), None).astype(object)
             df['Código'] = df['Código'].astype(str)
