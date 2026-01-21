@@ -36,6 +36,7 @@ WAREHOUSE_DEPARA = {
     '550': '538',   # 550 -> 538
     '646': '575',   # 646 -> 575
     '910': '724',   # 910 -> 724
+    '626': '539'
 }
 
 # Códigos a ignorar (não existem mais / outro sistema)
@@ -221,8 +222,7 @@ class ConfigGenerator:
                         settings = default_settings.copy()
                         
                         # Mapeia colunas CSV para Settings (DE/PARA de nomes)
-                        # #alteracao felipe
-                        settings["EnableSafeSideRule"] = "True" if row.get('EnableSafeSideRule') == '1' else "False" # felipe
+                        settings["EnableSafeSideRule"] = "True" if row.get('EnableSafeSideRule') == '1' else "False"
                         settings["UseBaySmallerThan35"] = "True" if row.get('UseBayLessThan35') == '1' else "False"
                         settings["KegExclusivePallet"] = "True" if row.get('KegExclusivePallet') == '1' else "False"
                         settings["IncludeTopOfPallet"] = "True" if row.get('IncludeTopOfPallet') == '1' else "False"
@@ -251,110 +251,133 @@ class ConfigGenerator:
                         
                         result = build_settings_for_unb_code(unb_code)
 
-                        # # Settings hardcoded que não mudam
-                        if unb_code == '764':
-                            settings["OrderPalletByPackageCodeOccupation"] = "True"
-                            settings["OrderPalletByCancha"] = "True"
-                            settings["LimitPackageGroups"] = "True"
-                            settings["BulkAllPallets"] = "False"
-                            settings["NotMountBulkPallets"] = "True"
-                            settings["ReturnableAndDisposableSplitRuleDisabled"] = "True"
-                            settings["IsotonicTopPalletCustomOrderRule"] = "True"
-                            settings["ReassignmentOfNonPalletizedItems"] = "True"
-                            settings["SideBalanceRule"] = "True"
-                            settings["PalletizeDetached"] = "True"
-                            settings["MaxPackageGroups"] = "6"
-                            settings["OrderPalletByGroupSubGroupAndPackagingItem"] = "True"
-                            settings["ShouldLimitPackageGroups"] = "True"
-                            settings["PalletEqualizationRule"] = str(
-                                result.get(
-                                    "PalletEqualizationRule",
-                                    settings.get("PalletEqualizationRule"),
-                                )
-                            )
-                        elif unb_code == '970':
-                            settings["OrderPalletByPackageCodeOccupation"] = "True"
-                            settings["OrderPalletByCancha"] = "True"
-                            settings["LimitPackageGroups"] = "True"
-                            settings["BulkAllPallets"] = "False"
-                            settings["NotMountBulkPallets"] = "True"
-                            settings["ReturnableAndDisposableSplitRuleDisabled"] = "True"
-                            settings["IsotonicTopPalletCustomOrderRule"] = "True"
-                            settings["ReassignmentOfNonPalletizedItems"] = "True"
-                            settings["SideBalanceRule"] = "False"
-                            settings["PalletizeDetached"] = "True"
-                            settings["MaxPackageGroups"] = "6"
-                            settings["OrderPalletByGroupSubGroupAndPackagingItem"] = "True"
-                            settings["ShouldLimitPackageGroups"] = "True"
-                            settings["PalletEqualizationRule"] = str(
-                                result.get(
-                                    "PalletEqualizationRule",
-                                    settings.get("PalletEqualizationRule"),
-                                )
-                            )
-                        else:
-                            settings["OrderPalletByPackageCodeOccupation"] = str(
-                                result.get("OrderPalletByPackageCodeOccupation", settings.get("OrderPalletByPackageCodeOccupation"))
-                            )
-                            settings["OrderPalletByCancha"] = str(
-                                result.get("OrderPalletByCancha", settings.get("OrderPalletByCancha"))
-                            )
-                            settings["LimitPackageGroups"] = str(
-                                result.get("LimitPackageGroups", settings.get("LimitPackageGroups"))
-                            )
-                            settings["BulkAllPallets"] = str(
-                                result.get("bulkAllPallets", settings.get("BulkAllPallets"))
-                            )
-                            settings["NotMountBulkPallets"] = str(
-                                result.get("notMountBulkPallets", settings.get("NotMountBulkPallets"))
-                            )
-                            settings["ReturnableAndDisposableSplitRuleDisabled"] = str(
-                                result.get(
-                                    "returnableAndDisposableSplitRuleDisabled",
-                                    settings.get("ReturnableAndDisposableSplitRuleDisabled"),
-                                )
-                            )
-                            settings["IsotonicTopPalletCustomOrderRule"] = str(
-                                result.get(
-                                    "isotonicTopPalletCustomOrderRule",
-                                    settings.get("IsotonicTopPalletCustomOrderRule"),
-                                )
-                            )
-                            settings["ReassignmentOfNonPalletizedItems"] = str(
-                                result.get(
-                                    "reassignmentOfNonPalletizedItems",
-                                    settings.get("ReassignmentOfNonPalletizedItems"),
-                                )
-                            )
-                            settings["SideBalanceRule"] = str(
-                                result.get("sideBalanceRule", settings.get("SideBalanceRule"))
-                            )
-                            settings["PalletizeDetached"] = str(
-                                result.get("PalletizeDetached", settings.get("PalletizeDetached"))
-                            )
-                            settings["MaxPackageGroups"] = str(
-                                result.get("MaxPackageGroups", settings.get("MaxPackageGroups"))
-                            )
-                            settings["OrderPalletByGroupSubGroupAndPackagingItem"] = str(
-                                result.get(
-                                    "orderPalletByGroupSubGroupAndPackagingItem",
-                                    settings.get("OrderPalletByGroupSubGroupAndPackagingItem"),
-                                )
-                            )
-                            settings["ShouldLimitPackageGroups"] = str(
-                                result.get("LimitPackageGroups", settings.get("ShouldLimitPackageGroups"))
-                            )
-                            settings["ProductGroupSpecific"] = str(
-                                result.get("productGroupSpecific", settings.get("ProductGroupSpecific"))
-                            )
-                            settings["PalletEqualizationRule"] = str(
-                                result.get(
-                                    "PalletEqualizationRule",
-                                    settings.get("PalletEqualizationRule"),
-                                )
-                            )
+                        settings["EnableSafeSideRule"] = str(
+                            result.get("EnableSafeSideRule", "True" if row.get('EnableSafeSideRule') == '1' else "False")
+                        )
+                        settings["UseBaySmallerThan35"] = str(
+                            result.get("UseBaySmallerThan35", "True" if row.get('UseBayLessThan35') == '1' else "False")
+                        )
+                        settings["KegExclusivePallet"] = str(
+                            result.get("kegExclusivePallet", "True" if row.get('KegExclusivePallet') == '1' else "False")
+                        )
+                        settings["IncludeTopOfPallet"] = str(
+                            result.get("includeTopOfPallet", "True" if row.get('IncludeTopOfPallet') == '1' else "False")
+                        )
+                        settings["MinimumOccupationPercentage"] = str(## nao tem no rule confg
+                            result.get("MinimumOccupationPercentage", str(row.get('MinimumPercentageOccupancy', '0')))
+                        )
+                        settings["AllowEmptySpaces"] = str(
+                            result.get("allowEmptyBays", "True" if row.get('AllowEmptyBays') == '1' else "False")
+                        )
+                        settings["AllowVehicleWithoutBays"] = str(
+                            result.get("allowVehicleWithoutBays", "True" if row.get('AllowVehicleWithoutBays') == '1' else "False")
+                        )
 
-
+                        settings["DistributeItemsOnEmptySpaces"] =str(
+                            result.get("distributeItemsOnEmptyPallets", "True" if row.get('DistributeItemsOnEmptyPallets') == '1' else "False")
+                        )
+                        settings["MinimumQuantityOfSKUsToDistributeOnEmptySpaces"] = str(
+                            result.get("MinimumQuantityOfSKUsToDistributeOnEmptySpaces", str(row.get('MinimumQuantityOfSKUsToDistributeOnEmptyPallets', '0')))
+                        )
+                        settings["AdjustReassemblesAfterWater"] = str(
+                            result.get("adjustReassemblesAfterWater", "True" if row.get('AdjustReassemblesAfterWater') == '1' else "False")
+                        )
+                        settings["JoinDisposableContainers"] = str(
+                            result.get("JoinDisposableContainers", "True" if row.get('JoinDisposables') == '1' else "False")
+                        )
+                        settings["OccupationToJoinMountedSpaces"] = str(
+                            result.get("OccupationToJoinMountedSpaces", str(row.get('JoinPalletsWithLessThanOccupancy', '0')))
+                        )
+                        settings["OrderByItemsSequence"] = str(
+                            result.get("OrderByItemsSequence", "True" if row.get('OrderByItemsSequence') == '1' else "False")
+                        )
+                        settings["OrderPalletByProductGroup"] = str(
+                            result.get("OrderPalletByProductGroup", "True" if row.get('OrderPalletByProductGroup') == '1' else "False")
+                        )
+                        settings["OrderProductsForAutoServiceMap"] = str(
+                            result.get("OrderProductsForAutoServiceMap", "True" if row.get('OrderProductsForAutoServiceMap') == '1' else "False")
+                        )
+                        settings["DistributeMixedRouteOnASCalculus"] = str(
+                            result.get("distributeMixedRouteOnASCalculus", "True" if row.get('DistributeMixedRouteOnASCalculus') == '1' else "False" )
+                        )
+                        settings["GroupComplexLoads"] = str(
+                            result.get("allowGroupingComplexLoads", "True" if row.get('AllowGroupingComplexLoads') == '1' else "False")
+                        )
+                        settings["MinimumVolumeInComplexLoads"] = str(
+                            result.get("MinimumVolumeInComplexLoads", str(row.get('MinimumVolumeInComplexLoads', '42')))
+                        )
+                        settings["QuantitySkuInComplexLoads"] = str(
+                            result.get("QuantitySkuInComplexLoads", str(row.get('QuantitySkuInComplexLoads', '30')))
+                        )
+                        settings["UseItemsExclusiveOfWarehouse"] = str(
+                            result.get("UseItemsExclusiveOfWarehouse", "True" if row.get('UseItemsExclusiveOfWarehouse') == '1' else "False")
+                        )
+                        settings["OrderPalletByPackageCodeOccupation"] = str(
+                            result.get("OrderPalletByPackageCodeOccupation", settings.get("OrderPalletByPackageCodeOccupation"))
+                        )
+                        settings["OrderPalletByCancha"] = str(
+                            result.get("OrderPalletByCancha", settings.get("OrderPalletByCancha"))
+                        )
+                        settings["LimitPackageGroups"] = str(
+                            result.get("LimitPackageGroups", settings.get("LimitPackageGroups"))
+                        )
+                        settings["BulkAllPallets"] = str(
+                            result.get("bulkAllPallets", settings.get("BulkAllPallets"))
+                        )
+                        settings["NotMountBulkPallets"] = str(
+                            result.get("notMountBulkPallets", settings.get("NotMountBulkPallets"))
+                        )
+                        settings["ReturnableAndDisposableSplitRuleDisabled"] = str(
+                            result.get(
+                                "returnableAndDisposableSplitRuleDisabled",
+                                settings.get("ReturnableAndDisposableSplitRuleDisabled"),
+                            )
+                        )
+                        settings["IsotonicTopPalletCustomOrderRule"] = str(
+                            result.get(
+                                "isotonicTopPalletCustomOrderRule",
+                                settings.get("IsotonicTopPalletCustomOrderRule"),
+                            )
+                        )
+                        settings["ReassignmentOfNonPalletizedItems"] = str(
+                            result.get(
+                                "reassignmentOfNonPalletizedItems",
+                                settings.get("ReassignmentOfNonPalletizedItems"),
+                            )
+                        )
+                        settings["SideBalanceRule"] = str(
+                            result.get("sideBalanceRule", False)
+                        )
+                        settings["PalletizeDetached"] = str(
+                            result.get("PalletizeDetached", settings.get("PalletizeDetached"))
+                        )
+                        settings["MaxPackageGroups"] = str(
+                            result.get("MaxPackageGroups", settings.get("MaxPackageGroups"))
+                        )
+                        settings["OrderPalletByGroupSubGroupAndPackagingItem"] = str(
+                            result.get(
+                                "orderPalletByGroupSubGroupAndPackagingItem",
+                                settings.get("OrderPalletByGroupSubGroupAndPackagingItem"),
+                            )
+                        )
+                        settings["ShouldLimitPackageGroups"] = str(
+                            result.get("LimitPackageGroups", settings.get("ShouldLimitPackageGroups"))
+                        )
+                        settings["ProductGroupSpecific"] = str(
+                            result.get("productGroupSpecific", settings.get("ProductGroupSpecific"))
+                        )
+                        settings["PalletEqualizationRule"] = str(
+                            result.get(
+                                "PalletEqualizationRule",
+                                settings.get("PalletEqualizationRule"),
+                            )
+                        )
+                        settings["OccupationToJoinMountedSpaces"] = str(
+                                result.get(
+                                    "OccupationToJoinMountedSpaces",
+                                    settings.get("OccupationToJoinMountedSpaces"),
+                                )
+                            )
                         
                         # OVERRIDE BASEADO EM DATA: Warehouse 916→764 mudou config em 02/dez/2025
                         if unb_code == '764' and delivery_date:
