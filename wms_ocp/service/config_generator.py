@@ -36,7 +36,8 @@ WAREHOUSE_DEPARA = {
     '550': '538',   # 550 -> 538
     '646': '575',   # 646 -> 575
     '910': '724',   # 910 -> 724
-    '626': '539'
+    '626': '539',
+    '634':'216'
 }
 
 # Códigos a ignorar (não existem mais / outro sistema)
