@@ -266,7 +266,7 @@ class Item:
         return self.DeliveryOrdersClient.get(deliveryOrder) == client
 
     def AddDeliveryOrderClient(self, deliveryOrder: int, client: str):
-        self.DeliveryOrdersClient[deliveryOrder] = client
+        self._delivery_orders_client[deliveryOrder] = client
 
     def AddDeliveryOrderSafeSide(self, deliveryOrder: int, safeSide: int):
         self.DeliveryOrderSafeSide[deliveryOrder] = safeSide
@@ -282,7 +282,7 @@ class Item:
 
     def SubtractClientQuantity(self, clientCode: int, quantity: int):
         prev = self.ClientQuantity.get(clientCode, 0)
-        self.ClientQuantity[clientCode] = max(0, prev - quantity)
+        self._client_quantity[clientCode] = max(0, prev - quantity)
 
     def GetDeliveryOrdersWithAmount(self):
         return [d for d, q in self.ClientQuantity.items() if q > 0]
